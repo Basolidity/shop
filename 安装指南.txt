@@ -1,0 +1,7 @@
+$ composer install
+
+$ cp .env
+
+$ php artisan key:generate
+
+ªÚ’ﬂø¥£∫https://www.jianshu.com/p/0d6ca3e65a8a
