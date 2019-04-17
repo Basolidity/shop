@@ -15,12 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
+
 Route::get('/admin', function () {
     return view('welcome');
 });
-=======
+
 Route::resource('/admin/info',function(){
     return view('info');
 });
->>>>>>> 3cae866965b6e37fda352c6be1b12bfbaba3e1c7
+
