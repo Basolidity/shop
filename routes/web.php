@@ -24,3 +24,6 @@ Route::resource('/admin/info',function(){
     return view('info');
 });
 
+Route::resource('/admin/info222',function(){
+    return view('info');
+});
