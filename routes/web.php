@@ -17,20 +17,11 @@ Route::get('/', function () {
 // 首页
 Route::get('/admin/index','Admin\IndexController@index');
 
-<<<<<<< HEAD
+// 用户状态
+Route::get('/admin/status','Admin\UserController@status');
+// 修改密码
+Route::get('/admin/pass/{id}','Admin\UserController@pass');
+// 处理修改密码
+Route::POST('/admin/dopass/{id}','Admin\UserController@dopass');
 // 用户管理
 Route::resource('/admin/info','Admin\UserController');
-=======
-
-Route::get('/admin', function () {
-    return view('welcome');
-});
-
-Route::resource('/admin/info',function(){
-    return view('info');
-});
-
-Route::resource('/admin/info222',function(){
-    return view('info');
-});
->>>>>>> fbdc4cc3b213181be77c79f1972412d4adbd6b6d
