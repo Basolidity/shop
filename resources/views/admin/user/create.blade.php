@@ -88,6 +88,15 @@
                         dataType: 'json',    
                         type: 'POST',    
                         success: function(data){
+                            if(data == 2){
+                                layui.use(['form', 'layer'],
+                                function() {
+                                    $ = layui.jquery;
+                                    var form = layui.form,
+                                    layer = layui.layer;
+                                    layer.alert("用户名已存在", {icon: 5});
+                                });
+                            }
                             if(data == 1){
                                 layui.use(['form', 'layer'],
                                 function() {
@@ -97,11 +106,14 @@
                                     layer.alert("增加成功", {icon: 6},function () {
                                         // 获得frame索引
                                         var index = parent.layer.getFrameIndex(window.name);
+                                        // 关闭窗口刷新父页面
+                                        window.parent.location.reload();
                                         //关闭当前frame
                                         parent.layer.close(index);
                                     });
                                 });
-                            }else{
+                            }
+                            if(data == 0){
                                 layui.use(['form', 'layer'],
                                 function() {
                                     $ = layui.jquery;

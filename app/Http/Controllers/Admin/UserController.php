@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Hash;
+use App\Model\Admin\User;
 class UserController extends Controller
 {
     /**
@@ -13,13 +14,35 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //关联用户详情表查询出详情表的字段
-        $rs = DB::table('users')->join('users_info','users.id','=','users_info.uid')->select('users.*','users_info.time')->get();
+        // $rs = DB::table('users')->join('users_info','users.id','=','users_info.uid')->select('users.*','users_info.time')->get();
+        // $page = DB::table('users')->paginate(5);
         // dump($rs);
+        $i = 1;
         // 用户列表页
-        return view('admin.user.user_info',['rs'=>$rs]);
+        // return view('admin.user.user_info',['rs'=>$rs,'i'=>$i,'page'=>$page]);
+
+        $txt = $request->input('uname');
+        // var_dump($txt);
+        $perPage = $request->input('per_num',5); //每页页码
+        $query = User::query()->orderBy('id', 'asc')->where(function($query) use($request){
+            //检测关键字
+            $uname = $request->search;
+            //如果用户名不为空
+            if(!empty($uname)) {
+                $query->where('uname','like','%'.$uname.'%');
+            }
+        });
+        $result = $query->paginate($perPage);
+        $paginator = $result->render();
+        $result =  collect($result)->toArray();
+        $req = $request['search'];
+        $users = $result['data'];
+        $total = $result['total'];//总页码
+        $current_page = $result['current_page'];//当前页
+        return view('admin.user.user_info',compact('users','paginator' ,'total','current_page','perPage','i','txt','req'));
     }
 
     /**
@@ -43,6 +66,11 @@ class UserController extends Controller
     {
         //获取添加表单传过来的数据
         $data = $request->except(['_token','repass']);
+        $ver = DB::table('users')->where('uname',$data['uname'])->get();
+        if(!empty($ver[0])){
+            echo '2';die;
+        }
+
         // 密码进行哈希加密
         $data['pass'] = password_hash($data['pass'],PASSWORD_DEFAULT);
         // var_dump($data);
@@ -104,20 +132,26 @@ class UserController extends Controller
         //处理修改
         $data = $request->except(['_token','_method']);
         // echo $request;
+        // 链表查询数据做判断
         $verify = DB::table('users')
         ->join('users_info','users.id','=','users_info.uid')
         ->where('users.id',$id)
         ->select('users.uname','users_info.name','users_info.phone')
         ->get();
-        if($data['uname'] == $verify[0]->uname){
+        // 判断如果没有改数据返回3：保存成功
+        if($data['uname'] == $verify[0]->uname && $data['name'] == $verify[0]->name && $data['phone'] == $verify[0]->phone){
             echo '3';die;
         }
+        // $ver = DB::table('users_info')->where('phone',$data['phone'])->get();
+        // if(!empty($ver[0])){
+        //     echo '2';die;
+        // }
         // 更改users表用户名
         $rs = DB::table('users')->where('id', $id)->update(['uname' => $data['uname']]);;
         // 更改详情表昵称和手机
         $rs1 = DB::table('users_info')->where('uid', $id)->update(['name' => $data['name'],'phone' => $data['phone']]);;
 
-
+        // 返回值,1:修改成功  0:修改失败
         if($rs || $rs1){
             echo '1';
         }else{
@@ -127,7 +161,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除用户
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -136,7 +170,9 @@ class UserController extends Controller
     {
         //删除用户
         $res = DB::table('users')->where('id', '=', $id)->delete();
-        if ($res) {
+        $res1 = DB::table('users_info')->where('uid', '=', $id)->delete();
+
+        if ($res && $res1) {
           $data = [
             'status' => 0,
           ];
@@ -187,4 +223,25 @@ class UserController extends Controller
             echo '3';
         }
     }
+
+
+    // 批量删除
+    public function batch(){
+        // 遍历ajax传过来的数组
+        foreach ($_GET['arr'] as $k => $v) {
+            $res = DB::table('users')->where('id', '=', $v)->delete();
+            $res1 = DB::table('users_info')->where('uid', '=', $v)->delete();
+        }
+            if ($res && $res1) {
+              $data = [
+                'status' => 0,
+              ];
+            } else {
+              $data = [
+                'status' => 1,
+              ];
+            }
+        return $data;
+    }
+
 }

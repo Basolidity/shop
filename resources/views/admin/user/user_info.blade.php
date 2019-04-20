@@ -16,8 +16,8 @@
             <form class="layui-form layui-col-md12 x-so">
                 <input class="layui-input" placeholder="开始日" name="start" id="start">
                 <input class="layui-input" placeholder="截止日" name="end" id="end">
-                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-                <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                <input type="text" name="search" placeholder="请输入用户名" autocomplete="off" class="layui-input" value="{{ $req }}">
+                <button class="layui-btn" lay-submit="" lay-filter="searchu">
                     <i class="layui-icon">&#xe615;</i></button>
             </form>
         </div>
@@ -26,7 +26,7 @@
                 <i class="layui-icon"></i>批量删除</button>
             <button class="layui-btn" onclick="x_admin_show('添加用户','{{ url('admin/info/create') }}',600,400)">
                 <i class="layui-icon"></i>添加</button>
-            <span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            </xblock>
         <table class="layui-table">
             <thead>
                 <tr>
@@ -42,52 +42,51 @@
             </thead>
             <tbody>
                 <!-- 遍历用户 -->
-                @foreach($rs as $k => $v)
+                @if(!empty($users))
+                @foreach($users as $k => $v)
                 <tr>
                     <td>
-                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'>
+                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="{{ $v['id'] }}">
                             <i class="layui-icon">&#xe605;</i></div>
                     </td>
-                    <td id="uid">{{ $v->id }}</td>
-                    <td>{{ $v->uname }}</td>
-                    <td>{{ $v->time }}</td>
+                    <td id="uid">{{ $i++ }}</td>
+                    <td>{{ $v['uname'] }}</td>
+                    <td></td>
                     <td class="td-status">
-                        {!! $v->status ? '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>' : '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>' !!}
+                        {!! $v['status'] ? '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>' : '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>' !!}
                     </td>
                     <td class="td-manage">
                         <a onclick="member_stop(this,'10001')" href="javascript:;" title="更改状态">
-                            {!! $v->status ? '<i class="layui-icon">&#xe62f;</i>' : '<i class="layui-icon">&#xe601;</i>' !!}
+                            {!! $v['status'] ? '<i class="layui-icon">&#xe62f;</i>' : '<i class="layui-icon">&#xe601;</i>' !!}
                             
                         </a>
-                        <a title="编辑" onclick="x_admin_show('编辑','/admin/info/{{$v->id}}/edit',600,400)" href="javascript:;">
+                        <a title="编辑" onclick="x_admin_show('编辑','/admin/info/{{$v['id']}}/edit',600,400)" href="javascript:;">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
-                        <a onclick="x_admin_show('修改密码','/admin/pass/{{$v->id}}',600,400)" title="修改密码" href="javascript:;">
+                        <a onclick="x_admin_show('修改密码','/admin/pass/{{$v['id']}}',600,400)" title="修改密码" href="javascript:;">
                             <i class="layui-icon">&#xe631;</i>
                         </a>
-                        <a title="删除" onclick="member_del(this,'{{$v->id}}')" href="javascript:;">
+                        <a title="删除" onclick="member_del(this,'{{$v['id']}}')" href="javascript:;">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
                     </td>
                 </tr>
                 @endforeach
+                @else
+                    <tr><td colspan="8" style="text-align:center;">- -- >暂无数据< -- -</td></tr>
+                @endif
             </tbody>
         </table>
-        <div class="page">
-            <div>
-                <a class="prev" href="">&lt;&lt;</a>
-                <a class="num" href="">1</a>
-                <span class="current">2</span>
-                <a class="num" href="">3</a>
-                <a class="num" href="">489</a>
-                <a class="next" href="">&gt;&gt;</a></div>
-        </div>
+            <div id="userPage" style="margin-left:150px">
+                {{ $paginator }}
+            </div>
     </div>
+
     <script>
         layui.use('laydate',
         function() {
             var laydate = layui.laydate;
-
+            
             //执行一个laydate实例
             laydate.render({
                 elem: '#start' //指定元素
@@ -97,8 +96,44 @@
             laydate.render({
                 elem: '#end' //指定元素
             });
+            
         });
+        layui.use(['element', 'layer','laypage'], function(){
+            var element = layui.element;
+            var layer = layui.layer;
+            var laypage = layui.laypage;
+            $ = layui.jquery;
 
+            var count = "{{$total}}";
+            // console.log(count);
+            var cur_page = "{{$current_page}}";
+            var limit = "{{$perPage}}";
+            var txt = "{{$txt}}";
+            laypage.render({
+                elem: 'userPage'
+                ,curr:cur_page
+                ,count: count
+                ,limit:limit
+                ,txt:txt
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                ,jump: function(obj,first){
+                  // console.log(txt);
+                    url = window.location.pathname;//当前页url不带参
+                    var params = {page:obj.curr, per_num:obj.limit};
+                    if(txt != null){
+                        params['searchq']=txt; //这个是搜索 参数
+                    }
+                    
+                    // url = http_build_query(url, params);
+                    url = '?page='+ params['page'] + '&per_num=' + params['per_num']  + '&searchq=' + params['searchq'];
+                    // console.log(url);
+                 if(!first){  //跳转必须放在这个里边，不然无限刷新
+                   window.location.href= url; //跳转
+                 }
+                }
+            });
+
+        });
         /*用户-停用*/
         function member_stop(obj, id) {
             var sta =$(obj).parents("tr").find("#sta").text();
@@ -160,26 +195,36 @@
                         });
                     }
                 });
-                
-                // $(obj).parents("tr").remove();
-                // layer.msg('已删除!', {
-                //     icon: 1,
-                //     time: 1000
-                // });
             });
         }
 
         function delAll(argument) {
-
             var data = tableCheck.getData();
-
             layer.confirm('确认要删除吗？' + data,
             function(index) {
                 //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {
-                    icon: 1
+                $.get("/admin/batch", { 
+                    arr:data
+                }, 
+                    function(data) {
+                       if (data.status == 0) {
+                            layer.msg('已删除!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        $(".layui-form-checked").not('.header').parents('tr').remove();
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
                 });
-                $(".layui-form-checked").not('.header').parents('tr').remove();
+
+
+                // layer.msg('删除成功', {
+                //     icon: 1
+                // });
             });
         }</script>
     <script>var _hmt = _hmt || []; (function() {

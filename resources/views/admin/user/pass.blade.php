@@ -72,6 +72,8 @@
                                     layer.alert("修改失败", {icon: 5},function () {
                                         // 获得frame索引
                                         var index = parent.layer.getFrameIndex(window.name);
+                                        // 关闭窗口刷新父页面
+                                        window.parent.location.reload();
                                         //关闭当前frame
                                         parent.layer.close(index);
                                     });
@@ -86,6 +88,8 @@
                                     layer.alert("修改成功", {icon: 6},function () {
                                         // 获得frame索引
                                         var index = parent.layer.getFrameIndex(window.name);
+                                        // 关闭窗口刷新父页面
+                                        window.parent.location.reload();
                                         //关闭当前frame
                                         parent.layer.close(index);
                                     });

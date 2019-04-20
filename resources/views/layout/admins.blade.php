@@ -12,9 +12,9 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{{asset('xadmin/css/font.css')}}">
     <link rel="stylesheet" href="{{asset('xadmin/css/xadmin.css')}}">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
+    <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
+    <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
 
 </head>
 @section('center')

@@ -19,7 +19,7 @@
                     <label for="L_name" class="layui-form-label">
                         <span class="x-red">*</span>昵称</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_name" name="name" required="" lay-verify="nikename" autocomplete="off" class="layui-input" value="{{ $data->name }}">
+                        <input type="text" id="L_name" name="name" required="" lay-verify="nikename" autocomplete="off" class="layui-input" value="{{ $data->name }}" placeholder="请填写昵称！">
                     </div>
                     <div class="layui-form-mid layui-word-aux" >
                         <span class="x-red">*</span> 3到32位字符<br>&nbsp;&nbsp;支持（中文，字母，数字，下划线）组成
@@ -29,7 +29,7 @@
                     <label for="phone" class="layui-form-label">
                         <span class="x-red">*</span>手机</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="phone" name="phone"  lay-verify="phone" autocomplete="off" class="layui-input" value="{{ $data->phone }}"></div>
+                        <input type="text" id="phone" name="phone"  lay-verify="phone" autocomplete="off" class="layui-input" value="{{ $data->phone }}" placeholder="请填写手机号！"></div>
                     <div class="layui-form-mid layui-word-aux">
                         <span class="x-red">*</span> 填写正确手机号
                     </div>
@@ -102,6 +102,8 @@
                                     layer.alert("保存成功", {icon: 6},function () {
                                         // 获得frame索引
                                         var index = parent.layer.getFrameIndex(window.name);
+                                        // 关闭窗口刷新父页面
+                                        window.parent.location.reload();
                                         //关闭当前frame
                                         parent.layer.close(index);
                                     });
@@ -116,6 +118,8 @@
                                     layer.alert("修改成功", {icon: 6},function () {
                                         // 获得frame索引
                                         var index = parent.layer.getFrameIndex(window.name);
+                                        // 关闭窗口刷新父页面
+                                        window.parent.location.reload();
                                         //关闭当前frame
                                         parent.layer.close(index);
                                     });

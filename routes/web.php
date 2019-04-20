@@ -17,17 +17,13 @@ Route::get('/', function () {
 // 首页
 Route::get('/admin/index','Admin\IndexController@index');
 
-<<<<<<< HEAD
 // 用户状态
 Route::get('/admin/status','Admin\UserController@status');
 // 修改密码
 Route::get('/admin/pass/{id}','Admin\UserController@pass');
 // 处理修改密码
-Route::POST('/admin/dopass/{id}','Admin\UserController@dopass');
+Route::post('/admin/dopass/{id}','Admin\UserController@dopass');
+// 批量删除
+Route::get('/admin/batch','Admin\UserController@batch');
 // 用户管理
 Route::resource('/admin/info','Admin\UserController');
-=======
-// 用户管理
-Route::resource('/admin/info','Admin\UserController');
-
->>>>>>> 0668f58b3110de9091341e597360b7adaee2e335
