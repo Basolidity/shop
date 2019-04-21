@@ -26,13 +26,19 @@ class UserController extends Controller
 
         $txt = $request->input('uname');
         // var_dump($txt);
-        $perPage = $request->input('per_num',5); //每页页码
+        $perPage = $request->input('per_num',10); //每页页码
         $query = User::query()->orderBy('id', 'asc')->where(function($query) use($request){
             //检测关键字
             $uname = $request->search;
+            $start = $request->start;
+            $end = $request->end;
+            // dump($start);
             //如果用户名不为空
             if(!empty($uname)) {
                 $query->where('uname','like','%'.$uname.'%');
+            }
+            if(!empty($start) && !empty($end)) {
+                $query->whereBetween('time',[$start,$end]);
             }
         });
         $result = $query->paginate($perPage);
@@ -73,18 +79,13 @@ class UserController extends Controller
 
         // 密码进行哈希加密
         $data['pass'] = password_hash($data['pass'],PASSWORD_DEFAULT);
+        // 添加时间
+        $data['time'] = date('Y-m-d H:i:s', time());
+
         // var_dump($data);
         // 将数据写入数据库
         $rs = DB::table('users')->insert($data);
-        // 查询出当前数据的id
-        $user = DB::table('users')->where('uname',$data['uname'])->get();
-        // 添加时间
-        $userinfo['time'] = date('Y-m-d H:i:s', time());
-        // 查询出来的id关联uid
-        $userinfo['uid'] = $user[0]->id;
-        // 写入详情表
-        $rs1 = DB::table('users_info')->insert($userinfo);
-        if($rs1){
+        if($rs){
             echo '1';
         }else{
             echo '0';

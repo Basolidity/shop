@@ -19,5 +19,11 @@ class User extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+    
+    // 关联详情表
+    public function usersinfo()
+    {
+        return $this->hasOne('App\Model\Admin\Usersinfo','uid','id');
+    }
 
 }

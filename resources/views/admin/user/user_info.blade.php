@@ -51,7 +51,7 @@
                     </td>
                     <td id="uid">{{ $i++ }}</td>
                     <td>{{ $v['uname'] }}</td>
-                    <td></td>
+                    <td>{{ $v['time'] }}</td>
                     <td class="td-status">
                         {!! $v['status'] ? '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>' : '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>' !!}
                     </td>
@@ -83,21 +83,57 @@
     </div>
 
     <script>
-        layui.use('laydate',
-        function() {
-            var laydate = layui.laydate;
+        // layui.use('laydate',
+        // function() {
+        //     var laydate = layui.laydate;
             
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
+        //     //执行一个laydate实例
+        //     laydate.render({
+        //         elem: '#start' //指定元素
+        //     });
 
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
+        //     //执行一个laydate实例
+        //     laydate.render({
+        //         elem: '#end' //指定元素
+        //     });
             
+        // });
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        var endDate= laydate.render({
+            elem: '#end',//选择器结束时间
+            type: 'datetime',
+            min:"1970-1-1",//设置min默认最小值
+            done: function(value,date){
+                startDate.config.max={
+                    year:date.year,
+                    month:date.month-1,//关键
+                    date: date.date,
+                    hours: 0,
+                    minutes: 0,
+                    seconds : 0
+                }
+            }
         });
+        //日期范围
+        var startDate=laydate.render({
+            elem: '#start',
+            type: 'datetime',
+            max:"2099-12-31",//设置一个默认最大值
+            done: function(value, date){
+                endDate.config.min ={
+                    year:date.year,
+                    month:date.month-1, //关键
+                    date: date.date,
+                    hours: 0,
+                    minutes: 0,
+                    seconds : 0
+                };
+            }
+        });
+
+    });
         layui.use(['element', 'layer','laypage'], function(){
             var element = layui.element;
             var layer = layui.layer;

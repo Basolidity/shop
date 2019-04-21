@@ -12,6 +12,8 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{{asset('xadmin/css/font.css')}}">
     <link rel="stylesheet" href="{{asset('xadmin/css/xadmin.css')}}">
+      <link rel="stylesheet" href="{{asset('xadmin/css/admin.css')}}" media="all">
+
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
     <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
@@ -39,7 +41,7 @@
           <li class="layui-nav-item">
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+              <dd><a onclick="x_admin_show('个人信息','{{ url('admin/person') }}')">个人信息</a></dd>
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
               <dd><a href="./login.html">退出</a></dd>
             </dl>

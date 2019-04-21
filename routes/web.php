@@ -25,5 +25,8 @@ Route::get('/admin/pass/{id}','Admin\UserController@pass');
 Route::post('/admin/dopass/{id}','Admin\UserController@dopass');
 // 批量删除
 Route::get('/admin/batch','Admin\UserController@batch');
-// 用户管理
+// 用户管理资源控制器
 Route::resource('/admin/info','Admin\UserController');
+
+// 个人中心资源控制器
+Route::resource('/admin/person','Admin\PersonController');
