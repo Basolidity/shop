@@ -56,7 +56,7 @@
                         {!! $v['status'] ? '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>' : '<span id="sta" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>' !!}
                     </td>
                     <td class="td-manage">
-                        <a onclick="member_stop(this,'10001')" href="javascript:;" title="更改状态">
+                        <a onclick="member_stop(this,'{{ $v['id'] }}')" href="javascript:;" title="更改状态">
                             {!! $v['status'] ? '<i class="layui-icon">&#xe62f;</i>' : '<i class="layui-icon">&#xe601;</i>' !!}
                             
                         </a>
@@ -174,12 +174,12 @@
         function member_stop(obj, id) {
             var sta =$(obj).parents("tr").find("#sta").text();
             // 获取当前用户的id
-            var uid = $(obj).parents("tr").find("#uid").text();
+            // var uid = $(obj).parents("tr").find("#uid").text();
             
             if(sta == '已停用'){
                 layer.confirm('确认要开启吗？',
                 function(index) {
-                    $.get('/admin/status',{s:0,id:uid},function(data){});
+                    $.get('/admin/status',{s:0,id:id},function(data){});
                     $(obj).attr('title', '停用');
                     $(obj).find('i').html('&#xe601;');
                     $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
@@ -191,8 +191,9 @@
             }else{
                 layer.confirm('确认要停用吗？',
                 function(index) {
+
                         // 使用ajax改变数据库的用户状态
-                        $.get('/admin/status',{s:1,id:uid},function(data){});
+                        $.get('/admin/status',{s:1,id:id},function(data){});
                         $(obj).attr('title', '启用');
                         // 上
                         $(obj).find('i').html('&#xe62f;');

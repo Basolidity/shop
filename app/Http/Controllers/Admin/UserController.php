@@ -184,6 +184,7 @@ class UserController extends Controller
 
     // 用户状态方法
     public function status(){
+        // var_dump($_GET['uid']);
         // 获取传过来的id
         $id = $_GET['id'];
         $data['status'] = $_GET['s'];
