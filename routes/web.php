@@ -11,6 +11,7 @@
 |
 */
 
+<<<<<<< HEAD
 //后台中间件
 Route::group(['middleware'=>'login'], function () {
 
@@ -52,3 +53,18 @@ Route::group([],function () {
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
     Route::post('/home/doregist','Home\RegistController@doregist');
+=======
+// 用户状态
+Route::get('/admin/status','Admin\UserController@status');
+// 修改密码
+Route::get('/admin/pass/{id}','Admin\UserController@pass');
+// 处理修改密码
+Route::post('/admin/dopass/{id}','Admin\UserController@dopass');
+// 批量删除
+Route::get('/admin/batch','Admin\UserController@batch');
+// 用户管理资源控制器
+Route::resource('/admin/info','Admin\UserController');
+
+// 个人中心资源控制器
+Route::resource('/admin/person','Admin\PersonController');
+>>>>>>> 97dc5bcaec76c533975fe7bb5e71e3758d9a3775
