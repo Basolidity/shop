@@ -10,7 +10,7 @@
                     <div class="layui-input-inline">
                         <input type="text" id="uname" name="uname"  lay-verify="required" autocomplete="off" class="layui-input" ></div>
                     <div class="layui-form-mid layui-word-aux">
-                        <span class="x-red">*</span> 6到16位（字母，数字，下划线）
+                        <span class="x-red">*</span> 5到16位（字母，数字，下划线）
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -40,28 +40,28 @@
 
                 //自定义验证规则
                 form.verify({
-                    name: function(value){ 
-                    //value：表单的值
-                        if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
-                          return '用户名不能有特殊字符';
-                        }
-                        if (value.length < 3) {
-                            return '昵称至少得3个字符啊';
-                        }
-                        if(/(^\_)|(\__)|(\_+$)/.test(value)){
-                          return '用户名首尾不能出现下划线\'_\'';
-                        }
-                        if(/^\d+\d+\d$/.test(value)){
-                          return '用户名不能全为数字';
-                        }
-                    },
+                    // name: function(value){ 
+                    // //value：表单的值
+                    //     if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    //       return '用户名不能有特殊字符';
+                    //     }
+                    //     if (value.length < 3) {
+                    //         return '昵称至少得3个字符啊';
+                    //     }
+                    //     if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    //       return '用户名首尾不能出现下划线\'_\'';
+                    //     }
+                    //     if(/^\d+\d+\d$/.test(value)){
+                    //       return '用户名不能全为数字';
+                    //     }
+                    // },
                     required: function(value){ 
                     //value：表单的值
                         if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
                           return '用户名不能有特殊字符';
                         }
-                        if (value.length < 6) {
-                            return '昵称至少得6个字符啊';
+                        if (value.length < 5) {
+                            return '用户名至少得5个字符啊';
                         }
                         if(/(^\_)|(\__)|(\_+$)/.test(value)){
                           return '用户名首尾不能出现下划线\'_\'';
