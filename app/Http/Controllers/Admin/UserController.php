@@ -10,20 +10,14 @@ use App\Model\Admin\User;
 class UserController extends Controller
 {
     /**
+     * Display a listing of the resource.
      * 用户列表页
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        //关联用户详情表查询出详情表的字段
-        // $rs = DB::table('users')->join('users_info','users.id','=','users_info.uid')->select('users.*','users_info.time')->get();
-        // $page = DB::table('users')->paginate(5);
-        // dump($rs);
-        $i = 1;
-        // 用户列表页
-        // return view('admin.user.user_info',['rs'=>$rs,'i'=>$i,'page'=>$page]);
-
+      $i=1;  
         $txt = $request->input('uname');
         // var_dump($txt);
         $perPage = $request->input('per_num',10); //每页页码
@@ -50,14 +44,17 @@ class UserController extends Controller
         $current_page = $result['current_page'];//当前页
         return view('admin.user.user_info',compact('users','paginator' ,'total','current_page','perPage','i','txt','req'));
     }
+    
 
     /**
+     * Show the form for creating a new resource.
      * 用户添加页面
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
+        //
         //加载页面
         return view('admin.user.create');
     }
