@@ -17,19 +17,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        // //关联用户详情表查询出详情表的所有字段
-        $rs = DB::table('users')->join('users_info','users.id','=','users_info.uid')->select('users.status','users_info.*')->get();
-=======
-        //关联用户详情表查询出详情表的字段
-        // $rs = DB::table('users')->join('users_info','users.id','=','users_info.uid')->select('users.*','users_info.time')->get();
-        // $page = DB::table('users')->paginate(5);
->>>>>>> 97dc5bcaec76c533975fe7bb5e71e3758d9a3775
-        // dump($rs);
-        $i = 1;
-        // 用户列表页
-        // return view('admin.user.user_info',['rs'=>$rs,'i'=>$i,'page'=>$page]);
-
+      $i=1;  
         $txt = $request->input('uname');
         // var_dump($txt);
         $perPage = $request->input('per_num',10); //每页页码

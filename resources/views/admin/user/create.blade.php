@@ -11,7 +11,7 @@
                     <div class="layui-input-inline">
                         <input type="text" id="uname" name="uname"  lay-verify="required" autocomplete="off" class="layui-input" ></div>
                     <div class="layui-form-mid layui-word-aux">
-                        <span class="x-red">*</span> 6到16位（字母，数字，下划线）
+                        <span class="x-red">*</span> 5到16位（字母，数字，下划线）
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -140,12 +140,3 @@
             })();</script>
     </body>
 @stop
-<<<<<<< HEAD
-
-    <script>
-        $('.layui-form').Validform({
-            tiptype:4
-        });
-    </script>
-=======
->>>>>>> 97dc5bcaec76c533975fe7bb5e71e3758d9a3775
