@@ -37,6 +37,7 @@ class LoginController extends Controller
         $res = User::where('uname',$username)->first();
         //根据用户名进行判断
         // dump($res);
+        // exit;
 
         if($res)
         {
@@ -51,13 +52,17 @@ class LoginController extends Controller
                 return redirect('/admin/login')->with('error','用户名或者密码错误');
             }
 
+            //把表单的验证码转换为小写
+            $tb = $request->vercode;
+            $tb = strtolower($tb);
+
             //验证码检测
-            if($request->vercode != Session::get('captcha'))
+            if($tb != Session::get('captcha'))
             {
 
                 return redirect('/admin/login')->with('error','验证码错误');
             }
-
+            
             //往session里面存储信息
             // Session::put();
             session(['uname'=>$res->uname]);

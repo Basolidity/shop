@@ -49,6 +49,10 @@ Route::group(['middleware'=>'login'], function () {
     // 收货地址
     Route::resource('/admin/site','Admin\SiteController');
 
+    // 分类管理资源控制器
+    Route::resource('admin/type','Admin\TypeController');
+    Route::match(['get','post'],'admin/type/childtype/{id}','Admin\TypeController@childtype');
+    Route::get('/admin/type/status/{id}','Admin\TypeController@status');
 });
 
 //后台的登录页面
@@ -58,17 +62,25 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
 
 
+
 //前台中间件
-Route::group([],function () {
+Route::group(['middleware'=>'home'], function () {
 
 //前台的路由组
 
+    //退出登录
+    Route::get('/home/logout','Home\LoginController@logout');
     
 });
+
+//首页
+    Route::get('/home/index','Home\IndexController@index');
 
 //前台登录页面
     Route::get('/home/login','Home\LoginController@login');
     Route::post('/home/dologin','Home\LoginController@dologin');
+//忘记密码
+    // Route::get('/home/')
 
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
