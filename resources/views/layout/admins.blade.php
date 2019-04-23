@@ -18,7 +18,6 @@
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
-    <script type="text/javascript" src="{{asset('xadmin/xadmin.js')}}"></script>
 
 </head>
 @section('center')
@@ -49,6 +48,7 @@
             </a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a href="javascript:;" onclick="xadmin.add_tab('个人信息','{{ url('admin/person') }}')">个人信息</a></dd>
+              <dd><a href="javascript:;" onclick="xadmin.add_tab('收货地址','{{ url('admin/site') }}')">收货地址</a></dd>
               <dd><a href="javascript:;" onclick="xadmin.add_tab('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
               <dd><a href="/admin/logout">退出</a></dd>
             </dl>
