@@ -16,8 +16,9 @@
       <link rel="stylesheet" href="{{asset('xadmin/css/admin.css')}}" media="all">
 
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
     <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
+    <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
+    <script type="text/javascript" src="{{asset('xadmin/xadmin.js')}}"></script>
 
 </head>
 @section('center')
@@ -47,8 +48,8 @@
                 {{$res->uname}}
             </a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','{{ url('admin/person') }}')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+              <dd><a href="javascript:;" onclick="xadmin.add_tab('个人信息','{{ url('admin/person') }}')">个人信息</a></dd>
+              <dd><a href="javascript:;" onclick="xadmin.add_tab('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
               <dd><a href="/admin/logout">退出</a></dd>
             </dl>
           </li>
@@ -70,7 +71,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="{{ url('admin/info') }}">
+                        <a onclick="xadmin.add_tab('会员列表','{{url('admin/info')}}')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表</cite>
                         </a>
