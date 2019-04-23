@@ -41,6 +41,9 @@ Route::group(['middleware'=>'login'], function () {
     // 批量删除
     Route::get('/admin/batch','Admin\UserController@batch');
 
+
+    // 头像上传
+    Route::post('/admin/upload','Admin\PersonController@upload');
     // 个人中心资源控制器
     Route::resource('/admin/person','Admin\PersonController');
 
@@ -57,17 +60,25 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
 
 
+
 //前台中间件
-Route::group([],function () {
+Route::group(['middleware'=>'home'], function () {
 
 //前台的路由组
 
+    //退出登录
+    Route::get('/home/logout','Home\LoginController@logout');
     
 });
+
+//首页
+    Route::get('/home/index','Home\IndexController@index');
 
 //前台登录页面
     Route::get('/home/login','Home\LoginController@login');
     Route::post('/home/dologin','Home\LoginController@dologin');
+//忘记密码
+    // Route::get('/home/')
 
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
