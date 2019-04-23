@@ -46,6 +46,8 @@ Route::group(['middleware'=>'login'], function () {
     Route::post('/admin/upload','Admin\PersonController@upload');
     // 个人中心资源控制器
     Route::resource('/admin/person','Admin\PersonController');
+    // 收货地址
+    Route::resource('/admin/site','Admin\SiteController');
 
 });
 
