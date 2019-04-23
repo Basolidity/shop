@@ -44,6 +44,10 @@ Route::group(['middleware'=>'login'], function () {
     // 个人中心资源控制器
     Route::resource('/admin/person','Admin\PersonController');
 
+    // 分类管理资源控制器
+    Route::resource('admin/type','Admin\TypeController');
+    Route::match(['get','post'],'admin/type/childtype/{id}','Admin\TypeController@childtype');
+    Route::get('/admin/type/status/{id}','Admin\TypeController@status');
 });
 
 //后台的登录页面

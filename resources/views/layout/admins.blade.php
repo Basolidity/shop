@@ -16,8 +16,9 @@
       <link rel="stylesheet" href="{{asset('xadmin/css/admin.css')}}" media="all">
 
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
+     <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
-    <script src="{{asset('xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
+   
 
 </head>
 @section('center')
@@ -76,6 +77,22 @@
                         </a>
                     </li >
                     </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>分类管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('多级分类','{{url('admin/type')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>多级分类</cite>
+                        </a>
+                    </li >
+                    
                 </ul>
             </li>
             <li>
