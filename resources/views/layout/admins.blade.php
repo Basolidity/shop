@@ -16,10 +16,9 @@
       <link rel="stylesheet" href="{{asset('xadmin/css/admin.css')}}" media="all">
 
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('layuiadmin/layui/layui.js')}}"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
-    <script type="text/javascript" src="{{asset('xadmin/xadmin.js')}}"></script>
-   
-
+    
 </head>
 @section('center')
 <body>
