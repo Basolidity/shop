@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\User;
 use App\Model\Admin\Usersinfo;
 use Session;
+use DB;
+
 class PersonController extends Controller
 {
     /**
@@ -19,7 +21,6 @@ class PersonController extends Controller
 
         // 查询
         $rs = User::with('usersinfo')->where('uname',Session::get('uname'))->first();
-
 
         //加载个人页面
         return view('admin.user.personage',['rs'=>$rs]);
@@ -79,6 +80,53 @@ class PersonController extends Controller
     public function update(Request $request, $id)
     {
         //
+       
+        //处理修改
+        $data = $request->except(['_token','_method']);
+        // var_dump($data);die;
+        // 链表查询数据做判断
+        $verify = DB::table('users')
+        ->join('users_info','users.id','=','users_info.uid')
+        ->where('users.id',$id)
+        ->select('users.uname','users_info.*')
+        ->get();
+        // 判断如果没有改数据返回3：保存成功
+        if($data['uname'] == $verify[0]->uname && $data['name'] == $verify[0]->name && $data['phone'] == $verify[0]->phone && $data['email'] == $verify[0]->email && $data['sex'] == $verify[0]->sex){
+            echo '0';die;
+        }
+
+        if($data['uname'] != $verify[0]->uname){
+            $rs = DB::table('users')->where('id', $id)->update(['uname' => $data['uname']]);
+            if(!$rs){
+                echo '2';die;
+            }
+        }
+        if($data['name'] != $verify[0]->name){
+            $rs = DB::table('users_info')->where('uid', $id)->update(['name' => $data['name']]);
+            if(!$rs){
+                echo '2';die;
+            }
+        }
+        if($data['phone'] != $verify[0]->phone){
+            $rs = DB::table('users_info')->where('uid', $id)->update(['phone' => $data['phone']]);
+            if(!$rs){
+                echo '2';die;
+            }
+        }
+        if($data['email'] != $verify[0]->email){
+            $rs = DB::table('users_info')->where('uid', $id)->update(['email' => $data['email']]);
+            if(!$rs){
+                echo '2';die;
+            }
+        }
+        if($data['sex'] != $verify[0]->sex){
+            $rs = DB::table('users_info')->where('uid', $id)->update(['sex' => $data['sex']]);
+            if(!$rs){
+                echo '2';die;
+            }
+        }
+        echo '1';
+
     }
 
     /**
@@ -94,7 +142,6 @@ class PersonController extends Controller
 
     // 处理文件上传
     public function upload(){
-        // var_dump($_POST);die;
         if ($_POST) {
             //上传图片具体操作
             $file_name = $_FILES['file']['name'];
@@ -108,7 +155,7 @@ class PersonController extends Controller
             } elseif($file_size > 1048576) { // 文件太大了
                 $message = "上传文件不能大于1MB";
             }else{
-                $date = date('Y-m-d');
+                $date = date('Ymd');
                 $file_name_arr = explode('.', $file_name);
                 $new_file_name = date('YmdHis')+rand(1111,9999) . '.' . $file_name_arr[1];
                 $path = "upload/".$date."/";
@@ -122,11 +169,13 @@ class PersonController extends Controller
                     $upload_result = move_uploaded_file($file_tmp, $file_path); 
                     //此函数只支持 HTTP POST 上传的文件
                     if ($upload_result) {
-                        // $rs = Usersinfo::where('uid',$_POST['id'])->get();
-                        // if($rs){
-                        //     $up = Usersinfo::where('id',$rs[0]->id)->update('pic',$file_path);
+                        $rs = Usersinfo::where('uid',$_POST['id'])->first();
+                        // var_dump($rs->pic);
+                        if($rs->pic){
+                            unlink($rs->pic);
+                        }
+                        $up = Usersinfo::where('uid',$_POST['id'])->update(['pic'=>$file_path]);
 
-                        // }
                         $status = 1;
                         $message = $file_path;
                     } else {

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Hash;
 use App\Model\Admin\User;
+use App\Model\Admin\Usersinfo;
 class UserController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-      $i=1;  
+        $i=1;  
         $txt = $request->input('uname');
         // var_dump($txt);
         $perPage = $request->input('per_num',10); //每页页码
@@ -82,7 +83,11 @@ class UserController extends Controller
         // var_dump($data);
         // 将数据写入数据库
         $rs = DB::table('users')->insert($data);
-        if($rs){
+        // 查询出当前添加的id
+        $info = User::where('uname',$data['uname'])->get();
+        // 将用户id写入详情uid
+        $rs1 = Usersinfo::create(['uid'=>$info[0]->id]);
+        if($rs && $rs1){
             echo '1';
         }else{
             echo '0';
