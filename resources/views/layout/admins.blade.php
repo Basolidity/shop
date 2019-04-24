@@ -97,6 +97,27 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
+                    <cite>商品管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('多级分类','{{url('admin/goods')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>商品列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a onclick="xadmin.add_tab('多级分类','{{url('admin/goods/create')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加商品</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
                     <cite>订单管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
