@@ -11,7 +11,7 @@
                           <span class="x-red"></span>上级栏目
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="username"  required="" lay-verify="required"
+                          <input type="text"   required="" lay-verify="required"
                           autocomplete="off" class="layui-input" disabled value="{{$res['tname']}}">
                           <input type="hidden" name="pid" value="{{$res['id']}}">
                       </div>
