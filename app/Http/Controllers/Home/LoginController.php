@@ -17,7 +17,7 @@ class LoginController extends Controller
      */
     public function login()
     {
-        return view('home.login',['title'=>'登录尤洪']);
+        return view('home.login');
     }
 
     /**
@@ -67,7 +67,7 @@ class LoginController extends Controller
      */
     public function forget()
     {
-        return view('home.forget',['title'=>'忘记密码']);
+        return view('home.forget');
     }
 
     /**

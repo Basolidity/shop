@@ -12,12 +12,17 @@
 */
 
 
+//默认路径
+Route::get('/', function () {
+    return view('home.index.index');
+});
 //后台中间件
 Route::group(['middleware'=>'login'], function () {
 
 //后台的路由组
-    
     // 首页
+    Route::get('/admininfo','Admin\AdminController@index');
+
     Route::get('/admin/index','Admin\IndexController@index');
 
     // 用户管理
@@ -43,8 +48,6 @@ Route::group(['middleware'=>'login'], function () {
     Route::post('/admin/upload','Admin\PersonController@upload');
     // 个人中心资源控制器
     Route::resource('/admin/person','Admin\PersonController');
-    // 收货地址
-    Route::resource('/admin/site','Admin\SiteController');
 
     // 分类管理资源控制器
     Route::resource('admin/type','Admin\TypeController');
@@ -55,6 +58,7 @@ Route::group(['middleware'=>'login'], function () {
 //后台的登录页面
 Route::get('/admin/login','Admin\LoginController@login');
 Route::post('/admin/dologin','Admin\LoginController@dologin');
+
 //验证码路由
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
 
@@ -70,10 +74,7 @@ Route::group(['middleware'=>'home'], function () {
     
 });
 
-//默认路径
-    Route::get('/', function () {
-        return view('home.index.index');
-    });
+
     
 //首页
     Route::get('/home/index','Home\IndexController@index');
