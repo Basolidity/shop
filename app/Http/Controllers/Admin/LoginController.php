@@ -68,7 +68,7 @@ class LoginController extends Controller
             session(['uname'=>$res->uname]);
 
             //跳转
-            return redirect('/');
+            return redirect('/admininfo');
 
         } else {
 

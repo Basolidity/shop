@@ -51,13 +51,23 @@ class LoginController extends Controller
             Session(['qname'=>$res->uname]);
 
             //跳转
-            return redirect('/home/index');
+            return redirect('/home/index')->with('tm','登录成功');
 
         } else {
 
             return redirect('/home/login')->with('error','用户名或者密码错误');
         }
         
+    }
+
+    /**
+     * 忘记密码
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function forget()
+    {
+        return view('home.forget',['title'=>'忘记密码']);
     }
 
     /**
