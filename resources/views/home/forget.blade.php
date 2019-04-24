@@ -50,6 +50,10 @@
               </tr>
               <tr height="70">
                 <td>用户名</td>
+                <td><input type="text" name="uname" class="l_user"  /></td>
+              </tr>
+              <tr height="70">
+                <td>用户名</td>
                 <td><input type="text" name="uname" class="l_user" /></td>
               </tr>
               <tr height="70">
