@@ -35,7 +35,7 @@ class LoginController extends Controller
         // dump($res);dd(Session::forget('quame'));
         if($res)
         {
-            if(($res->status) == 1)
+            if(($res->status) == 0)
             {
                 return redirect('/home/login')->with('error','用户于禁用');
             }

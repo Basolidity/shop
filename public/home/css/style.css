@@ -71,7 +71,13 @@ html { overflow-y:scroll; filter:progid:DXImageTransform.Microsoft.BasicImage(gr
 	width:9px; height:7px; line-height:7px; overflow:hidden; background:url(../images/c_t.gif) no-repeat center top; position:absolute; left:55px; top:0;
 }
 .s_city_c{
-	width:252px; height:460px; overflow:hidden; background-color:#FFF; font-family:"Microsoft YaHei"; margin-top:6px; border:1px solid #cdcdcd;
+	width:252px; height:138px; overflow:hidden; background-color:#FFF; font-family:"Microsoft YaHei"; margin-top:6px; border:1px solid #cdcdcd;
+}
+.pre_head{
+	text-align:right;
+}
+.pre_img{
+	margin:0 20px;width:70px;height:70px;border-radius:50%;
 }
 .s_city_c h2{
 	width:230px; height:29px; line-height:29px; overflow:hidden; font-size:14px; font-weight:normal; text-align:left; margin-top:5px; border-bottom:1px dotted #666666;

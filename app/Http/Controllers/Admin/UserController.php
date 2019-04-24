@@ -188,14 +188,15 @@ class UserController extends Controller
     }
 
     // 用户状态方法
-    public function status(){
-        // var_dump($_GET['uid']);
-        // 获取传过来的id
-        $id = $_GET['id'];
-        $data['status'] = $_GET['s'];
-        DB::table('users')
-          ->where('id', $id)
-          ->update($data);
+    public function status(Request $request,$id){
+        $data = $request->only('status');
+        $sta = User::where('id',$id)->update($data);
+        // var_dump($sta);
+        if($sta){
+            return ['msg'=>'修改成功','status'=>'success'];
+        }else{
+            return ['msg'=>'修改失败','status'=>'fail'];
+        }
     }
     // 修改密码
     public function pass($id){

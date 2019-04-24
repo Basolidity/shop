@@ -13,9 +13,8 @@
 
 
 //默认路径
-Route::get('/', function () {
-    return view('home.index.index');
-});
+Route::get('/','Home\IndexController@index');
+
 //后台中间件
 Route::group(['middleware'=>'login'], function () {
 
@@ -32,7 +31,7 @@ Route::group(['middleware'=>'login'], function () {
     Route::get('/admin/logout','Admin\LoginController@logout');
 
     // 用户状态
-    Route::get('/admin/status','Admin\UserController@status');
+    Route::get('/admin/status/{id}','Admin\UserController@status');
 
     // 修改密码
     Route::get('/admin/pass/{id}','Admin\UserController@pass');
@@ -70,6 +69,8 @@ Route::group(['middleware'=>'home'], function () {
 
     //退出登录
     Route::get('/home/logout','Home\LoginController@logout');
+    // 前台管理中心
+    Route::get('/home/person','Home\person\PersonController@index');
     
 });
 
@@ -87,5 +88,8 @@ Route::group(['middleware'=>'home'], function () {
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
     Route::post('/home/doregist','Home\RegistController@doregist');
+
+
+
 
 

@@ -2,7 +2,7 @@
 @section('center')
    
     <body>
-        <div class="x-body">
+        <div class="x-body" >
             <form class="layui-form" id="formdate">
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">昵称</label>
