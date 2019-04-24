@@ -43,7 +43,9 @@
                 <a href="">{{Session('qname')}}</a>
 
                 <!-- 提示登录成功 -->
-                <script>alert('登录成功');</script> 
+                @if(Session('tm'))
+                    <script>alert('登录成功');</script> 
+                @endif
                 |&nbsp;<a href="/home/logout">退出登录</a>
             @else
                 <!-- 提示退出登录成功 -->

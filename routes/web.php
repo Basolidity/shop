@@ -16,10 +16,14 @@
 Route::group(['middleware'=>'login'], function () {
 
 //后台的路由组
+<<<<<<< HEAD
     //默认路径
     Route::get('/', function () {
         return view('home.index.index');
     });
+=======
+    
+>>>>>>> a56dbf6c4d662f6a77ee92d7ad9733346d0b67bb
     // 首页
     Route::get('/admin/index','Admin\IndexController@index');
 
@@ -71,6 +75,11 @@ Route::group(['middleware'=>'home'], function () {
     
 });
 
+//默认路径
+    Route::get('/', function () {
+        return view('home.index.index');
+    });
+    
 //首页
     Route::get('/home/index','Home\IndexController@index');
 
@@ -78,7 +87,7 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/login','Home\LoginController@login');
     Route::post('/home/dologin','Home\LoginController@dologin');
 //忘记密码
-    // Route::get('/home/')
+    Route::get('/home/forget','Home\LoginController@forget');
 
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
