@@ -12,14 +12,14 @@
 */
 
 
-//后台中间件
-Route::group(['middleware'=>'login'], function () {
-
-//后台的路由组
     //默认路径
     Route::get('/', function () {
         return view('home.index.index');
     });
+//后台中间件
+Route::group(['middleware'=>'login'], function () {
+
+//后台的路由组
     // 首页
     Route::get('/admin/index','Admin\IndexController@index');
 
