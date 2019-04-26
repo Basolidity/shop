@@ -54,8 +54,7 @@ Route::group(['middleware'=>'login'], function () {
     Route::match(['get','post'],'admin/type/childtype/{id}','Admin\TypeController@childtype');
     Route::get('/admin/type/status/{id}','Admin\TypeController@status');
 
-    // 商品管理资源控制器
-    Route::resource('admin/goods','Admin\GoodsController');
+    
 });
 
 //后台的登录页面
