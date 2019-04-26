@@ -40,4 +40,12 @@ class TypeModel extends Model
     public function destroyType($id){
     	return self::destroy($id);
     }
+
+    //查询所有数据
+    public function GoodgetType()
+    {
+    	return self::select(DB::raw('*,concat(path,id) as paths'))->
+        orderby('paths')->
+        get();
+    }
 }
