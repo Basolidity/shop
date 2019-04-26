@@ -30,7 +30,7 @@ class UserController extends Controller
             // dump($start);
             //如果用户名不为空
             if(!empty($uname)) {
-                $query->where('uname','like','%'.$uname.'%');
+                $query->where('aname','like','%'.$uname.'%');
             }
             if(!empty($start) && !empty($end)) {
                 $query->whereBetween('time',[$start,$end]);

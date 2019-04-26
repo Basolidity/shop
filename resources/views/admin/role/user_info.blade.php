@@ -5,7 +5,7 @@
         <span class="layui-breadcrumb">
             <a href="">首页</a>
             <a>
-                <cite>管理员列表</cite></a>
+                <cite>角色权限管理</cite></a>
         </span>
         <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
             <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
@@ -30,7 +30,7 @@
                         </form>
                     </div>
                     <div class="layui-card-header">
-                        <button class="layui-btn" onclick="xadmin.open('添加角色','{{ url('admin/role/create') }}',630,200)">
+                        <button class="layui-btn" onclick="xadmin.open('添加角色','{{ url('admin/role/create') }}',800,500)">
                             <i class="layui-icon"></i>添加</button></div>
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
@@ -38,7 +38,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>角色名称</th>
-                                    <th>拥有权限</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -51,7 +50,12 @@
                                     <td id="uid" style="display:none">{{ $v['id'] }}</td>
                                     <td>{{ $v['rname'] }}</td>
                                     <td class="td-manage">
-                                            <button class="layui-btn layui-btn layui-btn-xs"  onclick="xadmin.open('编辑','{{url('admin/role/'.$v['id'].'/edit')}}',500,200)" ><i class="layui-icon">&#xe642;</i>编辑</button>
+                                        @if($v['id'] == 1)
+                                            拥有至高无上的权利
+                                        @else
+                                            <button class="layui-btn layui-btn layui-btn-xs"  onclick="xadmin.open('查看和修改','{{url('admin/role/'.$v['id'].'/edit')}}',800,500)" ><i class="layui-icon">&#xe642;</i>查看权限</button>
+                                            <button class="layui-btn-warm layui-btn layui-btn-xs"  onclick="member_del(this,'{{$v['id']}}')" href="javascript:;" ><i class="layui-icon">&#xe640;</i>删除</button>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -203,7 +207,7 @@
         layer.confirm('确认要删除吗？',
         function(index) {
             //发异步删除数据
-            $.post("/admin/info/" + id, {
+            $.post("/admin/role/" + id, {
                 // 网址、数据、成功后操作
                 "_token": "{{ csrf_token() }}",
                 "_method": "delete"

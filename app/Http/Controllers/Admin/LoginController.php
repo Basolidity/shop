@@ -66,6 +66,7 @@ class LoginController extends Controller
             //往session里面存储信息
             // Session::put();
             session(['uname'=>$res->aname]);
+            session(['id'=>$res->rid]);
 
             //跳转
             return redirect('/admininfo');
@@ -112,5 +113,9 @@ class LoginController extends Controller
 
         //跳转
         return redirect('/admin/login');
+    }
+    // 404
+    public function check(){
+        return view('admin.rol');
     }
 }

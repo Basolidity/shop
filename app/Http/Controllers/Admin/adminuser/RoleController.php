@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\adminuser\User;
 use App\Model\Admin\adminuser\Role;
 use App\Model\Admin\adminuser\Permission;
+use DB;
 class RoleController extends Controller
 {
     /**
@@ -59,9 +60,11 @@ class RoleController extends Controller
     {
         //
         $rs = Role::get();
+        $data = Permission::get();
+
 
         //加载页面
-        return view('admin.role.create',['rs'=>$rs]);
+        return view('admin.role.create',['rs'=>$rs,'data'=>$data]);
     }
 
     /**
@@ -81,12 +84,17 @@ class RoleController extends Controller
 
         // var_dump($data);
         // 将数据写入数据库
-        $rs = Role::create($data);
-        if($rs){
-            echo '1';
-        }else{
+        $rs = Role::create(['rname'=>$data['rname']]);
+        if(!$rs){
             echo '0';
         }
+        foreach($data['per'] as $v){
+            $res = DB::table('role_per')->insert(['role_id'=>$rs->id,'per_id'=>$v]);
+            if(!$res){
+                echo '0';
+            }
+        }
+        echo '1';
     }
 
     /**
@@ -111,9 +119,9 @@ class RoleController extends Controller
         // 查询填充当前角色数据
         // var_dump($rs[0]->id);
         $rol = Role::where('id',$id)->get();
-
+        $rs = Permission::get();
         //加载修改页面
-        return view('admin.role.edit',['rol'=>$rol[0]]);
+        return view('admin.role.edit',['rol'=>$rol[0],'rs'=>$rs]);
     }
 
     /**
@@ -128,17 +136,30 @@ class RoleController extends Controller
         //处理修改
         $data = $request->except(['_token','_method']);
         // echo $request;
-        $ver = Role::where('rname',$data['rname'])->get();
-        if(!empty($ver[0])){
-            echo '3';die;
+        // 查询输入的数据是否存在
+        $ver = Role::where('rname',$data['rname'])->first();
+        if(!$ver){
+            $rs = Role::where('id',$id)->update(['rname'=>$data['rname']]);
+            if(!$rs){
+                echo '0';die;
+            }
         }
-        $rs = Role::where('id',$id)->update($data);
 
-        if($rs){
-            echo '1';
-        }else{
-            echo '0';
+        $res = DB::table('role_per')->where('role_id',$id)->first();
+        if($res){
+            $r = DB::table('role_per')->where('role_id',$id)->delete();
+            if(!$r){
+                echo '0';die;
+            }
         }
+        foreach($data['per'] as $v){
+            $rs = DB::table('role_per')->insert(['role_id'=>$id,'per_id'=>$v]);
+            if(!$rs){
+                echo '0';die;
+            }
+        }
+
+        echo '1';
         
 
     }
@@ -152,18 +173,21 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //删除用户
-        $res = DB::table('users')->where('id', '=', $id)->delete();
-        $res1 = DB::table('users_info')->where('uid', '=', $id)->delete();
-
-        if ($res && $res1) {
-          $data = [
-            'status' => 0,
-          ];
-        } else {
-          $data = [
+        $res1 = DB::table('role_per')->where('role_id', $id)->delete();
+        // 返回影响行数，等于零返回data返回1
+        if($res1 == 0){
+            $data = [
             'status' => 1,
-          ];
+          ];die;
         }
+        $res = DB::table('role')->where('id', $id)->delete();
+        if($res == 0){
+            $data = [
+            'status' => 1,
+          ];die;
+        }
+
+        $data = [ 'status' => 0];
         return $data;
     }
 
