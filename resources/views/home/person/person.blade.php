@@ -1,4 +1,5 @@
 @extends('layout.home')
+@section('title','尤洪-管理中心')
 
 @section('center')
     <div class="m_top_bg">
@@ -147,21 +148,13 @@
                 <table border="0" class="mon_tab" style="width:870px; margin-bottom:20px;" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="33%">用户等级：
-                            <span style="color:#555555;">普通会员</span></td>
-                        <td width="33%">消费金额：
-                            <span>￥200元</span></td>
-                        <td width="33%">返还积分：
-                            <span>99R</span></td>
+                            <span style="color:#555555;">普通会员</span>
+                        </td>
                     </tr>
                     <tr>
                         <td>账户余额：
-                            <span>￥200元</span></td>
+                            <span>￥200元</span>
                         </td>
-                        <td>红包个数：
-                            <span style="color:#555555;">3个</span></td>
-                        </td>
-                        <td>红包价值：
-                            <span>￥50元</span></td>
                         </td>
                     </tr>
                     <tr>

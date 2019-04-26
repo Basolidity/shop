@@ -9,7 +9,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 use Session;
 use Hash;
 
-use App\Model\Admin\User;
+use App\Model\Admin\Login;
 
 class LoginController extends Controller
 {
@@ -34,18 +34,18 @@ class LoginController extends Controller
         //获取表单用户名
         $username = $request->uname;
 
-        $res = User::where('uname',$username)->first();
+        $res = Login::where('aname',$username)->first();
         //根据用户名进行判断
         // dump($res);
         // exit;
 
         if($res)
         {
-            if(($res->status) == 1)
+            if(($res->status) == 0)
             {
                 return redirect('/admin/login')->with('error','用户于禁用');
             }
-
+            
             //密码的检测
             if (!Hash::check($request->pass, $res->pass)) 
             {
@@ -65,7 +65,7 @@ class LoginController extends Controller
             
             //往session里面存储信息
             // Session::put();
-            session(['uname'=>$res->uname]);
+            session(['uname'=>$res->aname]);
 
             //跳转
             return redirect('/admininfo');

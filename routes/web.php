@@ -26,6 +26,21 @@ Route::group(['middleware'=>'login'], function () {
 
     // 用户管理
     Route::resource('/admin/info','Admin\UserController');
+    // 管理员管理
+    Route::resource('/admin/adminuser','Admin\adminuser\UserController');
+    //角色管理
+    Route::resource('/admin/role','Admin\adminuser\RoleController');
+    // 权限管理
+    Route::resource('/admin/permission','Admin\adminuser\PermissionController');
+    // 管理员状态
+    Route::get('/admin/adminuser/status/{id}','Admin\adminuser\UserController@status');
+    // 修改管理员密码
+    Route::get('/admin/adminuser/pass/{id}','Admin\adminuser\UserController@pass');
+    // 处理管理员修改密码
+    Route::post('/admin/adminuser/dopass/{id}','Admin\adminuser\UserController@dopass');
+    // 权限分类管理资源控制器
+    Route::resource('admin/pertype','Admin\TypeController');
+    Route::match(['get','post'],'admin/pertype/childtype/{id}','Admin\TypeController@childtype');
 
     //退出登录
     Route::get('/admin/logout','Admin\LoginController@logout');

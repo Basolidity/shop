@@ -24,7 +24,7 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="./index.html">尤洪后台</a></div>
+        <div class="logo"><a href="javascript:;">尤洪后台</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -39,12 +39,19 @@
           </li>
         </ul>
         <ul class="layui-nav right" lay-filter="">
-          <li class="layui-nav-item">
-                @php
-                    $res = DB::table('users')->where('uname',session('uname'))->first();
-                @endphp
+            @php
+                $res = DB::table('admin_user')->where('aname',session('uname'))->first();
+            @endphp
+            <li class="layui-nav-item to-index">
+                @if($res->pic)
+                <img style="width:45px;height:45px" src="{{$res->pic}}" alt="">
+                @else
+                <img style="width:45px;height:45px" src="/upload/1.jpg" alt="">
+                @endif
+            </li>
+            <li class="layui-nav-item">
             <a href="javascript:;">
-                {{$res->uname}}
+                {{$res->aname}}
             </a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a href="javascript:;" onclick="xadmin.add_tab('个人信息','{{ url('admin/person') }}')">个人信息</a></dd>
@@ -76,6 +83,27 @@
                         </a>
                     </li >
                     </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe726;</i>
+                    <cite>管理员管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('管理员列表','{{url('admin/adminuser')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>管理员列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a onclick="xadmin.add_tab('角色管理','{{url('admin/role')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>角色权限管理</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
             <li>
@@ -126,39 +154,6 @@
                         <a _href="order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe726;</i>
-                    <cite>管理员管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="admin-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>管理员列表</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="admin-role.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>角色管理</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="admin-cate.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限分类</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="admin-rule.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
                         </a>
                     </li >
                 </ul>

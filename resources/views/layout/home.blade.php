@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon"type="image/x-icon" href="images/icon.jpg"media="screen" />
+    <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
     <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
     <!--[if IE 6]>
     <script src="js/iepng.js" type="text/javascript"></script>
