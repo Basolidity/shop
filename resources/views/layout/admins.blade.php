@@ -75,7 +75,7 @@
                             <cite>会员列表</cite>
                         </a>
                     </li >
-                    </li>
+                   
                 </ul>
             </li>
             <li>
@@ -102,13 +102,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('多级分类','{{url('admin/goods')}}')">
+                        <a onclick="xadmin.add_tab('商品列表','{{url('admin/goods')}}')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a onclick="xadmin.add_tab('多级分类','{{url('admin/goods/create')}}')">
+                        <a onclick="xadmin.add_tab('添加商品','{{url('admin/goods/create')}}')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>添加商品</cite>
                         </a>
