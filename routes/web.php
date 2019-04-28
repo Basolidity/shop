@@ -118,6 +118,8 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/regist','Home\RegistController@regist');
     Route::post('/home/doregist','Home\RegistController@doregist');
 
-
+//前台商品详情
+    Route::get('/home/goods/{id}','Home\GoodsController@index');
+   
 
 
