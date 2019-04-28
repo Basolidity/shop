@@ -5,6 +5,7 @@ namespace App\Model\Home;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Home\GoodspicModel;
 use App\Model\Home\GoodsTypeModel;
+use DB;
 class GoodsModel extends Model
 {
     protected $table = 'goods';
@@ -23,6 +24,17 @@ class GoodsModel extends Model
         return $this->hasMany('App\Model\Home\GoodsTypeModel','gid','id');
     }
 
+   //查询所有的goodstid商品
+   public function getgodds($id)
+   {
+   		return self::where('tid',$id)->select('id','gname','pic')->get()->toArray();
+   }
+
+   //查询下面的第一个商品的价格
+   public function firstgoods($gid)
+   {
+   		return DB::table('goods_model')->where([['display','0'],['gid',$gid]])->first();
+   }
     // public function findpic($id)
     // {
     // 	return $this->with('goodstype')->where('id',$id)->get();
