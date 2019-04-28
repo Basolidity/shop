@@ -54,7 +54,7 @@
                                     <td id="uid" style="display:none">{{ $v['id'] }}</td>
                                     <td>{{ $v['nick'] }}</td>
                                     <td>{{ $v['phone'] }}</td>
-                                    <td>{{ $v['role']['rname'] }}</td>
+                                    <td>{{ $v['role']['rname'] ? $v['role']['rname'] : '未设置角色' }}</td>
                                     <td>{{ $v['time'] }}</td>
                                     <td>
                                         <input id="switch" type="checkbox" name="switch"  lay-text="开启|停用"  {{$v['status']?'checked':''}} lay-skin="switch" lay-filter="switchTest" value="{{$v['status']?'1':'0'}}">

@@ -16,7 +16,7 @@
 Route::get('/','Home\IndexController@index');
 
 //后台中间件
-Route::group(['middleware'=>'login'], function () {
+Route::group(['middleware'=>['login','check']], function () {
 
 //后台的路由组
     // 首页
@@ -76,6 +76,9 @@ Route::get('/admin/login','Admin\LoginController@login');
 Route::post('/admin/dologin','Admin\LoginController@dologin');
 //验证码路由
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
+//404
+Route::get('/admin/check', 'Admin\LoginController@check');
+
 
 
 
