@@ -69,7 +69,7 @@
                                   <span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>
                                   @endif
                                   <td class="td-manage">
-                                   <a onclick="member_stop(this,'{{ $v->id }}')" href="javascript:;" title="{{ $v->status ? '停用':'启用'  }}">
+                                   <a onclick="member_stop(this,'{{ $v->id }}')" href="javascript:;" title="{{ $v->status ? '启用':'停用' }}">
 
                                             <i class="layui-icon">{{ $v->status ? '&#xe601;':'&#xe62f;'  }}</i>
                                             </a>
@@ -83,7 +83,8 @@
                                       <i class="layui-icon">&#xe6b2;</i>
                                     </a>
                                     <a title="查看所有型号"  onclick="tab_add('{{url('admin/goods/gmodel/list/'.$v->id)}}')">
-                                      <i class="layui-icon">&#xe6b2;</i>
+                                      <i class="icon iconfont ">&#xe806;</i>
+                                     
                                     </a>
                                    <!--  <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                       <i class="layui-icon">&#xe640;</i>
