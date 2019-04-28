@@ -24,6 +24,12 @@ class TypeModel extends Model
         get()->toArray();
     }
 
+    public function getType2()
+    {
+    	return self::select(DB::raw('*,concat(path,id) as paths'))->
+        orderby('paths')->
+        get();
+    }
     //查询某一条的数据
     public function findType($id)
     {
