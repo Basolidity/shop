@@ -21,20 +21,15 @@
     <div class="content">
                             
         <div id="tsShopContainer">
-            <div id="tsImgS"><a href="/home/images/p_big.jpg" title="Images" class="MagicZoom" id="MagicZoom"><img src="/home/images/p_big.jpg" width="390" height="390" /></a></div>
+            <div id="tsImgS"><a href="{{$pic[0]->pic}}" title="Images" class="MagicZoom" id="MagicZoom"><img src="{{$pic[0]->pic}}" width="390" height="390" onerror="javascript:this.src='{{asset('upload/1.jpg')}}';"/></a></div>
             <div id="tsPicContainer">
                 <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
                 <div id="tsImgSCon">
                     <ul>
-                        
-                        <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="/home/images/ps1.jpg" tsImgS="/home/images/ps1.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(1)" rel="MagicZoom"><img src="/home/images/ps2.jpg" tsImgS="/home/images/ps2.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(2)" rel="MagicZoom"><img src="/home/images/ps3.jpg" tsImgS="/home/images/ps3.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(3)" rel="MagicZoom"><img src="/home/images/ps4.jpg" tsImgS="/home/images/ps4.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(4)" rel="MagicZoom"><img src="/home/images/ps1.jpg" tsImgS="/home/images/ps1.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(5)" rel="MagicZoom"><img src="/home/images/ps2.jpg" tsImgS="/home/images/ps2.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(6)" rel="MagicZoom"><img src="/home/images/ps3.jpg" tsImgS="/home/images/ps3.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(7)" rel="MagicZoom"><img src="/home/images/ps4.jpg" tsImgS="/home/images/ps4.jpg" width="79" height="79" /></li>
+                        @foreach($pic as $k => $val)
+                        <li onclick="showPic({{$loop->iteration-1}})" rel="MagicZoom" class="{{$loop->iteration-1?'':'tsSelectImg'}}"><img src="{{$val->pic}}" tsImgS="{{$val->pic}}" width="79" height="79" /></li>
+                       @endforeach
+                       
                     </ul>
                 </div>
                 <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>

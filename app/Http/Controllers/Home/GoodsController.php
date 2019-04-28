@@ -18,6 +18,7 @@ class GoodsController extends Controller
     	$good = GoodsModel::find($id);
     	$type =$good->goodstype;
     	$pic =$good->goodspic;
+    	
     	$model = [];
     	foreach($type as $val){
     		if($val->display == 0 && $val->num>0){
