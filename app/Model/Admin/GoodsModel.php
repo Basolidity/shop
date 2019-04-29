@@ -12,7 +12,7 @@ class GoodsModel extends Model
 
     //添加产品
     public function addGoods($data){
-    	return self::insert($data);
+    	return self::insertGetId($data);
     }
 
     //查询商品所有信息

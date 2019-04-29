@@ -43,12 +43,13 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
+       // dump(11111);
         $data = $request->except('_token','file');
         $data['addtime'] = time();
         $goods = new GoodsModel;
         $res = $goods->addGoods($data);
         if($res){
-            return redirect('admin.goods.index');
+            return redirect('/admin/goods/create');
         }else{
             return back()->with('success','添加失败');
         }
@@ -95,7 +96,7 @@ class GoodsController extends Controller
         $data = $request->except('_token','_method','file');
          $goods = new GoodsModel;
         $res = $goods->updateGoods($id,$data);
-        dd($res);
+        //dd($res);
         if($res){
             return back()->with('success','1');
         }else{

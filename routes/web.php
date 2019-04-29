@@ -68,7 +68,16 @@ Route::group(['middleware'=>['login','check']], function () {
     Route::match(['get','post'],'admin/type/childtype/{id}','Admin\TypeController@childtype');
     Route::get('/admin/type/status/{id}','Admin\TypeController@status');
 
-    
+    // 商品管理资源控制器
+    Route::resource('admin/goods','Admin\GoodsController');
+    Route::get('admin/goods/status/{id}','Admin\GoodsController@gstatus');
+    Route::match(['get','post'],'admin/goods/update/{id}','Admin\GoodsController@gupdate');
+    Route::get('/admin/goods/delpic/{id}','Admin\GoodsController@delpic');
+    Route::match(['get','post'],'admin/goods/gmodel/{id}','Admin\GoodsController@gmodel');
+    Route::get('admin/goods/gmodel/list/{id}','Admin\GoodsController@gmodel_list');
+    Route::get('admin/goods/edit/{id}','Admin\GoodsController@gmodel_edit');
+    Route::post('admin/goods/edit/{id}','Admin\GoodsController@gmodel_update');
+    Route::get('admin/gModel/display/{id}','Admin\GoodsController@gmodel_display');
 });
 
 //后台的登录页面
@@ -118,7 +127,8 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/regist','Home\RegistController@regist');
     Route::post('/home/doregist','Home\RegistController@doregist');
 
-
-
+//前台商品详情
+    Route::get('/home/goods/{id}','Home\GoodsController@index');
+   
 
 

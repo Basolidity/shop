@@ -149,19 +149,18 @@ layui.use(['form', 'layedit', 'laydate','upload'], function(){
               
                ,multiple:true
                ,choose: function(obj){
-    //将每次选择的文件追加到文件队列
-    var files = obj.pushFile();
-    
-    //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
-    obj.preview(function(index, file, result){
-     
-     // console.log(result); //得到文件base64编码，比如图片
-      $('.img-upload-view').attr('src', result);
-      $('.pic').val(result);
-     
-    });
-  }
-               
+                  //将每次选择的文件追加到文件队列
+                  var files = obj.pushFile();
+                  
+                  //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                  obj.preview(function(index, file, result){
+                   
+                   // console.log(result); //得到文件base64编码，比如图片
+                    $('.img-upload-view').attr('src', result);
+                    $('.pic').val(result);
+                   
+                  });
+                }
             });
  
 
