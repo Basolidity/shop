@@ -78,6 +78,12 @@ Route::group(['middleware'=>['login','check']], function () {
     Route::get('admin/goods/edit/{id}','Admin\GoodsController@gmodel_edit');
     Route::post('admin/goods/edit/{id}','Admin\GoodsController@gmodel_update');
     Route::get('admin/gModel/display/{id}','Admin\GoodsController@gmodel_display');
+
+    //轮播图
+    Route::resource('admin/rotation','Admin\RotationController');
+
+     //友情链接
+    Route::resource('admin/link','Admin\LinkController');
 });
 
 //后台的登录页面
