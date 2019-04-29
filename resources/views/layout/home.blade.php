@@ -3,7 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
+    
     <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
+    
     <!--[if IE 6]>
     <script src="js/iepng.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -19,7 +21,7 @@
     <script type="text/javascript" src="/home/js/select.js"></script>
     
     <script type="text/javascript" src="/home/js/lrscroll.js"></script>
-    
+     
     <script type="text/javascript" src="/home/js/iban.js"></script>
     <script type="text/javascript" src="/home/js/fban.js"></script>
     <script type="text/javascript" src="/home/js/f_ban.js"></script>
@@ -37,8 +39,6 @@
 <!--Begin Header Begin-->
 <div class="soubg">
     <div class="sou">
-        
-
         <span class="fr">
             <span class="fl">
                 @if(Session::get('qname'))
@@ -63,7 +63,7 @@
                         @endif
                     @endif
                     <span style="display:inline-block;">
-                        <div style="line-height:25px;">账户余额：</div>
+                        <div style="line-height:25px;">账户余额：￥ {{ $photo->balance }}元</div>
                         <div style="line-height:25px;">普通会员</div>
                         <div style="line-height:25px;"> </div>
                     </span>
@@ -79,11 +79,11 @@
                 @if(Session('tp'))
                     <script>alert('退出登录成功');</script>
                 @endif
-
                 请<a href="/home/login">登录</a>&nbsp; 
                 <a href="/home/regist" style="color:#ff4e00;">免费注册</a>&nbsp;
             @endif
-           &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+           &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|
+       </span>
             <span class="ss">
                 <div class="ss_list">
                     <a href="#">收藏夹</a>
@@ -1238,6 +1238,7 @@
         </div>
     </div>
     <!--End 猜你喜欢 End-->
+@show
     
     <!--Begin Footer Begin -->
     <div class="b_btm_bg b_btm_c">
@@ -1324,11 +1325,7 @@
 </div>
 
 </body>
-@show
 
 
-<!--[if IE 6]>
-<script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
 </html>
 

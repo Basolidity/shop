@@ -94,11 +94,13 @@
                     },
 
                 });
-                
-            });
-            $(document).ready(function(){
-                $('.layui-btn').click(function(){
-                    $.ajax({
+
+            //监听提交
+            form.on('submit(add)',
+            function(data) {
+                //console.log(data);
+                //发异步，把数据提交给php
+                $.ajax({
                         url: '/admin/adminuser',  
                         data: $('#formdate').serialize(),
                         dataType: 'json',    
@@ -142,9 +144,11 @@
                         async: false    
                     })
 
-
-                });
+                return false;
             });
+                
+        });
+           
         </script>
         <script>
             var _hmt = _hmt || []; (function() {

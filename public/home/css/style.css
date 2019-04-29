@@ -166,6 +166,17 @@ table.c_tab tr th{
 .car_bg{
 	width:283px; overflow:hidden; background-color:#FFF; border:1px solid #d9d9d9; position:absolute; right:-1px; top:38px; z-index:900; display:none;
 }
+.layui-card-header {
+    position:relative;
+    height:42px;
+    line-height:42px;
+    padding:0 15px;
+    border-bottom:1px solid #f6f6f6;
+    color:#333;
+    border-radius:2px 2px 0 0;
+    font-size:14px
+}
+
 .un_login{
 	overflow:hidden; text-align:center; margin:15px auto;
 }
@@ -1925,7 +1936,7 @@ ul.p_sell li .times{
 }
 
 .m_right{
-	width:970px; height:auto !important; min-height:737px; height:737px; background-color:#FFF; float:right; display:inline; margin:5px; padding-bottom:50px; -webkit-box-shadow:0 0 5px #e0e0e0; -moz-box-shadow:0 0 5px #e0e0e0; box-shadow:0 0 5px #e0e0e0;
+	width:970px; height:auto !important;  height:737px; background-color:#FFF; float:right; display:inline; margin:5px; padding-bottom:50px; -webkit-box-shadow:0 0 5px #e0e0e0; -moz-box-shadow:0 0 5px #e0e0e0; box-shadow:0 0 5px #e0e0e0;
 }
 .m_des{
 	overflow:hidden; margin-top:45px; padding-bottom:30px; margin-bottom:20px; border-bottom:1px dotted #b6b6b6;

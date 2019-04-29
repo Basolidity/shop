@@ -58,7 +58,7 @@ Route::group(['middleware'=>['login','check']], function () {
     Route::get('/admin/batch','Admin\UserController@batch');
 
 
-    // 头像上传
+    // 后台头像上传
     Route::post('/admin/upload','Admin\PersonController@upload');
     // 个人中心资源控制器
     Route::resource('/admin/person','Admin\PersonController');
@@ -85,7 +85,7 @@ Route::get('/admin/login','Admin\LoginController@login');
 Route::post('/admin/dologin','Admin\LoginController@dologin');
 //验证码路由
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
-//404
+//无权限访问
 Route::get('/admin/check', 'Admin\LoginController@check');
 
 
@@ -100,6 +100,15 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/logout','Home\LoginController@logout');
     // 前台管理中心
     Route::get('/home/person','Home\person\PersonController@index');
+    // 前台头像上传
+    Route::post('/home/upload','Home\person\PersonController@upload');
+    // 个人信息修改
+    Route::get('/home/person/update/{id}','Home\person\PersonController@update');
+    // 设置默认
+    Route::get('/home/site/depath/{sta}','Home\site\SiteController@depath');
+    // 收货地址管理
+    Route::resource('/home/site','Home\site\SiteController');
+
     
 });
 

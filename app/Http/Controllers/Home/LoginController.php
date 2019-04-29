@@ -49,6 +49,7 @@ class LoginController extends Controller
             //往session里面存储信息
             // Session::put();
             Session(['qname'=>$res->uname]);
+            Session(['home_id'=>$res->id]);
 
             //跳转
             return redirect('/home/index')->with('tm','登录成功');
