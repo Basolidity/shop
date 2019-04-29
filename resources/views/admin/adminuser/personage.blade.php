@@ -45,14 +45,14 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">手机</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="phone" value="{{ $rs->phone}}" placeholder="请填写手机号"lay-verify="phone" autocomplete="off" class="layui-input" ></div>
+                                    <input type="text" name="phone" value="{{ $rs->phone}}" placeholder="请填写手机号" lay-verify="phone" autocomplete="off" class="layui-input" ></div>
                             </div>
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
 
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn layui-btn-radius" lay-submit >确认修改</button>
+                                    <button class="layui-btn layui-btn-radius" lay-filter="add" lay-submit >确认修改</button>
                                 </div>
                             </div>
                         </form>
@@ -121,12 +121,12 @@
                 phone: [/^1(3|4|5|7|8)\d{9}$/, '请输入正确手机号'],
                 email: [/^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/, '邮箱格式不对'],
             });
-                
-        });
-
-            $(document).ready(function(){
-                $('.layui-btn-radius').click(function(){
-                    $.ajax({
+            //监听提交
+            form.on('submit(add)',
+            function(data) {
+                //console.log(data);
+                //发异步，把数据提交给php
+                $.ajax({
                         url: '/admin/person/{{ $rs->id }}',  
                         data: $('#formdate').serialize(),
                         dataType: 'json',    
@@ -161,9 +161,11 @@
                         },            
                         async: false    
                     })
-                });
-            });
 
+                return false;
+            });
+                
+        });
 
         layui.config({
             base: '/layuiadmin/' //静态资源所在路径

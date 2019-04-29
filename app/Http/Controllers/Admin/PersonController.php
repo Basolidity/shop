@@ -142,9 +142,8 @@ class PersonController extends Controller
                 $date = date('Ymd');
                 $file_name_arr = explode('.', $file_name);
                 $new_file_name = date('YmdHis')+rand(1111,9999) . '.' . $file_name_arr[1];
-                $path = "upload/".$date."/";
+                $path = "upload/admin/".$date."/";
                 $file_path = $path . $new_file_name;
-
                 if (file_exists($file_path)) {
                     $message = "此文件已经存在啦";
                 } else {

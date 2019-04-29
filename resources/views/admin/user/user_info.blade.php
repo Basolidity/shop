@@ -31,7 +31,9 @@
                     </div>
                     <div class="layui-card-header">
                         <button class="layui-btn" onclick="xadmin.open('添加用户','{{ url('admin/info/create') }}',600,400)">
-                            <i class="layui-icon"></i>添加</button></div>
+                            <i class="layui-icon"></i>添加
+                        </button>
+                    </div>
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
                             <thead>

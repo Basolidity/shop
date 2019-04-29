@@ -88,7 +88,8 @@
                     return false;
                 });
 
-            });</script>
+            });
+          </script>
        
     </body>
 @stop
