@@ -8,7 +8,7 @@
     <div class="soubg">
         <div class="sou">
             <span class="fr">
-                <span class="fl">你好,请<a href="">登录</a>&nbsp;<a href="Regist.html" style="color:#ff4e00;">免费注册</a> </span>
+                <span class="fl">你好,请<a href="">登录</a>&nbsp;<a href="/home/regist" style="color:#ff4e00;">免费注册</a> </span>
                 <span class="fl">|&nbsp;关注我们：</span>
                 <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
                 <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="/home/images/s_tel.png" align="absmiddle" /></a></span>
@@ -50,10 +50,7 @@
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
-                    <td style="font-size:12px; padding-top:20px;">
-                        <span style="font-family:'宋体';" class="fl">
-                            <label class="r_rad"><input type="checkbox"  /></label><label class="r_txt">请保存我这次的登录信息</label>
-                        </span>
+                    <td>
                         <span class="fr"><a href="/home/forget" style="color:#ff4e00;">忘记密码？</a></span>
                     </td>
                   </tr>
@@ -77,6 +74,5 @@
         </div>      
     </div>
     <!--End Footer End -->    
-
     </body>
 @stop

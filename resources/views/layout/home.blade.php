@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css" />
     <!--[if IE 6]>
     <script src="js/iepng.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -12,7 +13,7 @@
     <script type="text/javascript" src="/home/js/jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="/home/js/jquery.bxslider_e88acd1b.js"></script>
     
-    <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/xadmin/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/home/js/menu.js"></script>    
         
     <script type="text/javascript" src="/home/js/select.js"></script>
@@ -30,7 +31,7 @@
     <script type="text/javascript" src="/home/js/lrscroll_1.js"></script>
 
     <script type="text/javascript" src="/layuiadmin/layui/layui.js"></script>
-    
+    <script type="test/javascript" src="/admin/bootstrap/js/bootstrap.min.js"></script>
     
 <title>@yield('title')</title>
 </head>

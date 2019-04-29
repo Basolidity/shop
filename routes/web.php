@@ -87,9 +87,17 @@ Route::group(['middleware'=>'home'], function () {
     Route::post('/home/dologin','Home\LoginController@dologin');
 //忘记密码
     Route::get('/home/forget','Home\LoginController@forget');
+    Route::get('/home/forphone','Home\LoginController@forphone');
+    Route::get('/home/duanphone','Home\LoginController@duanphone');
+    Route::post('/home/doforget','Home\LoginController@doforget');
 
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
-    Route::post('/home/doregist','Home\RegistController@doregist');
+    Route::get('/home/doregist','Home\RegistController@doregist');
+    Route::get('/home/checkphone','Home\RegistController@checkphone');
+    Route::get('/home/codephone','Home\RegistController@codephone');
+    Route::get('/home/checkcode','Home\RegistController@checkcode');
+    Route::post('/home/formregist','Home\RegistController@formregist');
+
 
 
