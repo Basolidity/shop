@@ -120,6 +120,7 @@ Route::group(['middleware'=>'home'], function () {
 
 //前台商品详情
     Route::get('/home/goods/{id}','Home\GoodsController@index');
+    Route::get('/home/list/{id}','Home\GoodsController@list');
    
 
 
