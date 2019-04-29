@@ -1,8 +1,4 @@
 @extends('layout.home')
-
-<<<<<<< HEAD
-@section('title', '尤洪.多.快.好.省')
-=======
 @section('title', '尤洪-多·快·好·省')
 @section('center')
 <div class="top">
@@ -1168,4 +1164,3 @@
 
 </body>
 @endsection
->>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
