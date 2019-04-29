@@ -22,28 +22,26 @@ class GoodsController extends Controller
     	$model = [];
     	foreach($type as $val){
     		if($val->display == 0 && $val->num>0){
-    			//dump($val);
+    			
     			$model[] = $val;
     		}
     	}
     	
     	$gid = $request->input('gid',$model[0]->id);
-    	//dump($good);
+    	
     	return view('home.goods.index',['good'=>$good,'type'=>$model,'pic'=>$pic,'id'=>$id,'gid'=>$gid]);
     }
     //查询这个系列的所有商品
      public function list(Request $request,$id){
      	$good = new GoodsModel();
      	$res = $good->getgodds($id);
-     	//dump($res[0]['id']);
+     	
      	$goodschilden = [];
      	foreach ($res as $key => $value) {
      		# code...
-     		$goodschilden[] = $good->firstgoods($value['id']);
+     		$goodschilden[] = $good->firstgoods($value->id);
      	}
-     	dump($goodschilden);
-     	// dump($goodschilden);
-     	// dd($res);
+     	
      	return view('home.goods.list',['res'=>$res,'tup'=>$goodschilden]);
      	
      }

@@ -27,7 +27,14 @@ class GoodsModel extends Model
    //查询所有的goodstid商品
    public function getgodds($id)
    {
-   		return self::where('tid',$id)->select('id','gname','pic')->get()->toArray();
+   		//return self::where('tid',$id)->select('id','gname','pic')->get()->toArray();
+   		return DB::table('goods')
+            ->join('goods_model', 'goods.id', '=', 'goods_model.gid')
+            ->where('goods_model.display','0')
+            ->select('goods.id','goods.gname','goods.pic')
+            ->distinct()
+            ->get()->toArray();
+           
    }
 
    //查询下面的第一个商品的价格

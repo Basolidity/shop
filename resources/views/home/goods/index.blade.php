@@ -13,6 +13,7 @@
     <script type="text/javascript" src="{{asset('/home/js/shade.js')}}"></script>
 
 @include('layout.hometype')
+
 <!--End Menu End--> 
 <div class="i_bg">
     <div class="postion">
@@ -21,15 +22,23 @@
     <div class="content">
                             
         <div id="tsShopContainer">
-            <div id="tsImgS"><a href="{{$pic[0]->pic}}" title="Images" class="MagicZoom" id="MagicZoom"><img src="{{$pic[0]->pic}}" width="390" height="390" onerror="javascript:this.src='{{asset('upload/1.jpg')}}';"/></a></div>
+            @if(empty($pic))
+                <div id="tsImgS"><a href="{{$pic[0]->pic}}" title="Images" class="MagicZoom" id="MagicZoom"><img src="{{$pic[0]->pic}}" width="390" height="390" onerror="javascript:this.src='{{asset('upload/1.jpg')}}';"/></a></div>
+             @else
+             <div id="tsImgS"><a href="{{$good->pic}}" title="Images" class="MagicZoom" id="MagicZoom"><img src="{{$good->pic}}" width="390" height="390" onerror="javascript:this.src='{{asset('upload/1.jpg')}}';"/></a></div>
+               
+            @endif
             <div id="tsPicContainer">
                 <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
                 <div id="tsImgSCon">
                     <ul>
+                    @if(empty($pic))
                         @foreach($pic as $k => $val)
                         <li onclick="showPic({{$loop->iteration-1}})" rel="MagicZoom" class="{{$loop->iteration-1?'':'tsSelectImg'}}"><img src="{{$val->pic}}" tsImgS="{{$val->pic}}" width="79" height="79" /></li>
                        @endforeach
-                       
+                    @else
+                        <li onclick="showPic(1)" rel="MagicZoom" class="tsSelectImg"><img src="{{$good->pic}}" tsImgS="" width="79" height="79" /></li>
+                    @endif
                     </ul>
                 </div>
                 <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
@@ -153,82 +162,24 @@
             </ul>
         </div>
         <div class="l_list">            
-            <div class="des_border">
-                <div class="des_tit">
-                    <ul>
-                        <li class="current">推荐搭配</li>
-                    </ul>
-                </div>
-                <div class="team_list">
-                    <div class="img"><a href="#"><img src="/home/images/mat_1.jpg" width="160" height="140" /></a></div>
-                    <div class="name"><a href="#">倩碧补水组合套装8折促销</a></div>
-                    <div class="price">
-                        <div class="checkbox"><input type="checkbox" name="zuhe" checked="checked" /></div>
-                        <font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/home/images/jia_b.gif" /></div>
-                <div class="team_list">
-                    <div class="img"><a href="#"><img src="/home/images/mat_2.jpg" width="160" height="140" /></a></div>
-                    <div class="name"><a href="#">香奈儿邂逅清新淡香水50ml</a></div>
-                    <div class="price">
-                        <div class="checkbox"><input type="checkbox" name="zuhe" /></div>
-                        <font>￥<span>749.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/home/images/jia_b.gif" /></div>
-                <div class="team_list">
-                    <div class="img"><a href="#"><img src="/home/images/mat_3.jpg" width="160" height="140" /></a></div>
-                    <div class="name"><a href="#">香奈儿邂逅清新淡香水50ml</a></div>
-                    <div class="price">
-                        <div class="checkbox"><input type="checkbox" name="zuhe" checked="checked" /></div>
-                        <font>￥<span>749.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/home/images/equl.gif" /></div>
-                <div class="team_sum">
-                    套餐价：￥<span>1517</span><br />
-                    <input type="text" value="1" class="sum_ipt" /><br />
-                    <a href="#"><img src="/home/images/z_buy.gif" /></a> 
-                </div>
-                
-            </div>
+            
             <div class="des_border">
                 <div class="des_tit">
                     <ul>
                         <li class="current"><a href="#p_attribute">商品属性</a></li>
-                        <li><a href="#p_details">商品详情</a></li>
+                       <!--  <li><a href="#p_details">商品详情</a></li> -->
                         <li><a href="#p_comment">商品评论</a></li>
                     </ul>
                 </div>
                 <div class="des_con" id="p_attribute">
-                    
-                    <table border="0" align="center" style="width:100%; font-family:'宋体'; margin:10px auto;" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td>商品名称：迪奥香水</td>
-                        <td>商品编号：1546211</td>
-                        <td>品牌： 迪奥（Dior）</td>
-                        <td>上架时间：2015-09-06 09:19:09 </td>
-                      </tr>
-                      <tr>
-                        <td>商品毛重：160.00g</td>
-                        <td>商品产地：法国</td>
-                        <td>香调：果香调香型：淡香水/香露EDT</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr>
-                        <td>容量：1ml-15ml </td>
-                        <td>类型：女士香水，Q版香水，组合套装</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                    </table>                                               
+                    {{$good->descr}}
+                                                           
                                             
                         
                 </div>
             </div>  
             
-            <div class="des_border" id="p_details">
+            <!-- <div class="des_border" id="p_details">
                 <div class="des_t">商品详情</div>
                 <div class="des_con">
                     <table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
@@ -255,7 +206,7 @@
                     </p>
                     
                 </div>
-            </div>  
+            </div>   -->
             
             <div class="des_border" id="p_comment">
                 <div class="des_t">商品评论</div>
