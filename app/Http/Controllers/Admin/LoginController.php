@@ -69,7 +69,9 @@ class LoginController extends Controller
             session(['id'=>$res->rid]);
 
             //跳转
+
             return redirect('/admininfo');
+
 
         } else {
 
