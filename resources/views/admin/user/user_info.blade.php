@@ -30,18 +30,14 @@
                         </form>
                     </div>
                     <div class="layui-card-header">
-                        <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                            <i class="layui-icon"></i>批量删除</button>
                         <button class="layui-btn" onclick="xadmin.open('添加用户','{{ url('admin/info/create') }}',600,400)">
-                            <i class="layui-icon"></i>添加</button></div>
+                            <i class="layui-icon"></i>添加
+                        </button>
+                    </div>
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
-                                            <i class="layui-icon">&#xe605;</i></div>
-                                    </th>
                                     <th>ID</th>
                                     <th>用户名</th>
                                     <th>加入时间</th>
@@ -54,28 +50,19 @@
                                 @if(!empty($users))
                                 @foreach($users as $k => $v)
                                 <tr>
-                                    <td>
-                                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="{{ $v['id'] }}">
-                                        <i class="layui-icon">&#xe605;</i>
-                                    </div>
-                                    </td>
-                                    <td id="uid">{{ $i++ }}</td>
+                                    
+                                    <td >{{ $i++ }}</td>
+                                    <td id="uid" style="display:none">{{ $v['id'] }}</td>
                                     <td>{{ $v['uname'] }}</td>
                                     <td>{{ $v['time'] }}</td>
-                                    <td class="td-status">{!! $v['status'] ? '
-                                        <span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>' : '
-                                        <span id="sta" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>' !!}</td>
+                                    <td>
+                                        <input id="switch" type="checkbox" name="switch"  lay-text="开启|停用"  {{$v['status']?'checked':''}} lay-skin="switch" lay-filter="switchTest" value="{{$v['status']?'1':'0'}}">
+                                    </td>
                                     <td class="td-manage">
-                                        <a onclick="member_stop(this,'{{ $v['id'] }}')" href="javascript:;" title="更改状态">{!! $v['status'] ? '
-                                            <i class="layui-icon">&#xe62f;</i>' : '
-                                            <i class="layui-icon">&#xe601;</i>' !!}</a>
-                                        <a title="编辑" onclick="xadmin.open('编辑','/admin/info/{{$v['id']}}/edit')" href="javascript:;">
-                                            <i class="layui-icon">&#xe642;</i></a>
-                                            <a onclick="xadmin.open('修改密码','/admin/pass/{{$v['id']}}',600,400)" title="修改密码" href="javascript:;">
-                                            <i class="layui-icon">&#xe631;</i>
+                                            <button class="layui-btn layui-btn layui-btn-xs"  onclick="xadmin.open('编辑','{{url('admin/info/'.$v['id'].'/edit')}}',600,400)" ><i class="layui-icon">&#xe642;</i>编辑</button>
+                                            <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="xadmin.open('修改密码','{{url('admin/pass/'.$v['id'])}}',500,400)" ><i class="layui-icon">&#xe642;</i>修改密码</button>
                                         </a>
-                                        <a title="删除" onclick="member_del(this,'{{$v['id']}}')" href="javascript:;">
-                                            <i class="layui-icon">&#xe640;</i></a>
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -96,6 +83,51 @@
     </div>
 </body>
 <script>
+    layui.use(['form'], function(){
+            form = layui.form;
+            
+            form.on('switch(switchTest)', function (data) {
+            if(data.elem.checked){
+                    $(this).val('1');
+                    var id= $(this).parents("tr").find('#uid').text();
+                $.ajax({
+                          type:'GET',
+                          url:'/admin/status/'+id,
+                          datatype:'json',
+                          data:{status:1},
+                          success:function(res){
+                            //console.log(res);
+                            if(res.status=='success'){
+                               layer.msg("修改成功", {
+                                        icon: 6
+                                    });
+                            }else{
+                                 layer.msg(res.msg,{icon:2});
+                            }
+                          }})
+            }else{
+                $(this).val('0');
+                  var id= $(this).parents("tr").find('#uid').text();
+                $.ajax({
+                          type:'GET',
+                          url:'/admin/status/'+id,
+                          datatype:'json',
+                          data:{status:0},
+                          success:function(res){
+                            // console.log(res);
+                            if(res.status=='success'){
+                               layer.msg("修改成功", {
+                                        icon: 6
+                                    });
+                            }else{
+                                 layer.msg(res.msg,{icon:2});
+                            }
+                          }})
+            }
+            //console.log(data.elem.checked); //开关是否开启，true或者false
+        })
+          });
+
     layui.use('laydate',
     function() {
         var laydate = layui.laydate;
@@ -166,7 +198,6 @@
                 if (txt != null) {
                     params['searchq'] = txt; //这个是搜索 参数
                 }
-
                 // url = http_build_query(url, params);
                 url = '?page=' + params['page'] + '&per_num=' + params['per_num'] + '&searchq=' + params['searchq'];
                 // console.log(url);
@@ -175,51 +206,7 @@
                 }
             }
         });
-
     });
-    /*用户-停用*/
-    function member_stop(obj, id) {
-        var sta = $(obj).parents("tr").find("#sta").text();
-        // 获取当前用户的id
-        // var uid = $(obj).parents("tr").find("#uid").text();
-        if (sta == '已停用') {
-            layer.confirm('确认要开启吗？',
-            function(index) {
-                $.get('/admin/status', {
-                    s: 0,
-                    id: id
-                },
-                function(data) {});
-                $(obj).attr('title', '停用');
-                $(obj).find('i').html('&#xe601;');
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!', {
-                    icon: 6,
-                    time: 1000
-                });
-            });
-        } else {
-            layer.confirm('确认要停用吗？',
-            function(index) {
-
-                // 使用ajax改变数据库的用户状态
-                $.get('/admin/status', {
-                    s: 1,
-                    id: id
-                },
-                function(data) {});
-                $(obj).attr('title', '启用');
-                // 上
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!', {
-                    icon: 5,
-                    time: 1000
-                });
-            });
-        }
-    }
 
     /*用户-删除*/
     function member_del(obj, id) {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\User;
+use App\Model\Admin\adminuser\User;
 use App\Model\Admin\Usersinfo;
 use Session;
 use DB;
@@ -20,10 +20,10 @@ class PersonController extends Controller
     {
 
         // 查询
-        $rs = User::with('usersinfo')->where('uname',Session::get('uname'))->first();
-
+        $rs = User::with('role')->where('aname',Session::get('uname'))->first();
+        // dd($rs);
         //加载个人页面
-        return view('admin.user.personage',['rs'=>$rs]);
+        return view('admin.adminuser.personage',['rs'=>$rs]);
 
     }
 
@@ -85,42 +85,26 @@ class PersonController extends Controller
         $data = $request->except(['_token','_method']);
         // var_dump($data);die;
         // 链表查询数据做判断
-        $verify = DB::table('users')
-        ->join('users_info','users.id','=','users_info.uid')
-        ->where('users.id',$id)
-        ->select('users.uname','users_info.*')
-        ->get();
+        $verify = User::where('id',$id)->get();
         // 判断如果没有改数据返回3：保存成功
-        if($data['uname'] == $verify[0]->uname && $data['name'] == $verify[0]->name && $data['phone'] == $verify[0]->phone && $data['email'] == $verify[0]->email && $data['sex'] == $verify[0]->sex){
+        if($data['aname'] == $verify[0]->aname && $data['nick'] == $verify[0]->nick && $data['phone'] == $verify[0]->phone){
             echo '0';die;
         }
 
-        if($data['uname'] != $verify[0]->uname){
-            $rs = DB::table('users')->where('id', $id)->update(['uname' => $data['uname']]);
+        if($data['aname'] != $verify[0]->aname){
+            $rs = User::where('id', $id)->update(['aname' => $data['aname']]);
             if(!$rs){
                 echo '2';die;
             }
         }
-        if($data['name'] != $verify[0]->name){
-            $rs = DB::table('users_info')->where('uid', $id)->update(['name' => $data['name']]);
+        if($data['nick'] != $verify[0]->nick){
+            $rs = User::where('id', $id)->update(['nick' => $data['nick']]);
             if(!$rs){
                 echo '2';die;
             }
         }
         if($data['phone'] != $verify[0]->phone){
-            $rs = DB::table('users_info')->where('uid', $id)->update(['phone' => $data['phone']]);
-            if(!$rs){
-                echo '2';die;
-            }
-        }
-        if($data['email'] != $verify[0]->email){
-            $rs = DB::table('users_info')->where('uid', $id)->update(['email' => $data['email']]);
-            if(!$rs){
-                echo '2';die;
-            }
-        }
-        if($data['sex'] != $verify[0]->sex){
-            $rs = DB::table('users_info')->where('uid', $id)->update(['sex' => $data['sex']]);
+            $rs = User::where('id', $id)->update(['phone' => $data['phone']]);
             if(!$rs){
                 echo '2';die;
             }
@@ -158,9 +142,8 @@ class PersonController extends Controller
                 $date = date('Ymd');
                 $file_name_arr = explode('.', $file_name);
                 $new_file_name = date('YmdHis')+rand(1111,9999) . '.' . $file_name_arr[1];
-                $path = "upload/".$date."/";
+                $path = "upload/admin/".$date."/";
                 $file_path = $path . $new_file_name;
-
                 if (file_exists($file_path)) {
                     $message = "此文件已经存在啦";
                 } else {
@@ -169,13 +152,28 @@ class PersonController extends Controller
                     $upload_result = move_uploaded_file($file_tmp, $file_path); 
                     //此函数只支持 HTTP POST 上传的文件
                     if ($upload_result) {
-                        $rs = Usersinfo::where('uid',$_POST['id'])->first();
+                        // 查询表里是否存在路径
+                        $rs = User::where('id',$_POST['id'])->first();
                         // var_dump($rs->pic);
                         if($rs->pic){
+                            // 如果存在就删除
                             unlink($rs->pic);
                         }
-                        $up = Usersinfo::where('uid',$_POST['id'])->update(['pic'=>$file_path]);
-
+                        // 把路径存入数据库
+                        $up = User::where('id',$_POST['id'])->update(['pic'=>$file_path]);
+                        if(!$up){
+                            $status = 2;
+                            $message = "文件上传失败，请稍后再尝试";
+                            function showMsg($status,$message = '',$data = array()){
+                            $result = array(
+                                'status' => $status,
+                                'message' =>$message,
+                                'data' =>$data
+                            );
+                            exit(json_encode($result));
+                        }
+                            return showMsg($status, $message);
+                        }
                         $status = 1;
                         $message = $file_path;
                     } else {

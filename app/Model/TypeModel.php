@@ -24,6 +24,12 @@ class TypeModel extends Model
         get()->toArray();
     }
 
+    public function getType2()
+    {
+    	return self::select(DB::raw('*,concat(path,id) as paths'))->
+        orderby('paths')->
+        get();
+    }
     //查询某一条的数据
     public function findType($id)
     {
@@ -39,5 +45,13 @@ class TypeModel extends Model
     //删除
     public function destroyType($id){
     	return self::destroy($id);
+    }
+
+    //查询所有数据
+    public function GoodgetType()
+    {
+    	return self::select(DB::raw('*,concat(path,id) as paths'))->
+        orderby('paths')->
+        get();
     }
 }

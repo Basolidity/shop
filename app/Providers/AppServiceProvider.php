@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Model\TypeModel;
+use View;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -14,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $type = new TypeModel;
+        $res = $type->getType2();
+      
+       View::share(['restypes'=>$res]);
     }
 
     /**

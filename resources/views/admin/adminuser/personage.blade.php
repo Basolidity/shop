@@ -9,46 +9,14 @@
                     <div class="layui-card-body" pad15>
                         <!-- <div class="layui-form" lay-filter="" id="formdate"> -->
                         <form class="layui-form" action="javascript:;" id="formdate" >
-
-                            <!-- <div class="layui-form-item">
-                                <label class="layui-form-label">我的角色</label>
-                                <div class="layui-input-inline">
-                                    <select name="role" lay-verify="">
-                                        <option value="1" selected>超级管理员</option>
-                                        <option value="2" disabled>普通管理员</option>
-                                        <option value="3" disabled>审核员</option>
-                                        <option value="4" disabled>编辑人员</option></select>
-                                </div>
-                                <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色
-                                </div>
-                            </div> -->
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">用户名</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="uname" value="{{ $rs->uname }}"  class="layui-input" lay-verify="required" autocomplete="off">
-                                    <input type="hidden" name="uid" id="uid" value="{{ $rs->usersinfo->uid }}"  class="layui-input">
-                                </div>
-                                <div class="layui-form-mid layui-word-aux"></div></div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">昵称</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="name" value="{{ $rs->usersinfo->name }}" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input"></div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">性别</label>
-                                <div class="layui-input-block">
-                                    <input type="radio" name="sex" value="1" title="男" {{ $rs->usersinfo->sex ==1 ? 'checked' : ''}} >
-                                    <input type="radio" name="sex" value="0" title="女" {{ $rs->usersinfo->sex ==0 ? 'checked' : ''}} >
-                                    <input type="radio" name="sex" value="2" title="保密" {{ $rs->usersinfo->sex  ==2 ? 'checked' : ''}}></div>
-                            </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">头像</label>
                                 <div class="layui-upload">
                                     <button type="button" name="img_upload" class="layui-btn btn_upload_img">
                                         <i class="layui-icon">&#xe67c;</i>上传图片
                                     </button>
-                                    @if( $rs->usersinfo->pic )
-                                        <img style="width:150px;height:150px;border-radius:50%;" class="layui-upload-img img-upload-view" src="/{{$rs->usersinfo->pic }}" >
+                                    @if( $rs->pic )
+                                        <img style="width:150px;height:150px;border-radius:50%;" class="layui-upload-img img-upload-view" src="/{{$rs->pic }}" >
                                     @else
                                         <img style="width:150px;height:150px;border-radius:50%;" class="layui-upload-img img-upload-view" src="/upload/1.jpg" >
                                     @endif
@@ -57,22 +25,34 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">手机</label>
+                                <label class="layui-form-label">用户名</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="phone" value="{{ $rs->usersinfo->phone}}" placeholder="请填写手机号"lay-verify="phone" autocomplete="off" class="layui-input" ></div>
+                                    <input type="text" name="aname" value="{{ $rs->aname }}"  class="layui-input" lay-verify="required" autocomplete="off">
+                                    <input type="hidden" name="uid" id="uid" value="{{ $rs->id }}"  class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux"></div></div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">昵称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="nick" value="{{ $rs->nick }}" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input"></div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">邮箱</label>
+                                <label class="layui-form-label">角色</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="email" value="{{ $rs->usersinfo->email}}" placeholder="请填写邮箱" lay-verify="email" autocomplete="off" class="layui-input"></div>
+                                    <input type="radio" name="rid"  lay-skin="primary"  title="{{ $rs['role']->rname }}" checked>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">手机</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="phone" value="{{ $rs->phone}}" placeholder="请填写手机号" lay-verify="phone" autocomplete="off" class="layui-input" ></div>
                             </div>
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
 
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn layui-btn-radius" lay-submit >确认修改</button>
-                                    <button type="reset" class="layui-btn layui-btn-radius layui-btn-primary">重新填写</button>
+                                    <button class="layui-btn layui-btn-radius" lay-filter="add" lay-submit >确认修改</button>
                                 </div>
                             </div>
                         </form>
@@ -141,12 +121,12 @@
                 phone: [/^1(3|4|5|7|8)\d{9}$/, '请输入正确手机号'],
                 email: [/^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/, '邮箱格式不对'],
             });
-                
-        });
-
-            $(document).ready(function(){
-                $('.layui-btn-radius').click(function(){
-                    $.ajax({
+            //监听提交
+            form.on('submit(add)',
+            function(data) {
+                //console.log(data);
+                //发异步，把数据提交给php
+                $.ajax({
                         url: '/admin/person/{{ $rs->id }}',  
                         data: $('#formdate').serialize(),
                         dataType: 'json',    
@@ -181,9 +161,11 @@
                         },            
                         async: false    
                     })
-                });
-            });
 
+                return false;
+            });
+                
+        });
 
         layui.config({
             base: '/layuiadmin/' //静态资源所在路径

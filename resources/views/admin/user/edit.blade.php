@@ -22,7 +22,7 @@
                         <input type="text" id="L_name" name="name" required="" lay-verify="nikename" autocomplete="off" class="layui-input" value="{{ $data->name }}" placeholder="请填写昵称！">
                     </div>
                     <div class="layui-form-mid layui-word-aux" >
-                        <span class="x-red">*</span> 3到20位字符<br>&nbsp;&nbsp;支持（中文，字母，数字，下划线）组成
+                        <span class="x-red">*</span> 3到35位字符<br>&nbsp;&nbsp;支持（中文，字母，数字，下划线）组成
                     </div>
                 </div>
                 <div class="layui-form-item">

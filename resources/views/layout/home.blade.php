@@ -2,8 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<<<<<<< HEAD
     <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
     <link type="text/css" rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css" />
+=======
+    <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
+    
+    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
+    
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
     <!--[if IE 6]>
     <script src="js/iepng.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -13,13 +20,21 @@
     <script type="text/javascript" src="/home/js/jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="/home/js/jquery.bxslider_e88acd1b.js"></script>
     
+<<<<<<< HEAD
     <script type="text/javascript" src="/xadmin/js/jquery-3.2.1.min.js"></script>
+=======
+    <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
     <script type="text/javascript" src="/home/js/menu.js"></script>    
         
     <script type="text/javascript" src="/home/js/select.js"></script>
     
     <script type="text/javascript" src="/home/js/lrscroll.js"></script>
+<<<<<<< HEAD
     
+=======
+     
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
     <script type="text/javascript" src="/home/js/iban.js"></script>
     <script type="text/javascript" src="/home/js/fban.js"></script>
     <script type="text/javascript" src="/home/js/f_ban.js"></script>
@@ -29,6 +44,7 @@
     <script type="text/javascript" src="/home/js/tban.js"></script>
     
     <script type="text/javascript" src="/home/js/lrscroll_1.js"></script>
+<<<<<<< HEAD
 
     <script type="text/javascript" src="/layuiadmin/layui/layui.js"></script>
     <script type="test/javascript" src="/admin/bootstrap/js/bootstrap.min.js"></script>
@@ -49,21 +65,73 @@
             @if(Session::get('qname'))
                 <a href="">{{Session('qname')}}</a>
 
+=======
+    
+    
+<title>@yield('title')</title>
+</head>
+<body>  
+<!--Begin Header Begin-->
+<div class="soubg">
+    <div class="sou">
+        <span class="fr">
+            <span class="fl">
+                @if(Session::get('qname'))
+            <span class="s_city">
+                <span>{{Session('qname')}}</span>
+                <div class="s_city_bg">
+                    <div class="s_city_t"></div>
+                    <div class="s_city_c">
+                    <div class="pre_head">
+                        <a href="{{ url('home/person') }}">账户管理</a>&nbsp;|&nbsp;
+                        <a href="/home/logout">退出</a>&nbsp;&nbsp;&nbsp;
+                    </div>
+                        @php
+                            $res = DB::table('users')->where('uname',session('qname'))->first();
+                            $photo = DB::table('users_info')->where('uid',$res->id)->first();
+                        @endphp
+                    @if(session('qname'))
+                        @if( $photo->pic  )
+                            <a href="{{ url('home/person') }}"><img  class="pre_img layui-upload-img img-upload-view" src="/{{ $photo->pic }}" ></a>
+                        @else
+                            <a href="{{ url('home/person') }}"><img  class="pre_img layui-upload-img img-upload-view" src="/upload/1.jpg" ></a>
+                        @endif
+                    @endif
+                    <span style="display:inline-block;">
+                        <div style="line-height:25px;">账户余额：￥ {{ $photo->balance }}元</div>
+                        <div style="line-height:25px;">普通会员</div>
+                        <div style="line-height:25px;"> </div>
+                    </span>
+                    </div>
+                </div>
+            </span>
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
                 <!-- 提示登录成功 -->
                 @if(Session('tm'))
                     <script>alert('登录成功');</script> 
                 @endif
+<<<<<<< HEAD
                 |&nbsp;<a href="/home/logout">退出登录</a>
+=======
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
             @else
                 <!-- 提示退出登录成功 -->
                 @if(Session('tp'))
                     <script>alert('退出登录成功');</script>
                 @endif
+<<<<<<< HEAD
 
                 请<a href="/home/login">登录</a>&nbsp; 
                 <a href="/home/regist" style="color:#ff4e00;">免费注册</a>&nbsp;
             @endif
             |&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+=======
+                请<a href="/home/login">登录</a>&nbsp; 
+                <a href="/home/regist" style="color:#ff4e00;">免费注册</a>&nbsp;
+            @endif
+           &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|
+       </span>
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
             <span class="ss">
                 <div class="ss_list">
                     <a href="#">收藏夹</a>
@@ -108,6 +176,11 @@
         </span>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+@section('center')
+
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
     <div class="search">
@@ -1216,6 +1289,10 @@
         </div>
     </div>
     <!--End 猜你喜欢 End-->
+<<<<<<< HEAD
+=======
+@show
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
     
     <!--Begin Footer Begin -->
     <div class="b_btm_bg b_btm_c">
@@ -1291,8 +1368,12 @@
             <div class="b_er_c"><img src="/home/images/er.gif" width="118" height="118" /></div>
             <img src="/home/images/ss.png" />
         </div>
+<<<<<<< HEAD
     </div> 
     
+=======
+    </div>    
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e
     <div class="btmbg">
         <div class="btm">
             备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
@@ -1304,9 +1385,15 @@
 
 </body>
 
+<<<<<<< HEAD
 @show
 
 <!--[if IE 6]>
 <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
 </html>
+=======
+
+</html>
+
+>>>>>>> ff14ce49d7f252ea076c0efee65205bacb7cd47e

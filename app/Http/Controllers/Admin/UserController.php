@@ -30,7 +30,7 @@ class UserController extends Controller
             // dump($start);
             //如果用户名不为空
             if(!empty($uname)) {
-                $query->where('uname','like','%'.$uname.'%');
+                $query->where('aname','like','%'.$uname.'%');
             }
             if(!empty($start) && !empty($end)) {
                 $query->whereBetween('time',[$start,$end]);
@@ -145,21 +145,28 @@ class UserController extends Controller
         if($data['uname'] == $verify[0]->uname && $data['name'] == $verify[0]->name && $data['phone'] == $verify[0]->phone){
             echo '3';die;
         }
-        // $ver = DB::table('users_info')->where('phone',$data['phone'])->get();
-        // if(!empty($ver[0])){
-        //     echo '2';die;
-        // }
         // 更改users表用户名
-        $rs = DB::table('users')->where('id', $id)->update(['uname' => $data['uname']]);;
-        // 更改详情表昵称和手机
-        $rs1 = DB::table('users_info')->where('uid', $id)->update(['name' => $data['name'],'phone' => $data['phone']]);;
+        if($data['uname'] != $verify[0]->uname){
+            $rs = DB::table('users')->where('id', $id)->update(['uname' => $data['uname']]);;
+            if(!$rs){
+                echo '0';die;
+            }
+        }
+        if($data['name'] != $verify[0]->name){
+            $rs = DB::table('users_info')->where('uid', $id)->update(['name' => $data['name']]);;
+            if(!$rs){
+                echo '0';die;
+            }
+        }
+        if($data['phone'] != $verify[0]->phone){
+            $rs = DB::table('users_info')->where('uid', $id)->update(['phone' => $data['phone']]);;
+            if(!$rs){
+                echo '0';die;
+            }
+        }
 
         // 返回值,1:修改成功  0:修改失败
-        if($rs || $rs1){
             echo '1';
-        }else{
-            echo '0';
-        }
 
     }
 
@@ -188,14 +195,15 @@ class UserController extends Controller
     }
 
     // 用户状态方法
-    public function status(){
-        // var_dump($_GET['uid']);
-        // 获取传过来的id
-        $id = $_GET['id'];
-        $data['status'] = $_GET['s'];
-        DB::table('users')
-          ->where('id', $id)
-          ->update($data);
+    public function status(Request $request,$id){
+        $data = $request->only('status');
+        $sta = User::where('id',$id)->update($data);
+        // var_dump($sta);
+        if($sta){
+            return ['msg'=>'修改成功','status'=>'success'];
+        }else{
+            return ['msg'=>'修改失败','status'=>'fail'];
+        }
     }
     // 修改密码
     public function pass($id){

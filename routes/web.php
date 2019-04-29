@@ -13,11 +13,10 @@
 
 
 //默认路径
-Route::get('/', function () {
-    return view('home.index.index');
-});
+Route::get('/','Home\IndexController@index');
+
 //后台中间件
-Route::group(['middleware'=>'login'], function () {
+Route::group(['middleware'=>['login','check']], function () {
 
 //后台的路由组
     // 首页
@@ -27,12 +26,27 @@ Route::group(['middleware'=>'login'], function () {
 
     // 用户管理
     Route::resource('/admin/info','Admin\UserController');
+    // 管理员管理
+    Route::resource('/admin/adminuser','Admin\adminuser\UserController');
+    //角色管理
+    Route::resource('/admin/role','Admin\adminuser\RoleController');
+    // 权限管理
+    Route::resource('/admin/permission','Admin\adminuser\PermissionController');
+    // 管理员状态
+    Route::get('/admin/adminuser/status/{id}','Admin\adminuser\UserController@status');
+    // 修改管理员密码
+    Route::get('/admin/adminuser/pass/{id}','Admin\adminuser\UserController@pass');
+    // 处理管理员修改密码
+    Route::post('/admin/adminuser/dopass/{id}','Admin\adminuser\UserController@dopass');
+    // 权限分类管理资源控制器
+    Route::resource('admin/pertype','Admin\TypeController');
+    Route::match(['get','post'],'admin/pertype/childtype/{id}','Admin\TypeController@childtype');
 
     //退出登录
     Route::get('/admin/logout','Admin\LoginController@logout');
 
     // 用户状态
-    Route::get('/admin/status','Admin\UserController@status');
+    Route::get('/admin/status/{id}','Admin\UserController@status');
 
     // 修改密码
     Route::get('/admin/pass/{id}','Admin\UserController@pass');
@@ -44,7 +58,7 @@ Route::group(['middleware'=>'login'], function () {
     Route::get('/admin/batch','Admin\UserController@batch');
 
 
-    // 头像上传
+    // 后台头像上传
     Route::post('/admin/upload','Admin\PersonController@upload');
     // 个人中心资源控制器
     Route::resource('/admin/person','Admin\PersonController');
@@ -56,6 +70,14 @@ Route::group(['middleware'=>'login'], function () {
 
     // 商品管理资源控制器
     Route::resource('admin/goods','Admin\GoodsController');
+    Route::get('admin/goods/status/{id}','Admin\GoodsController@gstatus');
+    Route::match(['get','post'],'admin/goods/update/{id}','Admin\GoodsController@gupdate');
+    Route::get('/admin/goods/delpic/{id}','Admin\GoodsController@delpic');
+    Route::match(['get','post'],'admin/goods/gmodel/{id}','Admin\GoodsController@gmodel');
+    Route::get('admin/goods/gmodel/list/{id}','Admin\GoodsController@gmodel_list');
+    Route::get('admin/goods/edit/{id}','Admin\GoodsController@gmodel_edit');
+    Route::post('admin/goods/edit/{id}','Admin\GoodsController@gmodel_update');
+    Route::get('admin/gModel/display/{id}','Admin\GoodsController@gmodel_display');
 });
 
 //后台的登录页面
@@ -64,6 +86,9 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 
 //验证码路由
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
+//无权限访问
+Route::get('/admin/check', 'Admin\LoginController@check');
+
 
 
 
@@ -74,6 +99,17 @@ Route::group(['middleware'=>'home'], function () {
 
     //退出登录
     Route::get('/home/logout','Home\LoginController@logout');
+    // 前台管理中心
+    Route::get('/home/person','Home\person\PersonController@index');
+    // 前台头像上传
+    Route::post('/home/upload','Home\person\PersonController@upload');
+    // 个人信息修改
+    Route::get('/home/person/update/{id}','Home\person\PersonController@update');
+    // 设置默认
+    Route::get('/home/site/depath/{sta}','Home\site\SiteController@depath');
+    // 收货地址管理
+    Route::resource('/home/site','Home\site\SiteController');
+
     
 });
 
@@ -99,5 +135,10 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/checkcode','Home\RegistController@checkcode');
     Route::post('/home/formregist','Home\RegistController@formregist');
 
+
+//前台商品详情
+    Route::get('/home/goods/{id}','Home\GoodsController@index');
+    Route::get('/home/list/{id}','Home\GoodsController@list');
+   
 
 

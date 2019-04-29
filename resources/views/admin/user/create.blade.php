@@ -1,7 +1,7 @@
 
 @extends('layout.admins')
 @section('center')
-   
+
     <body>
         <div class="x-body">
             <form class="layui-form" action="javascript:;" id="formdate">
@@ -41,21 +41,6 @@
 
                 //自定义验证规则
                 form.verify({
-                    // name: function(value){ 
-                    // //value：表单的值
-                    //     if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
-                    //       return '用户名不能有特殊字符';
-                    //     }
-                    //     if (value.length < 3) {
-                    //         return '昵称至少得3个字符啊';
-                    //     }
-                    //     if(/(^\_)|(\__)|(\_+$)/.test(value)){
-                    //       return '用户名首尾不能出现下划线\'_\'';
-                    //     }
-                    //     if(/^\d+\d+\d$/.test(value)){
-                    //       return '用户名不能全为数字';
-                    //     }
-                    // },
                     required: function(value){ 
                     //value：表单的值
                         if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
@@ -79,11 +64,12 @@
                     },
 
                 });
-                
-            });
-            $(document).ready(function(){
-                $('.layui-btn').click(function(){
-                    $.ajax({
+                   //监听提交
+            form.on('submit(add)',
+            function(data) {
+                //console.log(data);
+                //发异步，把数据提交给php
+                $.ajax({
                         url: '/admin/info',  
                         data: $('#formdate').serialize(),
                         dataType: 'json',    
@@ -127,8 +113,9 @@
                         async: false    
                     })
 
-
-                });
+                return false;
+            });
+                
             });
         </script>
         <script>
