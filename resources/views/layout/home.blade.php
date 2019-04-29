@@ -144,6 +144,7 @@
 </div>
 
 @section('nameinfo')
+@section('center')
 
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
@@ -1339,6 +1340,7 @@
     <!--End Footer End -->    
 </div>
 </body>
+@show
 @show
 <!--[if IE 6]>
 <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
