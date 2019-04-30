@@ -116,7 +116,10 @@ Route::group(['middleware'=>'home'], function () {
     // 收货地址管理
     Route::resource('/home/site','Home\site\SiteController');
 
-    
+    //购物车
+    Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
+    //详情页用的
+    Route::get('/home/addcat','Home\CatController@addcart');
 });
 
 
