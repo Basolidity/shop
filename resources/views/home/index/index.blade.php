@@ -536,7 +536,7 @@
     <!--Begin 进口 生鲜 Begin-->
     <div class="i_t mar_10">
         <span class="floor_num">1F</span>
-        <span class="fl">进口 <b>·</b> 生鲜111111111</span>                
+        <span class="fl">进口 <b>·</b> 生鲜</span>                
         <span class="i_mores fr"><a href="#">进口咖啡</a>&nbsp; &nbsp; &nbsp; <a href="#">进口酒</a>&nbsp; &nbsp; &nbsp; <a href="#">进口母婴</a>&nbsp; &nbsp; &nbsp; <a href="#">新鲜蔬菜</a>&nbsp; &nbsp; &nbsp; <a href="#">新鲜水果</a></span>
     </div>
     <div class="content">
