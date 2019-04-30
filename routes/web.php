@@ -118,8 +118,11 @@ Route::group(['middleware'=>'home'], function () {
 
     //购物车
     Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
+    //购物车详情页
+    Route::resource('/home/cart','Home\CatController');
     //详情页用的
     Route::get('/home/addcat','Home\CatController@addcart');
+
 });
 
 

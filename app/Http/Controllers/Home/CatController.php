@@ -17,6 +17,28 @@ class CatController extends Controller
     public function index()
     {
         //
+        $cat = new CatModel;
+        $carts =[];
+        if(session('qname')){
+             //根据用户名获取用户id
+            $uid = $cat->findUid(session('qname'));
+            $uid = $uid->id;
+            $cart = $cat->getCart($uid);
+            //dump($cart);
+           
+            foreach($cart as $k =>$v){
+               
+                $carts[$k] = $cat->getGoods($v['gid']);
+                $goods_model = $cat->getGoodsModel($v['gmid']);
+                $carts[$k]->price = $goods_model->price;
+                $carts[$k]->type = $goods_model->type;
+                $carts[$k]->kc = $goods_model->num;
+                $carts[$k]->num = $v['num'];
+                $carts[$k]->id = $v['id'];
+            }
+             dump($carts);
+        }
+        return view('home.cart.index',['carts'=>$carts]);
     }
 
     /**
@@ -83,6 +105,14 @@ class CatController extends Controller
     public function destroy($id)
     {
         //
+        //dd($id);
+        $cat = new CatModel;
+        $res = $cat->destroyCart($id);
+        if($res){
+            return ['msg'=>'删除成功','status'=>'success'];
+        }else{
+            return ['msg'=>'删除失败','status'=>'fail'];
+        }
     }
 
     //添加数据库
@@ -114,7 +144,7 @@ class CatController extends Controller
             }
         }
     }
-    
+
      public function addcart(Request $request)
      {
         
@@ -149,4 +179,5 @@ class CatController extends Controller
         }
      }
 
+     //
 }

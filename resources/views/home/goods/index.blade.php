@@ -470,7 +470,7 @@
               ,layer = layui.layer
               ,layedit = layui.layedit
               ,laydate = layui.laydate;
-              console.log(data.msg);
+              //console.log(data.msg);
               if(data.status=='success'){
                     layer.msg(data.msg);
               }else{
