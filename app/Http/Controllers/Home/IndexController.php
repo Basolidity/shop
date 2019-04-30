@@ -22,7 +22,14 @@ class IndexController extends Controller
      		$goodschilden[] = $good->firstgoods($value->id);
      	}
      	dump($goodschilden);
+        
         return view('home.index.index',['res'=>$res,'tup'=>$goodschilden]);
         
+    }
+
+    //购物车
+    public function cart()
+    {
+        //return view('');
     }
 }
