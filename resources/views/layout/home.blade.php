@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
     <link type="text/css" rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
 
     <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
     
