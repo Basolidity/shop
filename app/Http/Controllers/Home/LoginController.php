@@ -50,8 +50,8 @@ class LoginController extends Controller
 
             //往session里面存储信息
             // Session::put();
-            Session(['qname'=>$res->uname]);
-            Session(['home_id'=>$res->id]);
+            session(['qname'=>$res->uname]);
+            session(['home_id'=>$res->id]);
 
             //判断是否点击保存登录信息
             // dump($request->cook);exit;
