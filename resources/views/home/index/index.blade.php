@@ -31,7 +31,7 @@
                 @endforeach
                 </ul>
                 <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-                <div class="price_a"><a href="#">去购物车结算</a></div>
+                <div class="price_a"><a href="{{url('/home/cart')}}">去购物车结算</a></div>
                 <!--End 购物车已登录 End-->
             @endif
         @else
@@ -70,7 +70,7 @@
                             <div class="zj_l">
                             @foreach($restypes as $val)
                                 @if( $val->pid == $restype->id)
-                                <div class="zj_l_c">
+                                    <div class="zj_l_c">
                                     <h2>{{$val->tname}}</h2>
                                      @foreach($restypes as $v)
                                       @if( $v->pid == $val->id)

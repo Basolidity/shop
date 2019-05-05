@@ -120,6 +120,12 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
     //购物车详情页
     Route::resource('/home/cart','Home\CatController');
+     //订单页
+    Route::get('/home/order','Home\OrderController@index');
+    //对订单进行操作
+    Route::post('/home/settlement','Home\OrderController@settlement');
+    //结算成功的页面
+    Route::get('/home/settlements/{oid}','Home\OrderController@settlements');
     //详情页用的
     Route::get('/home/addcat','Home\CatController@addcart');
 

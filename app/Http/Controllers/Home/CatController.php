@@ -36,7 +36,7 @@ class CatController extends Controller
                 $carts[$k]->num = $v['num'];
                 $carts[$k]->id = $v['id'];
             }
-             dump($carts);
+            // dump($carts);
         }
         return view('home.cart.index',['carts'=>$carts]);
     }

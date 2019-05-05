@@ -61,7 +61,7 @@
           </tr>
           <tr valign="top" height="150">
           	<td colspan="6" align="right">
-            	<a href="#"><img src="images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="images/buy2.gif" /></a>
+            	<a href="#"><img src="images/buy1.gif" /></a>&nbsp; &nbsp; <a href="{{url('/home/order')}}"><img src="images/buy2.gif" /></a>
             </td>
           </tr>
         </table>
