@@ -142,13 +142,10 @@
         </span>
     </div>
 </div>
-<<<<<<< HEAD
-=======
+
 
 @section('nameinfo')
 @section('center')
->>>>>>> d9c1f77b63464dcf2d5450458dea84657420843f
-
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
     <div class="search">
