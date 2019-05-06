@@ -146,9 +146,16 @@
         </span>
     </div>
 </div>
+<<<<<<< HEAD
 @section('nameinfo')
 @section('center')
 
+=======
+
+
+@section('nameinfo')
+@section('center')
+>>>>>>> 1346774c0ddd9e735bd7489d586247b5020495f7
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
     <div class="search">

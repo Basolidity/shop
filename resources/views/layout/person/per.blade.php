@@ -61,7 +61,7 @@
                 请<a href="/home/login">登录</a>&nbsp; 
                 <a href="/home/regist" style="color:#ff4e00;">免费注册</a>&nbsp;
             @endif
-           &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|
+           &nbsp;|&nbsp;<a href="{{url('/home/myorder')}}">我的订单</a>&nbsp;|
        </span>
             <span class="ss">
                 <div class="ss_list">
@@ -157,7 +157,11 @@
             <div class="left_m">
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
+<<<<<<< HEAD
                     <li><a href="{{url('home/myorder')}}">我的订单</a></li>
+=======
+                    <li><a href="{{url('/home/myorder')}}">我的订单</a></li>
+>>>>>>> 1346774c0ddd9e735bd7489d586247b5020495f7
                     <li><a href="{{url('home/site')}}">收货地址</a></li>
                 </ul>
             </div>

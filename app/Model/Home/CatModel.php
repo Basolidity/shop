@@ -62,4 +62,10 @@ class CatModel extends Model
      {
           return self::where('uid',$uid)->delete();
      }
+
+     //修改对应id的数量
+     public function updataCartNum($id,$data)
+     {
+          return self::where('id',$id)->update($data);
+     }
 }

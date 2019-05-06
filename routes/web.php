@@ -117,6 +117,10 @@ Route::group(['middleware'=>'home'], function () {
     Route::resource('/home/site','Home\site\SiteController');
     // 购物车资源管理器
     Route::resource('/home/cart','Home\cart\CartController');
+       // 订单页面
+    Route::resource('/home/myorder','Home\my\MyOrderController');
+    // 订单详情
+    Route::get('/home/myorderinfo/{oid}','Home\my\MyOrderController@Orderinfo');
 
     //购物车
     Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
