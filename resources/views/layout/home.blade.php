@@ -128,7 +128,6 @@
         </span>
     </div>
 </div>
-@section('center')
 
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
@@ -1238,7 +1237,6 @@
         </div>
     </div>
     <!--End 猜你喜欢 End-->
-@show
     
     <!--Begin Footer Begin -->
     <div class="b_btm_bg b_btm_c">
