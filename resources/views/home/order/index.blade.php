@@ -8,7 +8,7 @@
         var jq = jQuery.noConflict();
     </script>
 
- 
+
     
     <script type="text/javascript" src="{{asset('/home/js/shade.js')}}"></script>
 

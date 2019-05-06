@@ -2,7 +2,7 @@
 @section('title', '尤洪-多·快·好·省')
 @section('center')
 <div class="top">
-    <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
+    <div class="logo"><a href="/"><img src="/home/images/logo.png" /></a></div>
     <div class="search">
         <form>
             <input type="text" value="" class="s_ipt" />
@@ -11,7 +11,7 @@
         <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
     </div>
     <div class="i_car">
-        <div class="car_t">购物车 [ <span>{{empty($carts)?'':count($carts)}}</span> ]</div>
+        <div class="car_t">购物车 [ <span>{{empty($carts)?'0':count($carts)}}</span> ]</div>
         <div class="car_bg">
         @if(session('qname'))
 
