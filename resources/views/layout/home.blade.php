@@ -5,7 +5,8 @@
 
     <link type="text/css" rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
-
+    <link type="text/css" rel="stylesheet" href="{{asset('home/css/style.css')}}" />
+    <link type="text/css" rel="stylesheet" href="{{asset('home/css/layui.css')}}" />
     <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
     
 
@@ -43,11 +44,12 @@
 
     <script type="text/javascript" src="/layuiadmin/layui/layui.js"></script>
     <script type="test/javascript" src="/admin/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
+    
     
 <title>@yield('title')</title>
 </head>
 
-<!-- @section('nameinfo') -->
 
 <body>  
 <!--Begin Header Begin-->
@@ -69,17 +71,19 @@
                             $res = DB::table('users')->where('uname',session('qname'))->first();
                             $photo = DB::table('users_info')->where('uid',$res->id)->first();
                         @endphp
+                    <span style="display:inline-block;">
+
                     @if(session('qname'))
                         @if( $photo->pic  )
-                            <a href="{{ url('home/person') }}"><img  class="pre_img layui-upload-img img-upload-view" src="/{{ $photo->pic }}" ></a>
+                            <a href="{{ url('home/person') }}" ><img  class="pre_img layui-upload-img img-upload-view" src="/{{ $photo->pic }}" ></a>
                         @else
-                            <a href="{{ url('home/person') }}"><img  class="pre_img layui-upload-img img-upload-view" src="/upload/1.jpg" ></a>
+                            <a href="{{ url('home/person') }}" ><img  class="pre_img layui-upload-img img-upload-view" src="/upload/1.jpg" ></a>
                         @endif
                     @endif
+                    </span>
                     <span style="display:inline-block;">
                         <div style="line-height:25px;">账户余额：￥ {{ $photo->balance }}元</div>
                         <div style="line-height:25px;">普通会员</div>
-                        <div style="line-height:25px;"> </div>
                     </span>
                     </div>
                 </div>
@@ -142,12 +146,8 @@
         </span>
     </div>
 </div>
-<<<<<<< HEAD
-=======
-
 @section('nameinfo')
 @section('center')
->>>>>>> d9c1f77b63464dcf2d5450458dea84657420843f
 
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>

@@ -59,36 +59,40 @@
             </table>
             
             <div class="two_t">
-              <span class="fr"><a href="#">修改</a></span>收货人信息
+              <span class="fr"><a href="javascript:;" onclick="xadmin.open('修改','{{ url('home/order/edit') }}',1000,500)">修改</a></span>收货人信息
             </div>
+
+            @if(!empty($xz))
             <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="p_td" width="160">商品名称</td>
-                <td width="395">海贼王</td>
-                <td class="p_td" width="160">电子邮件</td>
-                <td width="395">12345678@qq.com</td>
+                <td class="p_td" width="160">收货人</td>
+                <td width="395">{{ $xz->lname }}</td>
+                <td class="p_td">手机</td>
+                <td>{{ $xz->phone }}</td>
               </tr>
               <tr>
                 <td class="p_td">详细信息</td>
-                <td>四川省成都市武侯区</td>
+                <td>{{ $xz->area .' '. $xz->path }}</td>
                 <td class="p_td">邮政编码</td>
-                <td>6011111</td>
-              </tr>
-              <tr>
-                <td class="p_td">电话</td>
-                <td></td>
-                <td class="p_td">手机</td>
-                <td>18600002222</td>
-              </tr>
-              <tr>
-                <td class="p_td">标志建筑</td>
-                <td></td>
-                <td class="p_td">最佳送货时间</td>
-                <td></td>
+                <td>{{ $xz->postal }}</td>
               </tr>
             </table>
-
-            
+            @else
+            <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="p_td" width="160">收货人</td>
+                <td width="395">{{ $site->lname }}</td>
+                <td class="p_td">手机</td>
+                <td>{{ $site->phone }}</td>
+              </tr>
+              <tr>
+                <td class="p_td">详细信息</td>
+                <td>{{ $site->area .' '. $site->path }}</td>
+                <td class="p_td">邮政编码</td>
+                <td>{{ $site->postal }}</td>
+              </tr>
+            </table>
+            @endif
           
             
             <div class="two_t">
