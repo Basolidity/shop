@@ -40,7 +40,7 @@
             <td align="center">
             	<div class="c_num">
                     <input type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
-                	<input type="text" value="{{$v->num}}" name="" class="car_ipt" onkeyup="maxnum(this)"/> 
+                	<input type="text" value="{{$v->num}}" name="" class="car_ipt" onkeyup="maxnum(this,{{$v->id}})"/> 
                 	<input name="kuc" type="hidden" value="{{$v->kc}}"> 
                     <input type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
                 </div>
@@ -61,7 +61,7 @@
           </tr>
           <tr valign="top" height="150">
           	<td colspan="6" align="right">
-            	<a href="#"><img src="images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="images/buy2.gif" /></a>
+            	<a href="#"><img src="images/buy1.gif" /></a>&nbsp; &nbsp; <a href="{{url('/home/order')}}"><img src="images/buy2.gif" /></a>
             </td>
           </tr>
         </table>
@@ -197,8 +197,9 @@
 <script src="{{asset('home/js/ShopShow.js')}}"></script>
 
 <script type="text/javascript">
-  function maxnum(obj){
-        var clear;
+var clear;
+  function maxnum(obj,id){
+        
         clearTimeout(clear);
        clear = setTimeout(function(){
         var shurk = parseInt($(obj).val());
@@ -207,8 +208,38 @@
                 $(obj).val(kuc);
            }
            zongji();
-        },500)
+           //修改数据库的数量
+           CartNum(obj,id);
+        },1000);
+       
     }
+
+    //修改数据库的数量
+      function CartNum(obj,id){
+        var obj = $(obj);
+        var num = obj.val();
+        layui.use(['form', 'layedit', 'laydate','upload'], function(){
+      var _token = "{{csrf_token()}}";
+              var form = layui.form
+              ,layer = layui.layer
+              ,layedit = layui.layedit
+              ,laydate = layui.laydate;
+              $.ajax({
+                          type:'PUT',
+                          url:'/home/cart/'+id,
+                          datatype:'json',
+                          data:{_token,num},
+                          success:function(res){
+                            console.log(res);
+                            if(res.status != 'success'){
+                               layer.msg(res.msg,{icon:2});
+                            }
+                          }
+                      })
+           
+      })
+      }
+
    function yichu(obj,id)
    {
    	var obj = $(obj);

@@ -115,13 +115,33 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/site/depath/{sta}','Home\site\SiteController@depath');
     // 收货地址管理
     Route::resource('/home/site','Home\site\SiteController');
+    // 购物车资源管理器
+    Route::resource('/home/cart','Home\cart\CartController');
+       // 订单页面
+    Route::resource('/home/myorder','Home\my\MyOrderController');
+    // 订单详情
+    Route::get('/home/myorderinfo/{oid}','Home\my\MyOrderController@Orderinfo');
 
     //购物车
     Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
     //购物车详情页
     Route::resource('/home/cart','Home\CatController');
+     //订单页
+    Route::get('/home/order','Home\OrderController@index');
+    // 订单页修改地址
+    Route::get('/home/order/edit','Home\OrderController@edit');
+    // 选择地址
+    Route::get('/home/order/depath/{id}','Home\OrderController@depath');
+
+    //对订单进行操作
+    Route::post('/home/settlement','Home\OrderController@settlement');
+    //结算成功的页面
+    Route::get('/home/settlements/{oid}','Home\OrderController@settlements');
     //详情页用的
     Route::get('/home/addcat','Home\CatController@addcart');
+    // 我的订单
+    Route::get('/home/myorder','Home\my_order\MyOrderController@index');
+
 
 });
 

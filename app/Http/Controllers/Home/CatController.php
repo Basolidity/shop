@@ -36,7 +36,7 @@ class CatController extends Controller
                 $carts[$k]->num = $v['num'];
                 $carts[$k]->id = $v['id'];
             }
-             dump($carts);
+            // dump($carts);
         }
         return view('home.cart.index',['carts'=>$carts]);
     }
@@ -94,6 +94,16 @@ class CatController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //dd($id);
+         $cat = new CatModel;
+         
+         $data = $request->only('num');
+         $res = $cat->updataCartNum($id,$data);
+         if($res){
+            return ['msg'=>'修改成功','status'=>'success'];
+         }else{
+            return ['msg'=>'修改失败','status'=>'fail'];
+         }
     }
 
     /**

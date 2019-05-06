@@ -56,4 +56,16 @@ class CatModel extends Model
      {
      	return self::destroy($id);
      }
+
+     //删除数据uid传过来的所有的值的数据
+     public function destroyCartUid($uid)
+     {
+          return self::where('uid',$uid)->delete();
+     }
+
+     //修改对应id的数量
+     public function updataCartNum($id,$data)
+     {
+          return self::where('id',$id)->update($data);
+     }
 }
