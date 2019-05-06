@@ -8,6 +8,7 @@ use App\Model\Admin\User;
 
 use App\Model\Home\GoodsModel;
 use App\Model\Home\CatModel;
+use DB;
 class IndexController extends Controller
 {
     //前台首页
@@ -44,7 +45,16 @@ class IndexController extends Controller
             }
             // dump($carts);
         }
-        return view('home.index.index',['res'=>$res,'tup'=>$goodschilden,'carts'=>$carts]);
+
+        //轮播图
+        $tu = DB::table('lunbo')->get();
+        // dd($tu);
+
+        //友情链接
+        $links = DB::table('links')->get();
+        // dd($links);
+        
+        return view('home.index.index',['res'=>$res,'tup'=>$goodschilden,'carts'=>$carts,'tu'=>$tu,'links'=>$links]);
         
     }
 

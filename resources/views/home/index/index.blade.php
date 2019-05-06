@@ -115,11 +115,12 @@
         <!--Begin Banner Begin-->
         <div class="banner">        
             <div class="top_slide_wrap">
-                <ul class="slide_box bxslider">
-                    <li><img src="/home/images/ban1.jpg" width="740" height="401" /></li>
-                    <li><img src="/home/images/ban1.jpg" width="740" height="401" /></li> 
-                    <li><img src="/home/images/ban1.jpg" width="740" height="401" /></li> 
-                </ul>   
+                    <ul class="slide_box bxslider">
+                    <!-- 遍历轮播图 -->
+                        @foreach($tu as $k=>$v)
+                            <a href="https://{{$v->url}}"><img src="{{$v->pic}}" width="740" height="401" /></a>
+                        @endforeach    
+                    </ul> 
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
                     <a href="#" class="op_btn op_next"><span></span></a>
@@ -131,9 +132,11 @@
         (function(){
             $(".bxslider").bxSlider({
                 auto:true,
-                prevSelector:jq(".top_slide_wrap .op_prev")[0],nextSelector:jq(".top_slide_wrap .op_next")[0]
+                prevSelector:jq(".top_slide_wrap .op_prev"),nextSelector:jq(".top_slide_wrap .op_next")
             });
         })();
+    
+        // alert($);
         </script>
         <!--End Banner End-->
         <div class="inews">
@@ -930,12 +933,7 @@
             <dd><a href="#">配送支付查询</a></dd>
             <dd><a href="#">支付方式说明</a></dd>
         </dl>
-        <dl>
-            <dt><a href="#">会员中心</a></dt>
-            <dd><a href="#">资金管理</a></dd>
-            <dd><a href="#">我的收藏</a></dd>
-            <dd><a href="#">我的订单</a></dd>
-        </dl>
+        
         <dl>
             <dt><a href="#">服务保证</a></dt>
             <dd><a href="#">退换货原则</a></dd>
@@ -947,6 +945,12 @@
             <dd><a href="#">网站故障报告</a></dd>
             <dd><a href="#">购物咨询</a></dd>
             <dd><a href="#">投诉与建议</a></dd>
+        </dl>
+        <dl>
+            <dt><a href="#">友情链接</a></dt>
+            @foreach($links as $k=>$v)
+                <dd><a href="https://{{$v->url}}">{{$v->fname}}</a></dd>
+            @endforeach
         </dl>
         <div class="b_tel_bg">
             <a href="#" class="b_sh1">新浪微博</a>            

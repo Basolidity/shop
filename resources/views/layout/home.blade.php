@@ -17,9 +17,6 @@
     <![endif]-->    
     <script type="text/javascript" src="/home/js/jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="/home/js/jquery.bxslider_e88acd1b.js"></script>
-    
-
-    <script type="text/javascript" src="/xadmin/js/jquery-3.2.1.min.js"></script>
 
     <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
 
