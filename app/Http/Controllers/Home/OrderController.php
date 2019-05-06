@@ -111,7 +111,11 @@ class OrderController extends Controller
     	$order = new orderModel;
     	//根据id查询order里面的信息
     	$res = $order -> getOrder($oid);
-    	return view('home.order.buycar',['res'=>$res]);
+        // dd($res);
+        $site = DB::table('site')->where('uid',$res['uid'])->where('depath',1)->first();
+        $xz = DB::table('site')->where('uid',$res['uid'])->where('depath',2)->first();
+        
+    	return view('home.order.buycar',['res'=>$res,'site'=>$site,'xz'=>$xz]);
     }
 
     // 地址页面

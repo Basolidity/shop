@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
+    <link rel="shortcut icon"type="image/x-icon" href="/{{ asset('home/images/icon.jpg') }}"media="screen" />
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
     <link type="text/css" rel="stylesheet" href="{{asset('home/css/style.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{asset('home/css/layui.css')}}" />
@@ -61,7 +61,7 @@
                 请<a href="/home/login">登录</a>&nbsp; 
                 <a href="/home/regist" style="color:#ff4e00;">免费注册</a>&nbsp;
             @endif
-           &nbsp;|&nbsp;<a href="{{url('/home/myorder')}}">我的订单</a>&nbsp;|
+           &nbsp;|&nbsp;<a href="/">首页</a>&nbsp;|&nbsp;<a href="/">我的订单</a>&nbsp;|
        </span>
             <span class="ss">
                 <div class="ss_list">
@@ -109,42 +109,13 @@
 </div>
 <div class="m_top_bg">
     <div class="top">
-        <div class="m_logo"><a href="Index.html"><img src="images/logo1.png" /></a></div>
+        <div class="m_logo"><a href="Index.html"><img src="{{ asset('home/images/logo1.png') }}" /></a></div>
         <div class="m_search">
             <form>
                 <input type="text" value="" class="m_ipt" />
                 <input type="submit" value="搜索" class="m_btn" />
             </form>                      
             <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
-        </div>
-        <div class="i_car">
-            <div class="car_t">购物车 [ <span>3</span> ]</div>
-            <div class="car_bg">
-                <!--Begin 购物车未登录 Begin-->
-                <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
-                <!--End 购物车未登录 End-->
-                <!--Begin 购物车已登录 Begin-->
-                <ul class="cars">
-                    <li>
-                        <div class="img"><a href="#"><img src="images/car1.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="images/car2.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="images/car2.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                </ul>
-                <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-                <div class="price_a"><a href="#">去购物车结算</a></div>
-                <!--End 购物车已登录 End-->
-            </div>
         </div>
     </div>
 </div>
@@ -157,7 +128,7 @@
             <div class="left_m">
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
-                    <li><a href="{{url('home/myorder')}}">我的订单</a></li>
+                    <li><a href="">我的订单</a></li>
                     <li><a href="{{url('home/site')}}">收货地址</a></li>
                 </ul>
             </div>
@@ -185,7 +156,7 @@
             <div class="m_des">
                 <table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0">
                   <tr valign="top">
-                    <td width="115"><img src="images/user.jpg" width="90" height="90" /></td>
+                    <td width="115"><img src="{{ asset('home/images/user.jpg') }}" width="90" height="90" /></td>
                     <td>
                         <div class="m_user">TRACY</div>
                         <p>
@@ -267,25 +238,25 @@
         <div class="b_btm">
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b1.png" width="62" height="62" /></td>
+                <td width="72"><img src="{{ asset('home/images/b1.png') }}" width="62" height="62" /></td>
                 <td><h2>正品保障</h2>正品行货  放心购买</td>
               </tr>
             </table>
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b2.png" width="62" height="62" /></td>
+                <td width="72"><img src="{{ asset('home/images/b2.png') }}" width="62" height="62" /></td>
                 <td><h2>满38包邮</h2>满38包邮 免运费</td>
               </tr>
             </table>
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b3.png" width="62" height="62" /></td>
+                <td width="72"><img src="{{ asset('home/images/b3.png') }}" width="62" height="62" /></td>
                 <td><h2>天天低价</h2>天天低价 畅选无忧</td>
               </tr>
             </table>
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b4.png" width="62" height="62" /></td>
+                <td width="72"><img src="{{ asset('home/images/b4.png') }}" width="62" height="62" /></td>
                 <td><h2>准时送达</h2>收货时间由你做主</td>
               </tr>
             </table>
@@ -333,14 +304,14 @@
             </p>
         </div>
         <div class="b_er">
-            <div class="b_er_c"><img src="images/er.gif" width="118" height="118" /></div>
-            <img src="images/ss.png" />
+            <div class="b_er_c"><img src="{{ asset('home/images/er.gif') }}" width="118" height="118" /></div>
+            <img src="{{ asset('home/images/ss.png') }}" />
         </div>
     </div>    
     <div class="btmbg">
         <div class="btm">
             备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-            <img src="images/b_1.gif" width="98" height="33" /><img src="images/b_2.gif" width="98" height="33" /><img src="images/b_3.gif" width="98" height="33" /><img src="images/b_4.gif" width="98" height="33" /><img src="images/b_5.gif" width="98" height="33" /><img src="images/b_6.gif" width="98" height="33" />
+            <img src="{{ asset('home/images/b_1.gif') }}" width="98" height="33" /><img src="{{ asset('home/images/b_2.gif') }}" width="98" height="33" /><img src="{{ asset('home/images/b_3.gif') }}" width="98" height="33" /><img src="{{ asset('home/images/b_4.gif') }}" width="98" height="33" /><img src="{{ asset('home/images/b_5.gif') }}" width="98" height="33" /><img src="{{ asset('home/images/b_6.gif') }}" width="98" height="33" />
         </div>      
     </div>
     <!--End Footer End -->    

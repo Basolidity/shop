@@ -16,7 +16,7 @@
 
 <div class="i_bg">  
     <div class="content mar_20">
-      <img src="images/img3.jpg" />        
+      <img src="../images/img3.jpg" />        
     </div>
     
     <!--Begin 第三步：提交订单 Begin -->
@@ -27,62 +27,75 @@
             <table border="0" style="width:1000px; text-align:center;" cellspacing="0" cellpadding="0">
               <tr height="35">
                 <td style="font-size:18px;">
-                  感谢您在本店购物！您的订单已提交成功，请记住您的订单号: <font color="#ff4e00">2015092598275</font>
+                  感谢您在本店购物！您的订单已提交成功，请记住您的订单号: <font color="#ff4e00">{{ $res['number'] }}</font>
                 </td>
               </tr>
               <tr>
-                <td style="font-size:14px; font-family:'宋体'; padding:10px 0 20px 0; border-bottom:1px solid #b6b6b6;">
-                  您选定的配送方式为: <font color="#ff4e00">申通快递</font>； &nbsp; &nbsp;您选定的支付方式为: <font color="#ff4e00">支付宝</font>； &nbsp; &nbsp;您的应付款金额为: <font color="#ff4e00">￥888.00</font>
+                <td style="font-size:14px; font-family:'宋体'; padding:10px 0 20px 0; border-bottom:1px solid #b6b6b6;">您选定的支付方式为: <font color="#ff4e00">余额支付</font>； &nbsp; &nbsp;您的付款金额为: <font color="#ff4e00">￥{{ $res['total'] }}</font>
                 </td>
               </tr>
               <tr>
-                <td style="padding:20px 0 30px 0; font-family:'宋体';">
-                  银行名称 收款人信息：全称 ××× ；帐号或地址 ××× ；开户行 ×××。 <br />
-                    注意事项：办理电汇时，请在电汇单“汇款用途”一栏处注明您的订单号。
-                </td>
+                @if(!empty($xz))
+            <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="p_td" width="160">收货人</td>
+                <td width="395">{{ $xz->lname }}</td>
+                <td class="p_td">手机</td>
+                <td>{{ $xz->phone }}</td>
               </tr>
               <tr>
-                <td>
-                  <a href="#">首页</a> &nbsp; &nbsp; <a href="#">用户中心</a>
-                </td>
+                <td class="p_td">详细信息</td>
+                <td>{{ $xz->area .' '. $xz->path }}</td>
+                <td class="p_td">邮政编码</td>
+                <td>{{ $xz->postal }}</td>
+              </tr>
+            </table>
+            @else
+            <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="p_td" width="160">收货人</td>
+                <td width="395">{{ $site->lname }}</td>
+                <td class="p_td">手机</td>
+                <td>{{ $site->phone }}</td>
+              </tr>
+              <tr>
+                <td class="p_td">详细信息</td>
+                <td>{{ $site->area .' '. $site->path }}</td>
+                <td class="p_td">邮政编码</td>
+                <td>{{ $site->postal }}</td>
+              </tr>
+            </table>
+            @endif
               </tr>
             </table>          
         </div>
         <!--Begin 银行卡支付 Begin -->
-        
-       
-        
-     
-        
-        
     </div>
   <!--End 第三步：提交订单 End--> 
-    
-    
     <!--Begin Footer Begin -->
     <div class="b_btm_bg bg_color">
         <div class="b_btm">
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b1.png" width="62" height="62" /></td>
+                <td width="72"><img src="../images/b1.png" width="62" height="62" /></td>
                 <td><h2>正品保障</h2>正品行货  放心购买</td>
               </tr>
             </table>
       <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b2.png" width="62" height="62" /></td>
+                <td width="72"><img src="../images/b2.png" width="62" height="62" /></td>
                 <td><h2>满38包邮</h2>满38包邮 免运费</td>
               </tr>
             </table>
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b3.png" width="62" height="62" /></td>
+                <td width="72"><img src="../images/b3.png" width="62" height="62" /></td>
                 <td><h2>天天低价</h2>天天低价 畅选无忧</td>
               </tr>
             </table>
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="images/b4.png" width="62" height="62" /></td>
+                <td width="72"><img src="../images/b4.png" width="62" height="62" /></td>
                 <td><h2>准时送达</h2>收货时间由你做主</td>
               </tr>
             </table>
@@ -130,14 +143,14 @@
             </p>
         </div>
         <div class="b_er">
-            <div class="b_er_c"><img src="images/er.gif" width="118" height="118" /></div>
-            <img src="images/ss.png" />
+            <div class="b_er_c"><img src="../images/er.gif" width="118" height="118" /></div>
+            <img src="../images/ss.png" />
         </div>
     </div>    
     <div class="btmbg">
     <div class="btm">
           备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-            <img src="images/b_1.gif" width="98" height="33" /><img src="images/b_2.gif" width="98" height="33" /><img src="images/b_3.gif" width="98" height="33" /><img src="images/b_4.gif" width="98" height="33" /><img src="images/b_5.gif" width="98" height="33" /><img src="images/b_6.gif" width="98" height="33" />
+            <img src="../images/b_1.gif" width="98" height="33" /><img src="../images/b_2.gif" width="98" height="33" /><img src="../images/b_3.gif" width="98" height="33" /><img src="../images/b_4.gif" width="98" height="33" /><img src="../images/b_5.gif" width="98" height="33" /><img src="../images/b_6.gif" width="98" height="33" />
         </div>      
     </div>
     <!--End Footer End -->    
