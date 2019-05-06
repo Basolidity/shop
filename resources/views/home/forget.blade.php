@@ -1,85 +1,224 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
-      
-    <script type="text/javascript" src="/home/js/jquery-1.11.1.min_044d0927.js"></script>
-    <script type="text/javascript" src="/home/js/jquery.bxslider_e88acd1b.js"></script>
-    
-    <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="/home/js/menu.js"></script>    
-        
-    <script type="text/javascript" src="/home/js/select.js"></script>
-    
-    <script type="text/javascript" src="/home/js/lrscroll.js"></script>
-    
-    <script type="text/javascript" src="/home/js/iban.js"></script>
-    <script type="text/javascript" src="/home/js/fban.js"></script>
-    <script type="text/javascript" src="/home/js/f_ban.js"></script>
-    <script type="text/javascript" src="/home/js/mban.js"></script>
-    <script type="text/javascript" src="/home/js/bban.js"></script>
-    <script type="text/javascript" src="/home/js/hban.js"></script>
-    <script type="text/javascript" src="/home/js/tban.js"></script>
-    
-    <script type="text/javascript" src="/home/js/lrscroll_1.js"></script>
-    
-    
-<title>{{$title}}</title>
-</head>
-<body>  
+@extends('layout.home')
 
-<div class="log_bg">    
-    <div class="top">
-        <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
-    </div>
-    <div class="login">
-        <div class="log_img"><img src="/home/images/l_img.png" width="611" height="425" /></div>
-        <div class="log_c">
-            
+@section('title', '尤洪')
 
-            <form action="/home/dologin" method="post">
-            <table border="0" style="width:370px; font-size:14px; margin-top:30px;" cellspacing="0" cellpadding="0">
-              <tr height="50" valign="top">
-                <td width="55">&nbsp;</td>
-                <td>
-                    <span class="fl" style="font-size:24px;">找回用户密码</span>
-                    <span class="fr"><a href="" style="color:#ff4e00;">返回登录</a></span>
-
-                </td>
-              </tr>
-              <tr height="70">
-                <td>用户名</td>
-                <td><input type="text" name="uname" class="l_user" /></td>
-              </tr>
-              <tr height="70">
-                <td>密&nbsp; &nbsp; 码</td>
-                <td><input type="password" name="pass"  class="l_pwd" /></td>
-              </tr>
-              
-              <tr height="60">
-                <td>&nbsp;</td>
-                <td><input type="submit" value="找回密码" class="log_btn" /></td>
-              </tr>
-            </table>
-            </form>
+@section('nameinfo')
+  
+  <style type="text/css">
+    .cur{
+      border:1px solid red;
+    }
+    .curs{
+      border:1px solid green;
+    }
+  </style>
+    
+    <div class="log_bg">    
+        <div class="top">
+            <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
+        </div>
+        <div class="regist">
+            <div class="log_img"><img src="/home/images/l_img.png" width="611" height="425" /></div>
+            <div class="reg_c container " style="height:400px;">
+                <form action="/home/doforget" id="ff" method="post" >
+                @if(session('error'))
+                 {{session('error')}}
+                @endif
+                <table border="0" style="width:420px; font-size:14px; margin-top:20px;" cellspacing="0" cellpadding="0">
+                  <tr height="50" valign="top">
+                    <td width="95">&nbsp;</td>
+                    <td>
+                        <span class="fl" style="font-size:24px;">找回密码</span>
+                        <span class="fr"><a href="/home/login" style="color:#ff4e00;">返回登录</a></span>
+                    </td>
+                  </tr>
+                <tr height="50">
+                  <td align="right"><font color="#ff4e00">*</font>&nbsp;密码 &nbsp;</td>
+                  <td><input type="password" name="pass" value="" class="l_pwd" reminder="6到16位字符支持（字母，数字，下划线）" /><span></span></td>
+                </tr>
+                <tr height="50">
+                  <td align="right"><font color="#ff4e00">*</font>&nbsp;确认密码 &nbsp;</td>
+                  <td><input type="password" name="repass" value="" class="l_pwd"reminder="请输入确认密码" /><span></span></td>
+                </tr>
+                <tr height="50">
+                  <td align="right"><font color="#ff4e00">*</font>&nbsp;手机号 &nbsp;</td>
+                  <td><input type="text" name="phone"  class="l_tel" reminder="请输入正确的手机号"  /><span></span></td>
+                </tr>
+                  <tr height="50">
+                    <td align="right"> <font color="#ff4e00">*</font>&nbsp;校证码 &nbsp;</td>
+                    <td>
+                      <input type="text" name="code" value="" class="l_ipt" reminder="请输入正确的校验码" /><span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" class="btn btn-success" style="margin-left:15px;width:108px;font-size:13px;line-height:30px;" id="ss" >获取校证码</a> 
+                    </td>
+                  </tr>
+                  <tr height="60">
+                    <td>&nbsp;</td>
+                    {{csrf_field()}}
+                    <td><input type="submit" value="找回密码" class="log_btn" /></td>
+                  </tr>
+                </table>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!--End Login End--> 
-<!--Begin Footer Begin-->
-<div class="btmbg">
-    <div class="btm">
-        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-        <img src="/home/images/b_1.gif" width="98" height="33" /><img src="/home/images/b_2.gif" width="98" height="33" /><img src="/home/images/b_3.gif" width="98" height="33" /><img src="/home/images/b_4.gif" width="98" height="33" /><img src="/home/images/b_5.gif" width="98" height="33" /><img src="/home/images/b_6.gif" width="98" height="33" />
-    </div>      
-</div>
-<!--End Footer End -->    
+    <!--End Login End--> 
+    <!--Begin Footer Begin-->
+    <div class="btmbg">
+        <div class="btm">
+            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
+            <img src="/home/images/b_1.gif" width="98" height="33" /><img src="/home/images/b_2.gif" width="98" height="33" /><img src="/home/images/b_3.gif" width="98" height="33" /><img src="/home/images/b_4.gif" width="98" height="33" /><img src="/home/images/b_5.gif" width="98" height="33" /><img src="/home/images/b_6.gif" width="98" height="33" />
+        </div>      
+    </div>
+    <!--End Footer End -->    
+    </body>
+    <script>
+      var PHONE=false;
+      var CODE=false;
+      // alert($);
+      //获取每个input  绑定获取焦点事件
+      $("input").focus(function(){
+        reminder = $(this).attr('reminder');
+        $(this).next("span").css('color','red').html(reminder);
+        //添加类样式
+        $(this).addClass('cur');
+        //移除类样式
+        $(this).removeClass('curs');
+      });
 
-</body>
+      //获取密码 绑定失去焦点事件
+      $("input[name = 'pass']").blur(function(){
+        pa = $(this).val();
+        //正则匹配密码 match 匹配不到的话 返回null
+        if(pa.match(/^[\w_-]{6,16}$/)==null){
+          $(this).next("span").css("color","red").html('不能为空或格式不正确');
+          $(this).addClass('cur');
+        }else{
+          $(this).next("span").html('');
+          $(this).removeClass('cur');
+        }
+      });
 
+      //获取确认密码 绑定失去焦点事件
+      $("input[name = 'repass']").blur(function(){
+        rp = $(this).val();
+        r = $(this);
+        //正则匹配密码 match 匹配不到的话 返回null
+        if(rp.match(/^[\w_-]{6,16}$/)==null){
+          $(this).next("span").css("color","red").html('不能为空或格式不正确');
+          $(this).addClass('cur');
+        }else{
+          $(this).next("span").html('');
+          $(this).removeClass('cur');
+        }
+        //对比两次密码
+        if(!($("input[name = 'pass']").val()==$("input[name = 'repass']").val())){ 
+          r.next("span").css("color","red").html('两次密码必须一致');
+          r.addclass('cur');
+        }
 
-<!--[if IE 6]>
-<script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
-</html>
+      });
+
+      //获取手机号 绑定失去焦点事件
+      $("input[name = 'phone']").blur(function(){
+        p = $(this).val();
+        o = $(this);
+        //正则匹配 match 匹配不到的话 返回null
+        if(p.match(/^\d{11}$/)==null){
+          $(this).next("span").css("color",'red').html('不能为空或格式不正确');
+          $(this).addClass('cur');
+          PHONE=false;
+        }else{
+          $.get('/home/forphone',{p:p},function(data){
+            // alert(data);
+            data=JSON.parse(data);
+            if(data == 0){
+              //添加样式
+              o.next("span").css("color",'red').html('手机号还没有注册');
+              o.addClass('cur');
+              //把获取校验码按钮 设置禁用
+              $("#ss").attr('disabled',true);
+              PHONE=false;
+            }else{
+              o.next("span").html('');
+              o.removeClass('cur');
+              //把获取校验码按钮 设置激活
+              $("#ss").attr('disabled',false);
+              PHONE=true;
+            }
+          });
+        }
+      });
+
+      //获取发送短信校验码按钮 绑定单击事件
+      $('#ss').click(function(){
+        d = $(this);
+        //获取注册的手机号
+        pp = $("input[name='phone']").val();
+        //Ajax
+        $.get('/home/duanphone',{pp:pp},function(data){
+          // alert(data);
+          data=JSON.parse(data);
+          if(data.code == 000000){
+            m = 60;
+            //定时器
+            mytime = setInterval(function(){
+              m--;
+              //m赋值按钮
+              d.html(m+"秒后重新发送");
+              d.attr('disabled',true);
+              //判断
+              if(m == 0){
+                //清除定时器
+                clearInterval(mytime);
+                d.html("重新发送");
+                d.attr('disabled',false);
+              }
+            },1000);
+          }
+        });
+      });
+
+      //获取输入验证码input
+     $("input[name='code']").blur(function(){
+      c = $(this);
+      //获取输入的校验码
+      code = $(this).val();
+      //Ajax
+      $.get("/home/checkcode",{code:code},function(data){
+        if(data==1){
+          //校验码一致
+          c.next("span").css('color','green').html('校验码一致');
+          c.addClass('curs');
+          CODE=true;
+        }else if(data==2){
+          //校验码不一致
+          c.next("span").css('color','red').html('校验码有误');
+          c.addClass('cur');
+          CODE=false;
+        }else if(data==3){
+          //输入校验码为空
+          c.next("span").css('color','red').html('校验码为空');
+          c.addClass('cur');
+          CODE=false;
+        }else if(data==4){
+          //验证码过期
+          c.next("span").css('color','red').html('校验码已经过期');
+          c.addClass('cur');
+          CODE=false;
+        }
+      });
+     });
+
+      //表单提交
+     $("#ff").submit(function(){
+      // console.log($("#gg").val());
+      //trigger 某个元素触发某个事件
+      $("input").trigger("blur");
+      if(PHONE && CODE ){
+        return true;//成功提交
+      }else{
+        return false;
+      }
+     });
+    </script>
+@stop

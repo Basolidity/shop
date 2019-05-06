@@ -96,7 +96,7 @@
             </div>
             <div class="des_join">
                 <div class="j_nums">
-                    <input type="text" value="1" name="" class="n_ipt" />
+                    <input type="text" value="1" name="" class="n_ipt" onkeyup="maxnum(this)" />
                     <input type="button" value="" onclick="addUpdate(jq(this));" class="n_btn_1" />
                     <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />   
                 </div>
@@ -104,12 +104,12 @@
                 <em style="color:#3c3c3c;font-style:normal;line-height:45px;margin:0 10px"> (库存
                     @foreach($type as $val)
                     @if($val->id == $gid)
-                       {{$val->num}} 
+                       <b id='kc'>{{$val->num}}</b> 
                     @endif
                  @endforeach
                  )</em>
                 </span>
-                <span class="fl"><a onclick="ShowDiv_1('MyDiv1','fade1')"><img src="/home/images/j_car.png" /></a></span>
+                <span class="fl"><a onclick="tjiagwuc({{$id}},{{$gid}})"><img src="/home/images/j_car.png" /></a></span>
             </div>            
         </div>    
         
@@ -460,4 +460,39 @@
 
 </body>
 <script src="{{asset('home/js/ShopShow.js')}}"></script>
+
+<script type="text/javascript">
+    //判断输入的值小于等于库存值
+    function maxnum(obj){
+        var clear;
+        clearTimeout(clear);
+       clear = setTimeout(function(){
+        var shurk = parseInt($(obj).val());
+        var kuc = parseInt($('#kc').text());
+           if(shurk > kuc){
+                $(obj).val(kuc);
+           }
+        },500)
+    }
+
+    function tjiagwuc(gid,gmid){
+        var num = $('input.n_ipt').val();
+       
+        $.get('/home/addcat',{num,gid,gmid},function(data){
+            layui.use(['form', 'layedit', 'laydate','upload'], function(){
+              var form = layui.form
+              ,layer = layui.layer
+              ,layedit = layui.layedit
+              ,laydate = layui.laydate;
+              //console.log(data.msg);
+              if(data.status=='success'){
+                    layer.msg(data.msg);
+              }else{
+                layer.msg(data.msg,{icon:2});
+              }
+
+          })
+        },"json")
+    }
+</script>
 @stop

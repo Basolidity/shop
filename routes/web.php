@@ -78,11 +78,18 @@ Route::group(['middleware'=>['login','check']], function () {
     Route::get('admin/goods/edit/{id}','Admin\GoodsController@gmodel_edit');
     Route::post('admin/goods/edit/{id}','Admin\GoodsController@gmodel_update');
     Route::get('admin/gModel/display/{id}','Admin\GoodsController@gmodel_display');
+
+    //轮播图
+    Route::resource('admin/rotation','Admin\RotationController');
+
+     //友情链接
+    Route::resource('admin/link','Admin\LinkController');
 });
 
 //后台的登录页面
 Route::get('/admin/login','Admin\LoginController@login');
 Route::post('/admin/dologin','Admin\LoginController@dologin');
+
 //验证码路由
 Route::get('/admin/captcha', 'Admin\LoginController@captcha');
 //无权限访问
@@ -111,7 +118,19 @@ Route::group(['middleware'=>'home'], function () {
     // 购物车资源管理器
     Route::resource('/home/cart','Home\cart\CartController');
 
-    
+    //购物车
+    Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
+    //购物车详情页
+    Route::resource('/home/cart','Home\CatController');
+     //订单页
+    Route::get('/home/order','Home\OrderController@index');
+    //对订单进行操作
+    Route::post('/home/settlement','Home\OrderController@settlement');
+    //结算成功的页面
+    Route::get('/home/settlements/{oid}','Home\OrderController@settlements');
+    //详情页用的
+    Route::get('/home/addcat','Home\CatController@addcart');
+
 });
 
 
@@ -124,10 +143,18 @@ Route::group(['middleware'=>'home'], function () {
     Route::post('/home/dologin','Home\LoginController@dologin');
 //忘记密码
     Route::get('/home/forget','Home\LoginController@forget');
+    Route::get('/home/forphone','Home\LoginController@forphone');
+    Route::get('/home/duanphone','Home\LoginController@duanphone');
+    Route::post('/home/doforget','Home\LoginController@doforget');
 
 //前台注册页面
     Route::get('/home/regist','Home\RegistController@regist');
-    Route::post('/home/doregist','Home\RegistController@doregist');
+    Route::get('/home/doregist','Home\RegistController@doregist');
+    Route::get('/home/checkphone','Home\RegistController@checkphone');
+    Route::get('/home/codephone','Home\RegistController@codephone');
+    Route::get('/home/checkcode','Home\RegistController@checkcode');
+    Route::post('/home/formregist','Home\RegistController@formregist');
+
 
 //前台商品详情
     Route::get('/home/goods/{id}','Home\GoodsController@index');

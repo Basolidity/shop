@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link type="text/css" rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
+
     <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
     
-    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
-    
+
     <!--[if IE 6]>
     <script src="js/iepng.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -15,13 +18,19 @@
     <script type="text/javascript" src="/home/js/jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="/home/js/jquery.bxslider_e88acd1b.js"></script>
     
+
+    <script type="text/javascript" src="/xadmin/js/jquery-3.2.1.min.js"></script>
+
     <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
+
     <script type="text/javascript" src="/home/js/menu.js"></script>    
         
     <script type="text/javascript" src="/home/js/select.js"></script>
     
     <script type="text/javascript" src="/home/js/lrscroll.js"></script>
-     
+
+    
+
     <script type="text/javascript" src="/home/js/iban.js"></script>
     <script type="text/javascript" src="/home/js/fban.js"></script>
     <script type="text/javascript" src="/home/js/f_ban.js"></script>
@@ -30,11 +39,16 @@
     <script type="text/javascript" src="/home/js/hban.js"></script>
     <script type="text/javascript" src="/home/js/tban.js"></script>
     
-    <script type="text/javascript" src="/home/js/lrscroll_1.js"></script>
-    
+
+
+    <script type="text/javascript" src="/layuiadmin/layui/layui.js"></script>
+    <script type="test/javascript" src="/admin/bootstrap/js/bootstrap.min.js"></script>
     
 <title>@yield('title')</title>
 </head>
+
+<!-- @section('nameinfo') -->
+
 <body>  
 <!--Begin Header Begin-->
 <div class="soubg">
@@ -128,6 +142,12 @@
         </span>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+
+@section('nameinfo')
+@section('center')
+>>>>>>> d9c1f77b63464dcf2d5450458dea84657420843f
 
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
@@ -1312,7 +1332,8 @@
             <div class="b_er_c"><img src="/home/images/er.gif" width="118" height="118" /></div>
             <img src="/home/images/ss.png" />
         </div>
-    </div>    
+    </div> 
+
     <div class="btmbg">
         <div class="btm">
             备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
@@ -1321,9 +1342,10 @@
     </div>
     <!--End Footer End -->    
 </div>
-
 </body>
-
-
+@show
+@show
+<!--[if IE 6]>
+<script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
 </html>
-

@@ -146,6 +146,48 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
+                    <cite>轮播图管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('轮播图列表','{{url('admin/rotation')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>轮播图列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a onclick="xadmin.add_tab('添加轮播图','{{url('admin/rotation/create')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加轮播图</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>友情链接管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('友情链接列表','{{url('admin/link')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>友情链接列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a onclick="xadmin.add_tab('添加友情链接','{{url('admin/link/create')}}')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加友情链接</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
                     <cite>订单管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
