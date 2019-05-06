@@ -143,9 +143,9 @@
     </div>
 </div>
 
+
 @section('nameinfo')
 @section('center')
-
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
     <div class="search">

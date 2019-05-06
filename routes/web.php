@@ -115,6 +115,8 @@ Route::group(['middleware'=>'home'], function () {
     Route::get('/home/site/depath/{sta}','Home\site\SiteController@depath');
     // 收货地址管理
     Route::resource('/home/site','Home\site\SiteController');
+    // 购物车资源管理器
+    Route::resource('/home/cart','Home\cart\CartController');
 
     //购物车
     Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');

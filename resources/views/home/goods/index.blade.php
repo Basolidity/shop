@@ -117,6 +117,7 @@
             <div class="s_brand_img"><img src="/home/images/sbrand.jpg" width="188" height="132" /></div>
             <div class="s_brand_c"><a href="#">进入品牌专区</a></div>
         </div>    
+                    {{csrf_field()}}
         
         
     </div>
@@ -344,7 +345,7 @@
                     <td width="40"><img src="/home/images/suc.png" /></td>
                     <td>
                         <span style="color:#3e3e3e; font-size:18px; font-weight:bold;">宝贝已成功添加到购物车</span><br />
-                        购物车共有1种宝贝（3件） &nbsp; &nbsp; 合计：1120元
+                        购物车共有（3件）宝贝 &nbsp; &nbsp; 
                     </td>
                   </tr>
                   <tr height="50" valign="bottom">
@@ -443,6 +444,19 @@
     </div>
     <!--End Footer End -->    
 </div>
+<script>
+    function ShowDiv_1(show_div,bg_div){
+        var _token = "{{csrf_token()}}";
+        var gid = '{{ $good->id }}';
+        $.post('/home/cart',{_token,id:gid})
+        document.getElementById(show_div).style.display='block';
+        document.getElementById(bg_div).style.display='block' ;
+        var bgdiv = document.getElementById(bg_div);
+        bgdiv.style.width = document.body.scrollWidth;
+        // bgdiv.style.height = $(document).height();
+        $("#"+bg_div).height($(document).height());
+    };
+</script>
 
 </body>
 <script src="{{asset('home/js/ShopShow.js')}}"></script>
