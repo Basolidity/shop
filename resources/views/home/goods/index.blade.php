@@ -441,6 +441,8 @@
         var kuc = parseInt($('#kc').text());
            if(shurk > kuc){
                 $(obj).val(kuc);
+           }else if(shurk < 0){
+                $(obj).val(1);
            }
         },500)
     }
