@@ -36,11 +36,36 @@
                             订单完成
                             @break
                     @endswitch</td>
-                <td><a href="{{url('/home/myorderinfo/'.base64_encode($v['id']))}}">查看订单</a></td>
+                <td>
+                @if($v['status']==2)
+                <a href="javascript:void;" onclick="querenshoh(this,{{$v['id']}})">确认收货</a>
+                @endif
+                <a href="{{url('/home/myorderinfo/'.base64_encode($v['id']))}}">查看订单</a></td>
               </tr>
             @endforeach
              
             </table>
 
         </div>
+    <script type="text/javascript">
+    function  querenshoh(obj,id)
+    {   var _token = "{{csrf_token()}}";
+        var obj = $('obj');
+         $.ajax({
+                 type:'post',
+                          url:'/home/orders_status/'+id,
+                          datatype:'json',
+                          data:{_token},
+                          success:function(res){
+                            //console.log(res);
+                            if(res.status=='success'){
+                               layer.msg(res.msg);
+                               obj.parents("tr").remove();
+                            }else{
+                                 layer.msg(res.msg,{icon:2});
+                            }
+                          }
+                      })
+    }
+    </script>
 @stop

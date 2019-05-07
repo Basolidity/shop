@@ -137,4 +137,16 @@ class MyOrderController extends Controller
             return ['msg'=>'评论失败','status'=>'fail'];
         }
     }
+
+    public function orders_status($id)
+    {
+        dd($id);
+        $order = new orderModel;
+        $res = $order->orders_status($id);
+        if($res){
+            return ['msg'=>'确认成功','status'=>'success'];
+        }else{
+            return ['msg'=>'收货失败','status'=>'fail'];
+        }
+    }
 }
