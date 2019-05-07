@@ -151,7 +151,9 @@ class RoleController extends Controller
                 echo '0';die;
             }
         }
-        foreach($data['per'] as $v){
+        $arr = array_unique($data['per']);
+
+        foreach($arr as $v){
             $rs = DB::table('role_per')->insert(['role_id'=>$id,'per_id'=>$v]);
             if(!$rs){
                 echo '0';die;

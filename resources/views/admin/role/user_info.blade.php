@@ -18,7 +18,7 @@
                     <div class="layui-card-body ">
                         <form class="layui-form layui-col-space5">
                             <div class="layui-inline layui-show-xs-block">
-                                <input type="text" name="search" placeholder="请输入用户名" autocomplete="off" class="layui-input" value="{{ $req }}"></div>
+                                <input type="text" name="search" placeholder="请输入角色名称" autocomplete="off" class="layui-input" value="{{ $req }}"></div>
                             <div class="layui-inline layui-show-xs-block">
                                 <button class="layui-btn" lay-submit="" lay-filter="searchu">
                                     <i class="layui-icon">&#xe615;</i></button>
