@@ -173,7 +173,7 @@
                     </ul>
                 </div>
                 <div class="des_con" id="p_attribute">
-                    {{$good->descr}}
+                    {!! $good->descr !!}
                                                            
                                             
                         
