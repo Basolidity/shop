@@ -2,13 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon"type="image/x-icon" href="/images/icon.jpg"media="screen" />
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
     <link type="text/css" rel="stylesheet" href="{{asset('home/css/style.css')}}" />
-    <link type="text/css" rel="stylesheet" href="{{asset('home/css/layui.css')}}" />
+
+    <link type="text/css" rel="stylesheet" href="{{asset('lib/layui2/css/layui.css')}}" />
     <script type="text/javascript" src="{{asset('home/js/menu.js')}}"></script>    
     <script type="text/javascript" src="{{asset('home/js/select.js')}}"></script>
+    <script type="text/javascript" src="{{asset('lib/layui2/layui.js')}}"></script>
     <script type="text/javascript" src="{{asset('layuiadmin/layui/layui.js')}}"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
+    
     
 <title>@yield('title')</title>
 </head>

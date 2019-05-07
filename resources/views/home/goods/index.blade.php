@@ -243,56 +243,26 @@
                 
                                 
                 <table border="0" class="jud_list" style="width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
+                  @foreach($comment as $k => $v)
                   <tr valign="top">
-                    <td width="160"><img src="/home/images/peo1.jpg" width="20" height="20" align="absmiddle" />&nbsp;向死而生</td>
+                    <td width="160"><img src="{{asset($v->pic)}}" width="20" height="20" align="absmiddle" />&nbsp;{{$v->name}}</td>
                     <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
+                       {{$v->content}}
                     </td>
                     <td>
-                        产品很好，香味很喜欢，必须给赞。 <br />
-                        <font color="#999999">2015-09-24</font>
+                       
+                        <font color="#999999">{{date('Y-m-d H:i:s',$v->addtime)}}</font>
                     </td>
                   </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/home/images/peo2.jpg" width="20" height="20" align="absmiddle" />&nbsp;就是这么想的</td>
-                    <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                        送朋友，她很喜欢，大爱。 <br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/home/images/peo3.jpg" width="20" height="20" align="absmiddle" />&nbsp;墨镜墨镜</td>
-                    <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                        大家都说不错<br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/home/images/peo4.jpg" width="20" height="20" align="absmiddle" />&nbsp;那*****洋 <br /><font color="#999999">（匿名用户）</font></td>
-                    <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                        下次还会来买，推荐。<br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
+                  @endforeach
+                 
                 </table>
 
                     
                     
                 <div class="pages">
-                    <a href="#" class="p_pre">上一页</a><a href="#" class="cur">1</a><a href="#">2</a><a href="#">3</a>...<a href="#">20</a><a href="#" class="p_pre">下一页</a>
+                {{ $comment->fragment('p_comment')->links() }}
+                   
                 </div>
                 
             </div>

@@ -1342,7 +1342,5 @@
 </body>
 @show
 @show
-<!--[if IE 6]>
-<script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
+
 </html>

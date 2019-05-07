@@ -121,6 +121,10 @@ Route::group(['middleware'=>'home'], function () {
     Route::resource('/home/myorder','Home\my\MyOrderController');
     // 订单详情
     Route::get('/home/myorderinfo/{oid}','Home\my\MyOrderController@Orderinfo');
+    //商品评价
+    Route::get('home/my/evaluate/{oinfoid}','Home\my\MyOrderController@evaluate');
+    //评价提交
+     Route::post('home/my/addevaluate','Home\my\MyOrderController@addevaluate');
 
     //购物车
     Route::get('/home/cat/{gid}/{gmid}','Home\CatController@add');
