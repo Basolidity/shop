@@ -18,9 +18,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $i=1;  
+        
         $txt = $request->input('uname');
-        // var_dump($txt);
         $perPage = $request->input('per_num',10); //每页页码
         $query = User::query()->orderBy('id', 'asc')->where(function($query) use($request){
             //检测关键字
@@ -30,7 +29,7 @@ class UserController extends Controller
             // dump($start);
             //如果用户名不为空
             if(!empty($uname)) {
-                $query->where('aname','like','%'.$uname.'%');
+                $query->where('uname','like','%'.$uname.'%');
             }
             if(!empty($start) && !empty($end)) {
                 $query->whereBetween('time',[$start,$end]);
@@ -43,6 +42,7 @@ class UserController extends Controller
         $users = $result['data'];
         $total = $result['total'];//总页码
         $current_page = $result['current_page'];//当前页
+        $i=1+(($current_page-1)*$perPage);  
         return view('admin.user.user_info',compact('users','paginator' ,'total','current_page','perPage','i','txt','req'));
     }
     

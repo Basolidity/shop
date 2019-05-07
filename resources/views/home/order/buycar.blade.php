@@ -35,22 +35,6 @@
                 </td>
               </tr>
               <tr>
-                @if(!empty($xz))
-            <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
-              <tr>
-                <td class="p_td" width="160">收货人</td>
-                <td width="395">{{ $xz->lname }}</td>
-                <td class="p_td">手机</td>
-                <td>{{ $xz->phone }}</td>
-              </tr>
-              <tr>
-                <td class="p_td">详细信息</td>
-                <td>{{ $xz->area .' '. $xz->path }}</td>
-                <td class="p_td">邮政编码</td>
-                <td>{{ $xz->postal }}</td>
-              </tr>
-            </table>
-            @else
             <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="p_td" width="160">收货人</td>
@@ -65,7 +49,6 @@
                 <td>{{ $site->postal }}</td>
               </tr>
             </table>
-            @endif
               </tr>
             </table>          
         </div>

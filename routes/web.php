@@ -136,7 +136,7 @@ Route::group(['middleware'=>'home'], function () {
     //对订单进行操作
     Route::post('/home/settlement','Home\OrderController@settlement');
     //结算成功的页面
-    Route::get('/home/settlements/{oid}','Home\OrderController@settlements');
+    Route::get('/home/settlements/{oid}/{sid}','Home\OrderController@settlements');
     //详情页用的
     Route::get('/home/addcat','Home\CatController@addcart');
     // 我的订单

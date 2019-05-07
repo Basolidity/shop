@@ -36,7 +36,6 @@ class OrderController extends Controller
         // 获取地址
         $site = DB::table('site')->where('uid',$uid)->where('depath',1)->first();
         $xz = DB::table('site')->where('uid',$uid)->where('depath',2)->first();
-        // dump($site);
         return view('home.order.index',['carts'=>$carts,'site'=>$site,'xz'=>$xz]);
     }
 
@@ -45,7 +44,8 @@ class OrderController extends Controller
     {	
     	//获取订单的价格
     	$goods_model=$request->input('total');
-    	$order_msg=$request->input('msg');
+        $order_msg=$request->input('msg');
+    	$sid=$request->input('site');
     	$cat = new CatModel;
     	$order = new orderModel;
     	 //根据用户名获取用户id
@@ -59,7 +59,7 @@ class OrderController extends Controller
 			$data['uid'] = $uid;
         	$data['total'] = $goods_model;
         	$data['msg'] = $order_msg;
-        	$data['sid'] = '3';
+        	$data['sid'] = $sid;
         	$data['addtime'] = time();
         	$data['number'] = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
         	DB::beginTransaction();
@@ -93,7 +93,7 @@ class OrderController extends Controller
 	        	 //判断删除cart里面的信息成功并且修改goods_model表的数据也成功
 	        	 if($res && $good_modelupdate){
 	        	 	DB::commit();
-	        	 	return ['msg'=>'操作成功','status'=>"success",'oid'=>$orderid];
+	        	 	return ['msg'=>'操作成功','status'=>"success",'oid'=>$orderid,'sid'=>$sid];
 	        	 }else{
 	        	 	DB::rollBack();
 	        	 	return ['msg'=>'操作失败,请刷新页面重新结算','status'=>"error"];
@@ -106,16 +106,19 @@ class OrderController extends Controller
     }
 
     //订单后面的页面
-    public function settlements(Request $request,$oid)
+    public function settlements(Request $request,$oid,$sid)
     {
     	$order = new orderModel;
     	//根据id查询order里面的信息
     	$res = $order -> getOrder($oid);
-        // dd($res);
-        $site = DB::table('site')->where('uid',$res['uid'])->where('depath',1)->first();
-        $xz = DB::table('site')->where('uid',$res['uid'])->where('depath',2)->first();
-        
-    	return view('home.order.buycar',['res'=>$res,'site'=>$site,'xz'=>$xz]);
+        $site = DB::table('site')->where('id',$sid)->first();
+        $data = DB::table('site')->where('depath',1)->first();
+        if($data){
+            DB::table('site')->where('id',$sid)->update(['depath'=>0]);
+        }else{
+            DB::table('site')->where('id',$sid)->update(['depath'=>1]);
+        }
+    	return view('home.order.buycar',['res'=>$res,'site'=>$site]);
     }
 
     // 地址页面

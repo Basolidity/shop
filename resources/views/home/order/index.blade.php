@@ -61,7 +61,7 @@
             <div class="two_t">
               <span class="fr"><a href="javascript:;" onclick="xadmin.open('修改','{{ url('home/order/edit') }}',1000,500)">修改</a></span>收货人信息
             </div>
-
+            @if($xz || $site)
             @if(!empty($xz))
             <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
               <tr>
@@ -92,6 +92,7 @@
                 <td>{{ $site->postal }}</td>
               </tr>
             </table>
+            @endif
             @endif
           
             
@@ -127,7 +128,7 @@
               </tr>
               <tr height="70">
                 <td align="right">
-                  <b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;" class="zhongjiage zhongjia">￥2899</span></b>
+                  <b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;" class="zhongjiage zhongjia">￥0</span></b>
                 </td>
               </tr>
               <tr height="70">
@@ -245,6 +246,7 @@
     var _token="{{csrf_token()}}";
     var total = $('.zhongjia').text();
     var msg = $('.add_txt').val();
+    var site = "{{empty($xz) ? $site->id : $xz->id}}";
     layui.use(['form', 'layedit', 'laydate','upload'], function(){
       var _token = "{{csrf_token()}}";
               var form = layui.form
@@ -255,12 +257,12 @@
                           type:'post',
                           url:'/home/settlement',
                           datatype:'json',
-                          data:{_token,total,msg},
+                          data:{_token,total,msg,site},
                           success:function(res){
                             //console.log(res);
                            if(res.status == 'success')
                            {
-                              location.href="/home/settlements/"+res.oid;
+                              location.href="/home/settlements/"+res.oid+'/'+res.sid;
                            }else{
                               layer.msg(res.msg,{icon:2});
                            }
