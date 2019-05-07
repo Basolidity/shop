@@ -9,36 +9,45 @@
         <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
     </div>
     <div class="i_car">
-        <div class="car_t">购物车 [ <span>3</span> ]</div>
+        <div class="car_t">购物车 [ <span>{{empty($carts)?'0':count($carts)}}</span> ]</div>
         <div class="car_bg">
-            <!--Begin 购物车未登录 Begin-->
-            <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
-            <!--End 购物车未登录 End-->
-            <!--Begin 购物车已登录 Begin-->
+        @if(session('qname'))
 
-            <ul class="cars">
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/car1.jpg" width="58" height="58" /></a></div>
-                    <div class="name"><a href="#">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a></div>
-                    <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/car2.jpg" width="58" height="58" /></a></div>
-                    <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                    <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/car2.jpg" width="58" height="58" /></a></div>
-                    <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                    <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                </li>
-            </ul>
-            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-            <div class="price_a"><a href="#">去购物车结算</a></div>
-            <!--End 购物车已登录 End-->
+            @if(empty($carts))
+                <!--Begin 购物车未登录 Begin-->
+                <div class="un_login">购物车为空</div>
+                <!--End 购物车未登录 End-->
+                <!--Begin 购物车已登录 Begin-->
+            @else
+                <ul class="cars">
+                @foreach($carts as $k=>$v)
+                    <li>
+                        <div class="img"><a href="#"><img src="{{$v->pic}}" width="58" height="58" /></a></div>
+                        <div class="name"><a href="#">{{$v->gname}} {{$v->type}}</a></div>
+                        <div class="price jiage" ><font color="#ff4e00">￥<b>{{$v->price}}</b></font> X<b>{{$v->num}}</b></div>
+                    </li>
+                @endforeach
+                </ul>
+                <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
+                <div class="price_a"><a href="{{url('/home/cart')}}">去购物车结算</a></div>
+                <!--End 购物车已登录 End-->
+            @endif
+        @else
+             <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+        @endif
+
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var sum=0;
+    $('.jiage').each(function(){
+      var pic = parseInt($(this).children('font').children('b').text());
+      var num = parseInt($(this).children('b').text());
+        sum +=pic*num;
+    })
+    $('.price_sum').children('span').text(sum);
+</script>
 <!--End Header End--> 
 <!--Begin Menu Begin-->
 <div class="menu_bg">
@@ -63,7 +72,7 @@
                                     <h2>{{$val->tname}}</h2>
                                      @foreach($restypes as $v)
                                       @if( $v->pid == $val->id)
-                                    <a href="#">{{$v->tname}}</a>|
+                                    <a href="{{url('home/list/'.$v->id)}}">{{$v->tname}}</a>|
                                         @endif
                                     @endforeach
                                    
