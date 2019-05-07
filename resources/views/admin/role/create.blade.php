@@ -34,7 +34,9 @@
                                                 <input  name="per[]" lay-skin="primary" type="checkbox" title="{{ $val['pername'] }}" value="{{ $val['id'] }}" lay-filter="fa"class="now">
                                             @endif
                                         @endforeach
-                                            <input name="per[]" lay-skin="primary" type="checkbox"  value="{{ $v['id'] }}" class="last">
+                                            <span style='display:none'>
+                                            <input  name="per[]" lay-skin="primary" type="checkbox"  value="{{ $v['id'] }}" class="last">
+                                            </span>
 
                                     </div>
                                 </td>
@@ -87,7 +89,7 @@
                 form.on('checkbox(fa)', function(data){
                     var a = $(this).prop('checked');
                     if(a){
-                        $(this).siblings('.last').prop('checked',a);
+                        $(this).siblings('span').find('.last').prop('checked',a);
                         form.render();
                     }else{
                         var num = 0;
@@ -98,7 +100,7 @@
                         })
                     }
                     if(num == 0){
-                        $(this).siblings('.last').prop('checked',a);
+                        $(this).siblings('span').find('.last').prop('checked',a);
                         form.render();
                     }
                 });

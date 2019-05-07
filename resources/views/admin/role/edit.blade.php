@@ -38,6 +38,10 @@
                                                 >
                                             @endif
                                         @endforeach
+                                            <span style='display:none'>
+                                            <input style="display:none" name="per[]" lay-skin="primary" type="checkbox"  value="{{ $v['id'] }}" class="last">
+                                            </span>
+                                            
 
                                     </div>
                                 </td>
