@@ -26,7 +26,7 @@ class TypeModel extends Model
 
     public function getType2()
     {
-    	return self::select(DB::raw('*,concat(path,id) as paths'))->
+    	return self::select(DB::raw('*,concat(path,id) as paths'))->where('status','1')->
         orderby('paths')->
         get();
     }
