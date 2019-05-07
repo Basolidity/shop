@@ -11,14 +11,14 @@ class OrderController extends Controller
 {
     //
     public function index(){
-    	 $cat = new CatModel;
+    	$cat = new CatModel;
         $carts =[];
         if(session('qname')){
-             //根据用户名获取用户id
+            //根据用户名获取用户id
             $uid = $cat->findUid(session('qname'));
             $uid = $uid->id;
             $cart = $cat->getCart($uid);
-            //dump($cart);
+            // dump($uid);
            
             foreach($cart as $k =>$v){
                
@@ -30,10 +30,16 @@ class OrderController extends Controller
                 $carts[$k]->num = $v['num'];
                 $carts[$k]->id = $v['id'];
             }
+
             // dump($carts);
         }
-        return view('home.order.index',['carts'=>$carts]);
+        // 获取地址
+        $site = DB::table('site')->where('uid',$uid)->where('depath',1)->first();
+        $xz = DB::table('site')->where('uid',$uid)->where('depath',2)->first();
+        // dump($site);
+        return view('home.order.index',['carts'=>$carts,'site'=>$site,'xz'=>$xz]);
     }
+
 
     public function settlement(Request $request)
     {	
@@ -105,6 +111,30 @@ class OrderController extends Controller
     	$order = new orderModel;
     	//根据id查询order里面的信息
     	$res = $order -> getOrder($oid);
-    	return view('home.order.buycar',['res'=>$res]);
+        // dd($res);
+        $site = DB::table('site')->where('uid',$res['uid'])->where('depath',1)->first();
+        $xz = DB::table('site')->where('uid',$res['uid'])->where('depath',2)->first();
+        
+    	return view('home.order.buycar',['res'=>$res,'site'=>$site,'xz'=>$xz]);
+    }
+
+    // 地址页面
+    public function edit()
+    {
+        $rs = DB::table('site')->where('uid',session('home_id'))->orderBy('depath','desc')->get();
+        // dd($rs);
+        return view('home.order.site_edit',['rs'=>$rs]);
+    }
+    // 选择地址
+    public function depath(Request $request, $id)
+    {
+
+        $data = DB::table('site')->where('depath',2)->update(['depath'=>0]);
+        $res = DB::table('site')->where('id',$id)->update(['depath'=>2]);
+        if($res){
+            return ['status'=>'success'];
+        }else{
+            return ['status'=>'fail'];
+        }
     }
 }

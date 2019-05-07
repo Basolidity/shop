@@ -132,12 +132,20 @@ Route::group(['middleware'=>'home'], function () {
     Route::resource('/home/cart','Home\CatController');
      //订单页
     Route::get('/home/order','Home\OrderController@index');
+    // 订单页修改地址
+    Route::get('/home/order/edit','Home\OrderController@edit');
+    // 选择地址
+    Route::get('/home/order/depath/{id}','Home\OrderController@depath');
+
     //对订单进行操作
     Route::post('/home/settlement','Home\OrderController@settlement');
     //结算成功的页面
     Route::get('/home/settlements/{oid}','Home\OrderController@settlements');
     //详情页用的
     Route::get('/home/addcat','Home\CatController@addcart');
+    // 我的订单
+    Route::get('/home/myorder','Home\my_order\MyOrderController@index');
+
 
 });
 

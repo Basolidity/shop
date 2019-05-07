@@ -355,7 +355,7 @@ ul.menu_r li a:hover, ul.menu_r li a.now{
 /* bx-controls */
 .banner .bx-wrapper .bx-controls{margin-top:-44px;}
 .banner .bx-wrapper .bx-controls .bx-pager{clear:both; text-align:center;position:relative; overflow:hidden; }
-.banner .bx-wrapper .bx-controls .bx-pager a{ width:15px; height:15px; line-height:15px; display:inline-block;overflow:hidden;  margin:15px 5px; background:url(../images/b.png) no-repeat center top; }
+.banner .bx-wrapper .bx-controls .bx-pager a{ width:15px; height:15px; line-height:15px; display:inline-block;overflow:hidden;  margin:0px 5px; background:url(../images/b.png) no-repeat center top; }
 .banner .bx-wrapper .bx-controls .bx-pager a:hover, .banner .bx-wrapper .bx-controls .bx-pager a.active{ background:url(../images/b_h.png) no-repeat center top; }
 
 
