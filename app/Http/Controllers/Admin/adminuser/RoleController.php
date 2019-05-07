@@ -28,7 +28,7 @@ class RoleController extends Controller
             // dump($start);
             //如果用户名不为空
             if(!empty($uname)) {
-                $query->where('nick','like','%'.$uname.'%');
+                $query->where('rname','like','%'.$uname.'%');
             }
         });
         $result = $query->paginate($perPage);
@@ -61,8 +61,6 @@ class RoleController extends Controller
         //
         $rs = Role::get();
         $data = Permission::get();
-
-
         //加载页面
         return view('admin.role.create',['rs'=>$rs,'data'=>$data]);
     }
@@ -88,7 +86,8 @@ class RoleController extends Controller
         if(!$rs){
             echo '0';
         }
-        foreach($data['per'] as $v){
+        $arr = array_unique($data['per']);
+        foreach($arr as $v){
             $res = DB::table('role_per')->insert(['role_id'=>$rs->id,'per_id'=>$v]);
             if(!$res){
                 echo '0';
@@ -152,7 +151,9 @@ class RoleController extends Controller
                 echo '0';die;
             }
         }
-        foreach($data['per'] as $v){
+        $arr = array_unique($data['per']);
+
+        foreach($arr as $v){
             $rs = DB::table('role_per')->insert(['role_id'=>$id,'per_id'=>$v]);
             if(!$rs){
                 echo '0';die;

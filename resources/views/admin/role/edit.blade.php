@@ -86,6 +86,25 @@
                         form.render();  
                     }
                 });
+
+                form.on('checkbox(fa)', function(data){
+                    var a = $(this).prop('checked');
+                    if(a){
+                        $(this).siblings('.last').prop('checked',a);
+                        form.render();
+                    }else{
+                        var num = 0;
+                        $(this).siblings('.now').each(function(){
+                            if($(this).prop('checked')){
+                                num++;
+                            }
+                        })
+                    }
+                    if(num == 0){
+                        $(this).siblings('.last').prop('checked',a);
+                        form.render();
+                    }
+                });
                 
             });
            $(document).ready(function(){

@@ -13,8 +13,8 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{{asset('xadmin/css/font.css')}}">
 
-    <link rel="stylesheet" href="{{asset('xadmin/css/xadmin.css')}}">
     <link rel="stylesheet" href="{{asset('lib/layui2/css/layui.css')}}">
+    <link rel="stylesheet" href="{{asset('xadmin/css/xadmin.css')}}">
     <link rel="stylesheet" href="{{asset('xadmin/css/admin.css')}}" media="all">
 
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
