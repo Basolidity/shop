@@ -18,7 +18,7 @@
                 <td><font color="#ff4e00">{{$v['number']}}</font></td>
                 <td>{{date('Y-m-d H:i:s',$v['addtime'])}}</td>
                 <td>￥{{$v['total']}}</td>
-                <td>@switch($v['status'])
+                <td class="ztai">@switch($v['status'])
                         @case(0)
                             新定单
                             @break
@@ -38,7 +38,7 @@
                     @endswitch</td>
                 <td>
                 @if($v['status']==2)
-                <a href="javascript:void;" onclick="querenshoh(this,{{$v['id']}})">确认收货</a>
+                <a href="javascript:;" onclick="querenshoh(this,{{$v['id']}})">确认收货</a>
                 @endif
                 <a href="{{url('/home/myorderinfo/'.base64_encode($v['id']))}}">查看订单</a></td>
               </tr>
@@ -50,7 +50,8 @@
     <script type="text/javascript">
     function  querenshoh(obj,id)
     {   var _token = "{{csrf_token()}}";
-        var obj = $('obj');
+        var obj = $(obj);
+       
          $.ajax({
                  type:'post',
                           url:'/home/orders_status/'+id,
@@ -60,7 +61,9 @@
                             //console.log(res);
                             if(res.status=='success'){
                                layer.msg(res.msg);
-                               obj.parents("tr").remove();
+                               
+                              obj.parent().prev().text('确认收货');
+                               obj.remove();
                             }else{
                                  layer.msg(res.msg,{icon:2});
                             }

@@ -140,7 +140,7 @@ class MyOrderController extends Controller
 
     public function orders_status($id)
     {
-        dd($id);
+        
         $order = new orderModel;
         $res = $order->orders_status($id);
         if($res){
