@@ -32,10 +32,6 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
-                        </div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
                               <thead>
@@ -46,7 +42,6 @@
                                   <th>编号</th>
                                   <th>名称</th>
                                   <th>展视图</th>
-                                 
                                   <th>加入时间</th>
                                   <th>状态</th>
                                   <th>操作</th>

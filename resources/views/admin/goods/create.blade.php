@@ -117,7 +117,12 @@ layui.use(['form', 'layedit', 'laydate','upload'], function(){
    var upload = layui.upload;         
   //创建一个编辑器
   var editIndex = layedit.build('LAY_demo_editor');
- 
+ @if(session('success'))
+ layer.msg("{{session('success')}}");
+ @endif
+  @if(session('error'))
+ layer.msg("{{session('error')}}");
+ @endif
   //自定义验证规则
   form.verify({
     title: function(value){

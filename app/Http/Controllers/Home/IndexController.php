@@ -17,7 +17,7 @@ class IndexController extends Controller
         // 加载前台公共页面
         $good = new GoodsModel();
         $cat = new CatModel;
-     	$res = array_slice($good->getgodds(13),0,6);
+     	$res = array_slice($good->getgodds(10),0,6);
      	//dump($res);
      	$goodschilden = [];
      	foreach ($res as $key => $value) {

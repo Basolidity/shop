@@ -97,13 +97,13 @@ class MyOrderController extends Controller
         $order = new orderModel;
         $order_info = $order->getOrderInfo($oid);
          $cat = new CatModel;
-        // dump($order_info);
+        
          foreach ($order_info as $k => $v) {
             $goods[] = $cat->getGoods($v->gid);
             $goodsmodel[] = $cat->getGoodsModel($v->gmid);
          }
         
-     
+
         return view('home.order.myorderinfo',['order_info'=>$order_info,'goods'=>$goods,'goodsmodel'=>$goodsmodel]);
     }
 

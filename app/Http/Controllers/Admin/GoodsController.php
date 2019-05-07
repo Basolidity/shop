@@ -49,7 +49,8 @@ class GoodsController extends Controller
         $goods = new GoodsModel;
         $res = $goods->addGoods($data);
         if($res){
-            return redirect('/admin/goods/create');
+
+             return redirect('/admin/goods/create')->with('success','添加成功');
         }else{
             return back()->with('success','添加失败');
         }
