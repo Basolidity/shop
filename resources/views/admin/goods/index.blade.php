@@ -46,60 +46,60 @@
                                   <th>状态</th>
                                   <th>操作</th>
                               </thead>
+
                               <tbody>
-                              @foreach($res as $k =>$v)
-                                <tr>
-                                  <td>
-                                    <input type="checkbox" name=""  lay-skin="primary">
-                                  </td>
-                                  <td>{{$loop->iteration}}</td>
-                                  <td>{{$v->gname}}</td>
-                                  <td><img src="{{$v->pic}}"></td>
-                                  
-                                  <td>{{date('Y-m-d H:i:s',$v->addtime)}}</td>
-                                  <td class="td-status">
-                                  @if($v->status)
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-                                  @else
-                                  <span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>
-                                  @endif
-                                  <td class="td-manage">
-                                   <a onclick="member_stop(this,'{{ $v->id }}')" href="javascript:;" title="{{ $v->status ? '启用':'停用' }}">
+                             
+                                @foreach($res as $k =>$v)
+                                  <tr>
+                                    <td>
+                                      <input type="checkbox" name=""  lay-skin="primary">
+                                    </td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$v->gname}}</td>
+                                    <td><img src="{{$v->pic}}"></td>
+                                    
+                                    <td>{{date('Y-m-d H:i:s',$v->addtime)}}</td>
+                                    <td class="td-status">
+                                    @if($v->status)
+                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+                                    @else
+                                    <span id="sta" class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>
+                                    @endif
+                                    <td class="td-manage">
+                                     <a onclick="member_stop(this,'{{ $v->id }}')" href="javascript:;" title="{{ $v->status ? '启用':'停用' }}">
 
-                                            <i class="layui-icon">{{ $v->status ? '&#xe601;':'&#xe62f;'  }}</i>
-                                            </a>
-                                    <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/goods/'.$v->id.'/edit')}}')" href="javascript:;">
-                                      <i class="layui-icon">&#xe642;</i>
-                                    </a>
-                                    <a title="图片上传" onclick="xadmin.open('图片上传','{{url('admin/goods/update/'.$v->id)}}')" href="javascript:;">
-                                      <i class="icon iconfont ">&#xe6ab;</i>
-                                    </a>
-                                    <a title="添加型号" onclick="xadmin.open('商品型号','{{url('admin/goods/gmodel/'.$v->id)}}')" href="javascript:;">
-                                      <i class="layui-icon">&#xe6b2;</i>
-                                    </a>
-                                    <a title="查看所有型号"  onclick="tab_add('{{url('admin/goods/gmodel/list/'.$v->id)}}')">
-                                      <i class="icon iconfont ">&#xe806;</i>
-                                     
-                                    </a>
-                                   <!--  <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                      <i class="layui-icon">&#xe640;</i>
-                                    </a> -->
+                                              <i class="layui-icon">{{ $v->status ? '&#xe601;':'&#xe62f;'  }}</i>
+                                              </a>
+                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/goods/'.$v->id.'/edit')}}')" href="javascript:;">
+                                        <i class="layui-icon">&#xe642;</i>
+                                      </a>
+                                      <a title="图片上传" onclick="xadmin.open('图片上传','{{url('admin/goods/update/'.$v->id)}}')" href="javascript:;">
+                                        <i class="icon iconfont ">&#xe6ab;</i>
+                                      </a>
+                                      <a title="添加型号" onclick="xadmin.open('商品型号','{{url('admin/goods/gmodel/'.$v->id)}}')" href="javascript:;">
+                                        <i class="layui-icon">&#xe6b2;</i>
+                                      </a>
+                                      <a title="查看所有型号"  onclick="tab_add('{{url('admin/goods/gmodel/list/'.$v->id)}}')">
+                                        <i class="icon iconfont ">&#xe806;</i>
+                                       
+                                      </a>
+                                     <!--  <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                        <i class="layui-icon">&#xe640;</i>
+                                      </a> -->
 
-                                  </td>
-                                </tr>
-                              @endforeach
+                                    </td>
+                                  </tr>
+                                @endforeach
+                            
                               </tbody>
+                              
                             </table>
                         </div>
+                        
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                  <a class="prev" href="">&lt;&lt;</a>
-                                  <a class="num" href="">1</a>
-                                  <span class="current">2</span>
-                                  <a class="num" href="">3</a>
-                                  <a class="num" href="">489</a>
-                                  <a class="next" href="">&gt;&gt;</a>
+                                  {{ $res->links() }}
                                 </div>
                             </div>
                         </div>

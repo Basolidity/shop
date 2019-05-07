@@ -32,9 +32,7 @@ class IndexController extends Controller
             $uid = $uid->id;
             $cart = $cat->getCart($uid);
             //dump($cart);
-           
             foreach($cart as $k =>$v){
-               
                 $carts[$k] = $cat->getGoods($v['gid']);
                 $goods_model = $cat->getGoodsModel($v['gmid']);
                 $carts[$k]->price = $goods_model->price;

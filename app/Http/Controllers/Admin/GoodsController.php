@@ -14,11 +14,18 @@ class GoodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
+    
          $goods = new GoodsModel;
-        $res = $goods->getGoods();
-        //dd($res);
+         $start = empty($request->start)?'1556096127':strtotime($request->start);
+         $end  = empty($request->end)?'9999999999':strtotime($request->end);
+         $username = $request->username;
+         // dump($start);
+         // dump($end);
+         // dump($username);
+        $res = $goods->getGoods($start,$end,$username);
+         //dump($res);
         return view('admin.goods.index',['res'=>$res]);
     }
 

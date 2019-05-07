@@ -22,7 +22,7 @@
                             <div class="layui-inline layui-show-xs-block">
                                 <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end"></div>
                             <div class="layui-inline layui-show-xs-block">
-                                <input type="text" name="search" placeholder="请输入用户名" autocomplete="off" class="layui-input" value=" "></div>
+                                <input type="text" name="search" placeholder="订单号" autocomplete="off" class="layui-input" value=" "></div>
                             <div class="layui-inline layui-show-xs-block">
                                 <button class="layui-btn" lay-submit="" lay-filter="searchu">
                                     <i class="layui-icon">&#xe615;</i></button>
@@ -93,11 +93,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="layui-card-body ">
-                        <div id="userPage" style="margin-left:150px">
-                       
+                   <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
                             {{ $orders->links() }}
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
