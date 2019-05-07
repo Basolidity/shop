@@ -36,9 +36,6 @@ class RoleController extends Controller
             $v->per;
             $role[] = $v;
         }
-        // $user = $result[0]->per;
-        // dd($user[0]->pername,$user[1]->pername);
-        // dd($result);
         $paginator = $result->render();
         $result =  collect($result)->toArray();
         $req = $request['search'];

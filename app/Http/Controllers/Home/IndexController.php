@@ -51,7 +51,13 @@ class IndexController extends Controller
         //友情链接
         $links = DB::table('links')->get();
         // dd($links);
-        
+        $fw = DB::table('fangwen')->where('id',1)->first();
+        // dd($fw->fw);
+        $num = $fw->fw;
+        $num++;
+
+
+        DB::table('fangwen')->where('id',1)->update(['fw'=>$num]);
         return view('home.index.index',['res'=>$res,'tup'=>$goodschilden,'carts'=>$carts,'tu'=>$tu,'links'=>$links]);
         
     }

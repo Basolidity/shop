@@ -57,14 +57,14 @@
             <div class="nav_t">全部商品分类</div>
             <div class="leftNav none">
                 <ul>  
-                @foreach($restypes as $restype)
+                @foreach($restypes as $k => $restype)
                   @if($restype->pid == 0)
                     <li>
                         <div class="fj">
                             <span class="n_img"><span></span><img src="/home/images/nav1.png" /></span>
                             <span class="fl">{{$restype->tname}}</span>
                         </div>
-                        <div class="zj">
+                        <div class="zj" style="top:-{{ $k * 40 }}px;">
                             <div class="zj_l">
                             @foreach($restypes as $val)
                                 @if( $val->pid == $restype->id)

@@ -28,10 +28,15 @@ class UserController extends Controller
             $uname = $request->search;
             $start = $request->start;
             $end = $request->end;
+            $role = $request->role;
             // dump($start);
             //如果用户名不为空
             if(!empty($uname)) {
                 $query->where('nick','like','%'.$uname.'%');
+            }
+            $roles = Role::where('rname',$role)->first();
+            if(!empty($role)) {
+                $query->where('rid','like','%'.$roles['id'].'%');
             }
             if(!empty($start) && !empty($end)) {
                 $query->whereBetween('time',[$start,$end]);
@@ -40,16 +45,16 @@ class UserController extends Controller
         $result = $query->paginate($perPage);
         foreach($result as $k => $v){
             $role[] = $v->role;
-            
         }
         $paginator = $result->render();
         $result =  collect($result)->toArray();
         $req = $request['search'];
+        $re = $request['role'];
         $users = $result['data'];
         $total = $result['total'];//总页码
         $current_page = $result['current_page'];//当前页
         $i=1+(($current_page-1)*$perPage);  
-        return view('admin.adminuser.user_info',compact('users','paginator' ,'total','current_page','perPage','i','txt','req'));
+        return view('admin.adminuser.user_info',compact('users','paginator' ,'total','current_page','perPage','i','txt','req','re'));
     }
     
 
