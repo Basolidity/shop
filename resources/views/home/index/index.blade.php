@@ -59,29 +59,27 @@
             <div class="nav_t">全部商品分类</div>
             <div class="leftNav">
                 <ul>  
-                @foreach($restypes as $restype)
+                @foreach($restypes as $k => $restype)
                   @if($restype->pid == 0)
                     <li>
                         <div class="fj">
                             <span class="n_img"><span></span><img src="/home/images/nav1.png" /></span>
                             <span class="fl">{{$restype->tname}}</span>
                         </div>
-                        <div class="zj">
+                        <div class="zj" style="top:-{{ $k * 40 }}px;">
                             <div class="zj_l">
                             @foreach($restypes as $val)
                                 @if( $val->pid == $restype->id)
                                     <div class="zj_l_c">
                                     <h2>{{$val->tname}}</h2>
-                                     @foreach($restypes as $v)
-                                      @if( $v->pid == $val->id)
+                                    @foreach($restypes as $v)
+                                    @if( $v->pid == $val->id)
                                     <a href="{{url('home/list/'.$v->id)}}">{{$v->tname}}</a>|
-                                        @endif
+                                    @endif
                                     @endforeach
-                                   
                                 </div>
                                 @endif
                             @endforeach
-                                
                             </div>
                             <div class="zj_r">
                                 <a href="#"><img src="/home/images/n_img1.jpg" width="236" height="200" /></a>
@@ -89,7 +87,7 @@
                             </div>
                         </div>
                     </li>
-                     @endif
+                    @endif
                 @endforeach
        
                 </ul>           

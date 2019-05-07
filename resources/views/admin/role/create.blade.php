@@ -25,15 +25,16 @@
                                     <input type="checkbox" name="per[]" lay-skin="primary" lay-filter="father" title="{{ $v['pername'] }}" value="{{ $v['id'] }}">
                                 </td>
                                 <td>
-                                    <div class="layui-input-block">
+                                    <div  class="layui-input-block">
                                         @foreach($data as $val)
                                             @php
                                                 $arr = explode(",",$val['path']);
                                             @endphp
                                             @if(in_array($v['id'],$arr))
-                                                <input name="per[]" lay-skin="primary" type="checkbox" title="{{ $val['pername'] }}" value="{{ $val['id'] }}" >
+                                                <input  name="per[]" lay-skin="primary" type="checkbox" title="{{ $val['pername'] }}" value="{{ $val['id'] }}" lay-filter="fa"class="now">
                                             @endif
                                         @endforeach
+                                            <input name="per[]" lay-skin="primary" type="checkbox"  value="{{ $v['id'] }}" class="last">
 
                                     </div>
                                 </td>
@@ -80,6 +81,25 @@
                     }else{
                        $(data.elem).parent().siblings('td').find('input').prop("checked", false);
                         form.render();  
+                    }
+                });
+
+                form.on('checkbox(fa)', function(data){
+                    var a = $(this).prop('checked');
+                    if(a){
+                        $(this).siblings('.last').prop('checked',a);
+                        form.render();
+                    }else{
+                        var num = 0;
+                        $(this).siblings('.now').each(function(){
+                            if($(this).prop('checked')){
+                                num++;
+                            }
+                        })
+                    }
+                    if(num == 0){
+                        $(this).siblings('.last').prop('checked',a);
+                        form.render();
                     }
                 });
                 //监听提交
