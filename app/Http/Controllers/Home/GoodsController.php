@@ -9,11 +9,13 @@ use App\Model\Home\GoodsModel;
 
 use App\Model\Home\GoodspicModel;
 use App\Model\Home\GoodsTypeModel;
+use App\Model\Home\CatModel;
 class GoodsController extends Controller
 {
     //
     public function index(Request $request,$id)
     {
+       
     	//$model = GoodsModel::with('goodstype')->find($id);
         $goods = new GoodsModel();
     	$good = GoodsModel::find($id);
@@ -37,8 +39,9 @@ class GoodsController extends Controller
     	}
     	
     	$gid = $request->input('gid',$model[0]->id);
-    	
-    	return view('home.goods.index',['good'=>$good,'type'=>$model,'pic'=>$pic,'id'=>$id,'gid'=>$gid,'comment'=>$comment]);
+    	   $cat = new CatModel;
+        $carts = $cat->carts();
+    	return view('home.goods.index',['good'=>$good,'type'=>$model,'pic'=>$pic,'id'=>$id,'gid'=>$gid,'comment'=>$comment,'carts'=>$carts]);
     }
     //查询这个系列的所有商品
      public function list(Request $request,$id){
@@ -51,8 +54,10 @@ class GoodsController extends Controller
      		# code...
      		$goodschilden[] = $good->firstgoods($value->id);
      	}
-     	dump($goodschilden);
-     	return view('home.goods.list',['res'=>$res,'tup'=>$goodschilden]);
+     	//dump($goodschilden);
+         $cat = new CatModel;
+        $carts = $cat->carts();
+     	return view('home.goods.list',['res'=>$res,'tup'=>$goodschilden,'carts'=>$carts]);
      	
      }
 }

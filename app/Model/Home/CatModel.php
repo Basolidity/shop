@@ -68,4 +68,34 @@ class CatModel extends Model
      {
           return self::where('id',$id)->update($data);
      }
+
+     //购物车的方法
+     public function carts()
+     {    
+          $cat = new CatModel;
+           $carts =[];
+        if(session('qname')){
+          
+             //根据用户名获取用户id
+            $uid = $this->findUid(session('qname'));
+            $uid = $uid->id;
+            dump( $uid);
+            $cart = $this->getCart($uid);
+            dump($cart);
+           
+            foreach($cart as $k =>$v){
+               
+                $carts[$k] = $cat->getGoods($v['gid']);
+                $goods_model = $cat->getGoodsModel($v['gmid']);
+                $carts[$k]->price = $goods_model->price;
+                $carts[$k]->type = $goods_model->type;
+                $carts[$k]->kc = $goods_model->num;
+                $carts[$k]->num = $v['num'];
+                $carts[$k]->id = $v['id'];
+            }
+            return $carts;
+        }else{
+          return $carts;
+        }
+     }
 }
