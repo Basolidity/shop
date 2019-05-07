@@ -39,7 +39,7 @@
                 
               </tr>
                 @foreach($carts as $k=>$v)
-              <tr class="jiage">
+              <tr class="jiage jiage2">
                 <td>
                     <div class="c_s_img"><img src="{{$v->pic}}" width="73" height="73" /></div>
                     {{$v->gname}}
@@ -230,7 +230,7 @@
 <script type="text/javascript">
   function zongji(){
       var sum=0;
-      $('.jiage').each(function(){
+      $('.jiage2').each(function(){
         var pic = parseInt($(this).find('.car_ipt').text());
         var num = parseInt($(this).find('.shuliang').text());
        
