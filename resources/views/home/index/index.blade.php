@@ -74,7 +74,7 @@
                                     <h2>{{$val->tname}}</h2>
                                      @foreach($restypes as $v)
                                       @if( $v->pid == $val->id)
-                                    <a href="#">{{$v->tname}}</a>|
+                                    <a href="{{url('home/list/'.$v->id)}}">{{$v->tname}}</a>|
                                         @endif
                                     @endforeach
                                    

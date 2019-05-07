@@ -47,4 +47,33 @@ class orderModel extends Model
     {
     	return self::find($id)->toArray();
     }
+
+    //根据uid查询订单信息
+    public function Order($uid)
+    {
+    	return self::where('uid',$uid)->get()->toArray();
+    }
+
+    //根据oid查询所有的订单详情
+    public function getOrderInfo($oid)
+    {
+    	return DB::table('order_info')->where('oid',$oid)->get();
+    }
+
+    //更具id查询所有的信息
+    public function getOrderInfoId($id)
+    {
+    	return DB::table('order_info')->find($id);
+    }
+
+    //修改是否评论
+    public function updateevaluate($id)
+    {
+    	return DB::table('order_info')->where('id',$id)->update(['evaluate'=>'1']);
+    }
+    //评论
+    public function addcomment($data)
+    {
+    	return DB::table('comment')->insert($data);
+    }
 }

@@ -29,6 +29,7 @@ class GoodsModel extends Model
    {
    		//return self::where('tid',$id)->select('id','gname','pic')->get()->toArray();
    		return DB::table('goods')
+            ->where('goods.tid','=',$id)
             ->join('goods_model', 'goods.id', '=', 'goods_model.gid')
             ->where('goods_model.display','0')
             ->select('goods.id','goods.gname','goods.pic')
@@ -46,4 +47,21 @@ class GoodsModel extends Model
     // {
     // 	return $this->with('goodstype')->where('id',$id)->get();
     // }
+    //查询商品下面的所有评价
+    public function getcomment($gid)
+    {
+        return DB::table('comment')->where('gid',$gid)->paginate(1);
+    }
+
+    //查询所有用户的名字
+    public function getUserName($id)
+    {
+      return DB::table('users')->where('id',$id)->select('uname')->first();
+    }
+
+    //查询所有用户的图片
+    public function getUserInfoPic($uid)
+    {
+      return DB::table('users_info')->where('uid',$uid)->select('pic')->first();
+    }
 }

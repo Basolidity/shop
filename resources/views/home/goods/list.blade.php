@@ -41,7 +41,7 @@
                 <span class="fr">共发现120件</span>
             </div>
             <div class="list_c">
-                
+               @if(!empty($res)) 
                 <ul class="cate_list">
                     @foreach($res as $k => $v)
 
@@ -59,7 +59,9 @@
                     @endforeach
                     
                 </ul>
-                
+                @else
+                    该系列下面暂无产品，将请稍后
+                @endif
                 <div class="pages">
                     <a href="#" class="p_pre">上一页</a><a href="#" class="cur">1</a><a href="#">2</a><a href="#">3</a>...<a href="#">20</a><a href="#" class="p_pre">下一页</a>
                 </div>

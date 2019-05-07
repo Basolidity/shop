@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
     <link rel="shortcut icon"type="image/x-icon" href="/{{ asset('home/images/icon.jpg') }}"media="screen" />
+
     <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
     <link type="text/css" rel="stylesheet" href="{{asset('home/css/style.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{asset('home/css/layui.css')}}" />
@@ -244,7 +246,9 @@
             </table>
             <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="72"><img src="{{ asset('home/images/b2.png') }}" width="62" height="62" /></td>
+
+                <td width="72"><img src="{{asset('home/images/b2.png')}}" width="62" height="62" /></td>
+
                 <td><h2>满38包邮</h2>满38包邮 免运费</td>
               </tr>
             </table>
