@@ -84,6 +84,11 @@ Route::group(['middleware'=>['login','check']], function () {
 
      //友情链接
     Route::resource('admin/link','Admin\LinkController');
+
+    //查询订单
+    Route::resource('admin/order','Admin\OrderController');
+    //查看订单详情
+    Route::get('admin/order_info/{id}','Admin\OrderController@info');
 });
 
 //后台的登录页面
@@ -137,14 +142,18 @@ Route::group(['middleware'=>'home'], function () {
     // 选择地址
     Route::get('/home/order/depath/{id}','Home\OrderController@depath');
 
+
+
     //对订单进行操作
     Route::post('/home/settlement','Home\OrderController@settlement');
     //结算成功的页面
     Route::get('/home/settlements/{oid}/{sid}','Home\OrderController@settlements');
     //详情页用的
     Route::get('/home/addcat','Home\CatController@addcart');
-    // 我的订单
-    Route::get('/home/myorder','Home\my_order\MyOrderController@index');
+    //订单页进行确认收货
+    Route::post('/home/orders_status/{oid}','Home\my\MyOrderController@orders_status');
+    // // 我的订单
+    // Route::get('/home/myorder','Home\my_order\MyOrderController@index');
 
 
 });

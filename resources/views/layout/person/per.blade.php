@@ -130,7 +130,7 @@
             <div class="left_m">
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
-                    <li><a href="{{url('/home/myorder')}}">我的订单</a></li>
+                    <li><a href="{{url('home/myorder')}}">我的订单</a></li>
                     <li><a href="{{url('home/site')}}">收货地址</a></li>
                 </ul>
             </div>

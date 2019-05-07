@@ -76,4 +76,9 @@ class orderModel extends Model
     {
     	return DB::table('comment')->insert($data);
     }
+
+     //修改订单状态
+    public function orders_status($id){
+        return DB::table('order')->where('id',$id)->update(['status'=>'3']);
+    }
 }
