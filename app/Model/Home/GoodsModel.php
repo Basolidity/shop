@@ -29,6 +29,7 @@ class GoodsModel extends Model
    {
    		//return self::where('tid',$id)->select('id','gname','pic')->get()->toArray();
    		return DB::table('goods')
+            ->where('goods.id','=',$id)
             ->join('goods_model', 'goods.id', '=', 'goods_model.gid')
             ->where('goods_model.display','0')
             ->select('goods.id','goods.gname','goods.pic')

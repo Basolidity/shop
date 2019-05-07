@@ -43,14 +43,15 @@ class GoodsController extends Controller
     //查询这个系列的所有商品
      public function list(Request $request,$id){
      	$good = new GoodsModel();
+        dump($id);
      	$res = $good->getgodds($id);
-     	
+     	dump($res);
      	$goodschilden = [];
      	foreach ($res as $key => $value) {
      		# code...
      		$goodschilden[] = $good->firstgoods($value->id);
      	}
-     	
+     	dump($goodschilden);
      	return view('home.goods.list',['res'=>$res,'tup'=>$goodschilden]);
      	
      }
