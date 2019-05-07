@@ -20,7 +20,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $i=1;  
         $txt = $request->input('uname');
         // var_dump($txt);
         $perPage = $request->input('per_num',10); //每页页码
@@ -49,6 +48,7 @@ class UserController extends Controller
         $users = $result['data'];
         $total = $result['total'];//总页码
         $current_page = $result['current_page'];//当前页
+        $i=1+(($current_page-1)*$perPage);  
         return view('admin.adminuser.user_info',compact('users','paginator' ,'total','current_page','perPage','i','txt','req'));
     }
     
@@ -222,7 +222,7 @@ class UserController extends Controller
         // hash加密新密码
         $data['pass'] = password_hash($data['newpass'],PASSWORD_DEFAULT);
         // 修改数据库密码
-        $pass = User::where('id', $id)->update(['pass' => $data['newpass']]);
+        $pass = User::where('id', $id)->update(['pass' => $data['pass']]);
 
         // 返回值，1：成功   0：失败
         if($pass){

@@ -15,8 +15,15 @@ class SiteController extends Controller
      */
     public function index()
     {
+
         //查询数据库所有地址
+
+        $res = Site::where('uid',session('home_id'))->get();
+        if($res){
+            Site::where('id',$res[0]->id)->update(['depath'=>1]);
+        }
         $rs = Site::where('uid',session('home_id'))->orderBy('depath','desc')->get();
+
         $num = count($rs);
         return view('home.site.index',['rs'=>$rs,'num'=>$num]);
     }

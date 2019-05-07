@@ -97,8 +97,8 @@
             <div class="des_join">
                 <div class="j_nums">
                     <input type="text" value="1" name="" class="n_ipt" onkeyup="maxnum(this)" />
-                    <input type="button" value="" onclick="addUpdate(jq(this));" class="n_btn_1" />
-                    <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />   
+                    <input type="button" value="" onclick="add(jq(this));" class="n_btn_1" />
+                    <input type="button" value="" onclick="jian(jq(this));" class="n_btn_2" />   
                 </div>
                 <span class="fl">
                 <em style="color:#3c3c3c;font-style:normal;line-height:45px;margin:0 10px"> (库存
@@ -436,8 +436,9 @@
     function maxnum(obj){
         var clear;
         clearTimeout(clear);
-       clear = setTimeout(function(){
+        clear = setTimeout(function(){
         var shurk = parseInt($(obj).val());
+        // 库存
         var kuc = parseInt($('#kc').text());
            if(shurk > kuc){
                 $(obj).val(kuc);
@@ -446,6 +447,26 @@
            }
         },500)
     }
+    function add(jia){   
+        var kuc = parseInt($('#kc').text());     
+        var c = jia.parent().find(".n_ipt").val();
+        c=parseInt(c)+1;
+        // console.log(kuc);
+        if(c > kuc){
+            c = kuc;
+        }
+        jia.parent().find(".n_ipt").val(c);
+    }
+
+    function jian(jian){    
+        var c = jian.parent().find(".n_ipt").val();
+        if(c==1){    
+            c=1;    
+        }else{    
+            c=parseInt(c)-1;    
+            jian.parent().find(".n_ipt").val(c);
+        }
+    }   
 
     function tjiagwuc(gid,gmid){
         var num = $('input.n_ipt').val();
