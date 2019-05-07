@@ -53,11 +53,10 @@
             </li>
             <li class="layui-nav-item">
             <a href="javascript:;">
-                {{$res->aname}}
+                {{$res->nick}}
             </a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a href="javascript:;" onclick="xadmin.add_tab('个人信息','{{ url('admin/person') }}')">个人信息</a></dd>
-              <dd><a href="javascript:;" onclick="xadmin.add_tab('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
               <dd><a href="/admin/logout">退出</a></dd>
             </dl>
           </li>

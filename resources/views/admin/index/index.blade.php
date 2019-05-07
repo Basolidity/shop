@@ -11,7 +11,7 @@
 
                             @endphp
                             <blockquote class="layui-elem-quote">欢迎管理员：
-                                <span class="x-red">{{$res->aname}}</span>！当前时间:<span id="showDate"></span>
+                                <span class="x-red">{{$res->nick}}</span>！当前时间:<span id="showDate"></span>
                             <script>
                             function getCurrTime(){
                             var date=new Date();

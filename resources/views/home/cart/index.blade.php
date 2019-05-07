@@ -39,10 +39,10 @@
             <td align="center">型号：{{$v->type}}</td>
             <td align="center">
             	<div class="c_num">
-                    <input type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
+                    <input type="button" value="" onclick="jian(jq(this));" class="car_btn_1" />
                 	<input type="text" value="{{$v->num}}" name="" class="car_ipt" onkeyup="maxnum(this,{{$v->id}})"/> 
-                	<input name="kuc" type="hidden" value="{{$v->kc}}"> 
-                    <input type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
+                	<input id="kc" name="kuc" type="hidden" value="{{$v->kc}}"> 
+                    <input type="button" value="" onclick="add(jq(this));" class="car_btn_2" />
                 </div>
             </td>
             <td align="center" style="color:#ff4e00;" >￥<span class="shuliang">{{$v->price}}<span></td>
@@ -56,7 +56,7 @@
           <tr height="70">
           	<td colspan="6" style="font-family:'Microsoft YaHei'; border-bottom:0;">
             	
-                <span class="fr">商品总价：<b style="font-size:22px; color:#ff4e00;">￥<em id="zhongjiage">2899</em></b></span>
+                <span class="fr">商品总价：<b style="font-size:22px; color:#ff4e00;">￥<em id="zhongjiage">0</em></b></span>
             </td>
           </tr>
           <tr valign="top" height="150">
@@ -79,6 +79,7 @@
 	     console.log($(this).find('.car_ipt').val());
        console.log($(this).find('.shuliang').text());
 	        sum +=pic*num;
+          console.log(sum);
 	    })
 	     $('#zhongjiage').text(sum);
 
@@ -199,14 +200,14 @@
 </div>
 
 </body>
-<script src="{{asset('home/js/ShopShow.js')}}"></script>
 
 <script type="text/javascript">
+
 var clear;
   function maxnum(obj,id){
         
         clearTimeout(clear);
-       clear = setTimeout(function(){
+        clear = setTimeout(function(){
         var shurk = parseInt($(obj).val());
         var kuc = parseInt($(obj).siblings('input[name="kuc"]').val());
            if(shurk > kuc){
@@ -217,6 +218,26 @@ var clear;
            CartNum(obj,id);
         },1000);
        
+    }
+    function add(jia){   
+        var kuc = parseInt($(jia).prev().val());
+        var c = jia.parent().find(".car_ipt").val();
+        c=parseInt(c)+1;
+        // console.log(kuc);
+        if(c > kuc){
+            c = kuc;
+        }
+        jia.parent().find(".car_ipt").val(c);
+    }
+
+    function jian(jian){    
+        var c = jian.parent().find(".car_ipt").val();
+        if(c==1){    
+            c=1;    
+        }else{    
+            c=parseInt(c)-1;    
+            jian.parent().find(".car_ipt").val(c);
+        }
     }
 
     //修改数据库的数量
