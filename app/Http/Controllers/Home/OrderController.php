@@ -18,7 +18,6 @@ class OrderController extends Controller
             $uid = $cat->findUid(session('qname'));
             $uid = $uid->id;
             $cart = $cat->getCart($uid);
-            // dump($uid);
            
             foreach($cart as $k =>$v){
                
@@ -31,7 +30,6 @@ class OrderController extends Controller
                 $carts[$k]->id = $v['id'];
             }
 
-            // dump($carts);
         }
         // 获取地址
         $site = DB::table('site')->where('uid',$uid)->where('depath',1)->first();

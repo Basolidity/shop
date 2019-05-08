@@ -79,9 +79,9 @@ class CatModel extends Model
              //根据用户名获取用户id
             $uid = $this->findUid(session('qname'));
             $uid = $uid->id;
-            dump( $uid);
+            //dump( $uid);
             $cart = $this->getCart($uid);
-            dump($cart);
+          //  dump($cart);
            
             foreach($cart as $k =>$v){
                
