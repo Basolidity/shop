@@ -18,7 +18,7 @@ class OrderController extends Controller
         $order = new orderModel;
         //获取所有订单信息
         $orders = $order->getOrder();
-        dump($orders);
+       // dump($orders);
         return view('admin.order.index',['orders'=>$orders]);
     }
 
