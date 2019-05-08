@@ -12,9 +12,13 @@ class OrderModel extends Model
     public $timestamps = false;
 
     //查询所有数据
-    public function getOrder()
+    public function getOrder($start,$end,$search)
     {
-    	return self::orderBy('addtime','desc')->paginate(10);
+    	return self::orderBy('addtime','desc')->where(function ($query) use($start,$end,$search) {
+            $query->whereBetween('addtime', [$start, $end]);
+            $query->where('number','like','%'.$search.'%');
+        })
+            ->paginate(6);
     }
 
     //修改状态

@@ -31,7 +31,7 @@
             <td class="car_th" width="150">操作</td>
           </tr>
           @foreach($carts as $k=>$v)
-          <tr class="jiage">
+          <tr class="jiage jiage2">
             <td>
             	<div class="c_s_img"><img src="{{$v->pic}}" width="73" height="73" /></div>
                 {{$v->gname}}
@@ -71,10 +71,13 @@
     <script type="text/javascript">
     function zongji(){
 	    var sum=0;
-	    $('.jiage').each(function(){
+      
+	    $('.jiage2').each(function(){
+        console.log(111);
 	      var pic = parseInt($(this).find('.car_ipt').val());
 	      var num = parseInt($(this).find('.shuliang').text());
-	     
+	     console.log($(this).find('.car_ipt').val());
+       console.log($(this).find('.shuliang').text());
 	        sum +=pic*num;
           console.log(sum);
 	    })
@@ -82,6 +85,8 @@
 
     }
    zongji();
+  
+  
 </script>
 	<!--End 第一步：查看购物车 End--> 
     

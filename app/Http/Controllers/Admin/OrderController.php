@@ -13,12 +13,22 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
+       // dd($request->input());
         $order = new orderModel;
         //获取所有订单信息
+<<<<<<< HEAD
         $orders = $order->getOrder();
        // dump($orders);
+=======
+         $start = empty($request->start)?'1556096127':strtotime($request->start);
+         $end  = empty($request->end)?'9999999999':strtotime($request->end);
+         $search = $request->search;
+        $orders = $order->getOrder($start,$end, $search);
+
+        //dump($orders);
+>>>>>>> cebdcb9a60b68fcab044efb64b2c4d2e7c965eb5
         return view('admin.order.index',['orders'=>$orders]);
     }
 
@@ -118,4 +128,6 @@ class OrderController extends Controller
         // dump($order_info);
         return view('admin.order.index_info',['order'=>$order,'users'=>$users,'order_info'=>$order_info]);
     }
+
+
 }

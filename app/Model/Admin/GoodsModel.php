@@ -16,9 +16,14 @@ class GoodsModel extends Model
     }
 
     //查询商品所有信息
-    public function getGoods()
+    public function getGoods($start,$end,$username)
     {
-    	return self::get();
+    	//return self::whereBetween('addtime', [$start, $end])->orWhere('gname','link','%'.$username.'%')->paginate(10);
+        return self::where(function ($query) use($start,$end,$username) {
+            $query->whereBetween('addtime', [$start, $end]);
+            $query->where('gname','like','%'.$username.'%');
+        })
+            ->paginate(6);
     }
 
     //根据id修改信息

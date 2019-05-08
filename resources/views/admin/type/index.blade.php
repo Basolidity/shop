@@ -103,7 +103,8 @@
           layui.use(['form'], function(){
             form = layui.form;
              form.on('submit(sreach)',function(){
-                if($('.layui-input[nam="tname"]').val()=="" || $('.layui-input[nam="tname"]').val()=="undefined"){
+              alert($('.layui-input[nam="tname"]').val())
+                if($('.layui-input[nam="tname"]').val()=="" || $('.layui-input[nam="tname"]').val() == undefined){
                   layer.msg('分类名不能为空',{icon:2});
                     return false;
                 }
