@@ -3,6 +3,8 @@
 
 @section('center')
         <!-- 管理中心right部分 -->
+    <script type="text/javascript" src="{{asset('xadmin/js/jquery-3.2.1.min.js')}}"></script>
+        
         <div class="m_right">
             <div class="m_des">
                 <table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0">

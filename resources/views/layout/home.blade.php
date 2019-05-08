@@ -41,8 +41,8 @@
 
 
     <script type="text/javascript" src="/layuiadmin/layui/layui.js"></script>
-    <script type="test/javascript" src="/admin/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{asset('xadmin/js/xadmin.js')}}"></script>
+    <script type="test/javascript" src="/admin/bootstrap/js/bootstrap.min.js"></script>
     
     
 <title>@yield('title')</title>

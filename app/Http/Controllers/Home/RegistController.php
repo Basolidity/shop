@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\Admin\User;
+use App\Model\Admin\Usersinfo;
 use DB;
 
 class RegistController extends Controller
@@ -97,9 +98,8 @@ class RegistController extends Controller
     //获取表单值添加数据库
     public function formregist(Request $request)
     {
-        // var_dump($request->gtr);
         //去掉没用的字段
-        $form = $request->except(['_token','repass','code']);
+        $form = $request->except(['_token','repass','code','gtr']);
 
         //哈希加密
         $form['pass'] = password_hash($form['pass'],PASSWORD_DEFAULT);
@@ -110,7 +110,10 @@ class RegistController extends Controller
         // var_dump($form);
         //添加到数据库
         $rs = DB::table('users')->insert($form);
-        if($rs){
+        $info = User::where('uname',$form['uname'])->get();
+        // 将用户id写入详情uid
+        $rs1 = Usersinfo::create(['uid'=>$info[0]->id]);
+        if($rs && $rs1){
             return redirect('/home/login')->with('error','注册成功,请登录');
         }else{
             return redirect('/home/regist')->with('error','注册失败');

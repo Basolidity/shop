@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Model\Admin\adminuser\Role;
 use App\Model\Admin\adminuser\Permission;
+use DB;
 
 class CheckRoleMiddleware
 {
@@ -17,8 +18,9 @@ class CheckRoleMiddleware
      */
     public function handle($request, Closure $next)
     {
-
-        $rs = Role::find(session('id'));
+        // dump(session('uname'));
+        $ad = DB::table('admin_user')->where('aname',session('uname'))->first();
+        $rs = Role::find($ad->rid);
             foreach($rs->per as $v){
                 $arr[] = $v->perurl;
             }
@@ -30,16 +32,17 @@ class CheckRoleMiddleware
             $rol = Permission::get();
             foreach($rol as $val){
                 $res[] = $val->perurl;
-                // 判断点击的路由是否存在权限表中
-            if(in_array($url,$res)){
-                // 判断点击的路由是否在用户的权限中
-                if(in_array($url,$ar)){
-                    return $next($request);
+                // // 判断点击的路由是否存在权限表中
+            }
+                if(in_array($url,$res)){
+                    // 判断点击的路由是否在用户的权限中
+                    if(in_array($url,$ar)){
+                        return $next($request);
+                    }else{
+                        return redirect('/admin/check');
+                    }
                 }else{
-                    return redirect('/admin/check');
+                    return $next($request);
                 }
-            }
-                return $next($request);
-            }
     }
 }

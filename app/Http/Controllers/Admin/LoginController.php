@@ -66,7 +66,7 @@ class LoginController extends Controller
             //往session里面存储信息
             // Session::put();
             session(['uname'=>$res->aname]);
-            session(['id'=>$res->rid]);
+            // session(['id'=>$res->rid]);
 
             //跳转
 

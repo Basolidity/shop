@@ -94,10 +94,11 @@ class MyOrderController extends Controller
     {   
 
         $oid = base64_decode($oid);
+        //dump( $oid);
         $order = new orderModel;
         $order_info = $order->getOrderInfo($oid);
          $cat = new CatModel;
-        
+        //dump($order_info);
          foreach ($order_info as $k => $v) {
             $goods[] = $cat->getGoods($v->gid);
             $goodsmodel[] = $cat->getGoodsModel($v->gmid);
