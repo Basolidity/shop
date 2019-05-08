@@ -18,12 +18,17 @@ class OrderController extends Controller
        // dd($request->input());
         $order = new orderModel;
         //获取所有订单信息
+<<<<<<< HEAD
+        $orders = $order->getOrder();
+       // dump($orders);
+=======
          $start = empty($request->start)?'1556096127':strtotime($request->start);
          $end  = empty($request->end)?'9999999999':strtotime($request->end);
          $search = $request->search;
         $orders = $order->getOrder($start,$end, $search);
 
         //dump($orders);
+>>>>>>> cebdcb9a60b68fcab044efb64b2c4d2e7c965eb5
         return view('admin.order.index',['orders'=>$orders]);
     }
 

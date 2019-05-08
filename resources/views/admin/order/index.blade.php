@@ -55,7 +55,7 @@
                                     <td>
                                         @switch($v->status)
                                             @case(0)
-                                                新定单
+                                                新订单
                                                 @break
 
                                             @case(1)
@@ -75,11 +75,11 @@
                                     
                                     <td class="td-manage">
                                         @if($v->status == 0)
-                                            <button type="button"  class="layui-btn layui-btn layui-btn-xs"  onclick="fahuo(this,{{$v->id}})" ><i class="layui-icon">&#xe642;</i>发货</button>
+                                            <button type="button"  class="layui-btn layui-btn layui-btn-xs"  onclick="fahuo(this,{{$v->id}})" >发　货</button>
                                         @elseif($v->status == 4)
                                             <button class="layui-btn layui-btn layui-btn-xs"   >订单完成</button>
                                          @else
-                                           <button class="layui-btn layui-btn layui-btn-xs"  >以发货</button>
+                                           <button class="layui-btn layui-btn layui-btn-xs"  >已发货</button>
                                         @endif
                                             <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="xadmin.open('添加用户','{{ url('admin/order_info/'.$v->id) }}',600,400)" ><i class="layui-icon">&#xe642;</i>查看详情</button>
                                         </a>
